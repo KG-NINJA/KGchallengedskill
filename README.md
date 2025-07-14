@@ -16,7 +16,7 @@ Google Earth Engine, NDVI解析, 衛星画像解析, GeoJSON, Markdown自動生�
 GitHub, GitHub Actions, CI/CD, GitHub Pages, Notion API, Chrome拡張開発, Telegra.ph API, Firebase Studio, Firebase Auth, Cloud Functions, Google Colab
 
 ## OS & Devices
-Windows, Linux, Ubuntu, Raspberry Pi（Zero）, IoT（Raspberry Pi＋AI＋センサー）
+Windows, Linux, Ubuntu, Raspberry Pi（Zero）, IoT（Raspberry Pi＋AI＋センサー）(arduino＋shield)
 
 ## NLP & Knowledge
 NLP（自然言語処理）, OSM（OpenStreetMap）API, 地名解析（トポニム分析）
