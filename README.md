@@ -28,4 +28,4 @@ Windows, Linux, Ubuntu, Raspberry Pi（Zero）, IoT（Raspberry Pi＋AI＋セン
 NLP（自然言語処理）, OSM（OpenStreetMap）API, 地名解析（トポニム分析）
 
 ## その他
-YouTube動画編集チャンネル運営
+YouTube動画編集チャンネル運営　, 作詞　, 簡単な作曲 ,　キーボード楽器 , ギター　 ,歌唱
