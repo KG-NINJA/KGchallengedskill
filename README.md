@@ -2,6 +2,8 @@
 
 ## LLM ##
 ChatGPT , Google Gemini , Claude , Grok
+
+
 Most of my PC skills are the result of converting my life experiences into Ninjutsu through the LLM.
 
 ## Programming & Scripting
