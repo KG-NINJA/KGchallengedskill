@@ -27,7 +27,13 @@ Built an end-to-end, open-source geospatial pipeline (NDVI anomaly detection + c
 - Project management and perseverance in a selective global competition
 
 **Methods & Stack:** Python · NDVI/remote sensing · GIS (raster/vector) · Reproducible research workflows
+*Advanced through all stages of the two-month, checkpoint-based hackathon (OpenAI to Z Challenge). 
+The competition imposed strict one-submission rules, multiple deadlines, and rigorous compliance checks. 
+At each checkpoint, many entrants dropped out due to documentation, reproducibility, and eligibility requirements. 
+Successfully delivered a final write-up by the June 29th deadline, avoiding common disqualification pitfalls 
+that eliminated a large share of participants.*
 
+---
 
 ## LLM ##
 ChatGPT , Google Gemini , Claude , Grok
