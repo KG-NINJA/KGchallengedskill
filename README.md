@@ -9,10 +9,10 @@
 Built an end-to-end, open-source geospatial pipeline (NDVI anomaly detection + contextual layers) and completed a **final write-up submission** — one of the comparatively few participants who finished end-to-end within the time window.
 
 <!-- Proof of completion -->
-![Kaggle “Your Work — Submitted” (proof of completion)](assets/openai-to-z-final-submission.png)
+![Kaggle “Your Work — Submitted” (proof of completion)](openai-to-z-final-submission.png)
 
 <!-- Challenge stats snapshot -->
-![Kaggle challenge stats (host/prize/entrants/submissions)](assets/openai-to-z-stats.png)
+![Kaggle challenge stats (host/prize/entrants/submissions)](openai-to-z-stats.png)
 
 **Links**  
 - Final write-up (Kaggle): *Jungle Anomaly Finder — NDVI Satellite Explorer*  
