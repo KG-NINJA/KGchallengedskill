@@ -20,6 +20,12 @@ Built an end-to-end, open-source geospatial pipeline (NDVI anomaly detection + c
 - Source code (GitHub):  
   https://github.com/KG-NINJA/openai-to-z-fuwa/blob/main/README.md
 
+  **Skills Demonstrated**  
+- Sustained delivery across multiple checkpoints with strict deadlines  
+- End-to-end geospatial pipeline design (data → analysis → visualization → reporting)  
+- Reproducible research documentation in English  
+- Project management and perseverance in a selective global competition
+
 **Methods & Stack:** Python · NDVI/remote sensing · GIS (raster/vector) · Reproducible research workflows
 
 
