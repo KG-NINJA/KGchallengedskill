@@ -1,5 +1,28 @@
 # KGchallengedskill
 
+## OpenAI to Z Challenge — Jungle Anomaly Finder (NDVI Satellite Explorer)
+
+**Role:** Independent Researcher / Builder  
+**Timeline:** 2025  
+**Format:** Selective, hackathon-style write-up track
+
+Built an end-to-end, open-source geospatial pipeline (NDVI anomaly detection + contextual layers) and completed a **final write-up submission** — one of the comparatively few participants who finished end-to-end within the time window.
+
+<!-- Proof of completion -->
+![Kaggle “Your Work — Submitted” (proof of completion)](assets/openai-to-z-final-submission.png)
+
+<!-- Challenge stats snapshot -->
+![Kaggle challenge stats (host/prize/entrants/submissions)](assets/openai-to-z-stats.png)
+
+**Links**  
+- Final write-up (Kaggle): *Jungle Anomaly Finder — NDVI Satellite Explorer*  
+  https://www.kaggle.com/competitions/openai-to-z-challenge/writeups/jungle-anomaly-finder-ndvi-satellite-explorer  
+- Source code (GitHub):  
+  https://github.com/KG-NINJA/openai-to-z-fuwa/blob/main/README.md
+
+**Methods & Stack:** Python · NDVI/remote sensing · GIS (raster/vector) · Reproducible research workflows
+
+
 ## LLM ##
 ChatGPT , Google Gemini , Claude , Grok
 
