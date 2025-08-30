@@ -27,6 +27,7 @@ Built an end-to-end, open-source geospatial pipeline (NDVI anomaly detection + c
 - Project management and perseverance in a selective global competition
 
 **Methods & Stack:** Python · NDVI/remote sensing · GIS (raster/vector) · Reproducible research workflows
+
 *Advanced through all stages of the two-month, checkpoint-based hackathon (OpenAI to Z Challenge). 
 The competition imposed strict one-submission rules, multiple deadlines, and rigorous compliance checks. 
 At each checkpoint, many entrants dropped out due to documentation, reproducibility, and eligibility requirements. 
@@ -35,6 +36,32 @@ that eliminated a large share of participants.*
 
 ---
 
+## Soham Interviewing Simulator — Challenge Log
+
+https://github.com/KG-NINJA/soham.penrose/blob/main/readme.md
+
+**Role:** Participant / Strategist  
+**Timeline:** 2025  
+**Format:** AI-based interview & negotiation simulator
+
+**Overview**  
+Completed an AI-powered interview simulation game modeled on real-world negotiation challenges.  
+The simulator demanded **adaptability, negotiation skills, emotional intelligence, and strategic AI use**.  
+Advanced to **Global Rank #34**, received multiple virtual offers, and successfully secured a top-tier "shramp" offer, which is known for its difficulty.
+
+**Key Achievements**
+- 🎯 Reached Overall Rank #34 globally  
+- 💰 Negotiated a $110,000 finalized offer (missed a $140,000 offer by seconds)  
+- 🦐 Achieved an offer from “shramp,” regarded as harder than Ramp (final-boss equivalent)  
+- 📊 Sent 7 applications, received 2 confirmed offers (29% success rate)  
+- ⚡ Demonstrated integrity-based playstyle in a system designed for deception — turning honesty into a winning strategy  
+
+**Skills Demonstrated**
+- Real-time adaptability in negotiation scenarios  
+- Strategic use of AI tools combined with human intuition  
+- Resilience under strict timeouts and high-pressure decision making  
+- Cross-cultural communication and emotional intelligence
+---
 ## LLM ##
 ChatGPT , Google Gemini , Claude , Grok
 
