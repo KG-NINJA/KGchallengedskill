@@ -6,6 +6,29 @@
 **Timeline:** 2025  
 **Format:** Selective, hackathon-style write-up track
 
+# 📜 Resume Entry — Kaggle x OpenAI Hackathon
+
+## OpenAI to Z Challenge (Kaggle × OpenAI, 2025)
+
+- Participated in a **rare hackathon-style Kaggle competition** hosted by OpenAI.  
+- **Format uniqueness**:  
+  - Only **one submission per team allowed** (no retries).  
+  - **English write-up required** with reproducibility and multi-source validation.  
+  - Unlike typical Kaggle challenges, no official dataset was provided; participants had to gather and analyze open data independently.  
+- **Scale and selectivity**:  
+  - **8,156 entrants**, but only **229 final submissions** (<3%).  
+  - Reached final submission despite being a first-time entrant — successfully completing a challenge with one of the **lowest completion rates in Kaggle history**.  
+- **Skills demonstrated**:  
+  - Research and integration of open satellite/LiDAR datasets.  
+  - Analytical rigor under strict one-shot submission constraints.  
+  - Clear communication and documentation in English for global reproducibility.  
+
+🔗 Kaggle Write-up: [Jungle Anomaly Finder – NDVI Satellite Explorer](https://www.kaggle.com/competitions/openai-to-z-challenge/writeups/jungle-anomaly-finder-ndvi-satellite-explorer)  
+🔗 GitHub Repository: [openai-to-z-fuwa](https://github.com/KG-NINJA/openai-to-z-fuwa/blob/main/README.md)  
+
+---
+
+
 Built an end-to-end, open-source geospatial pipeline (NDVI anomaly detection + contextual layers) and completed a **final write-up submission** — one of the comparatively few participants who finished end-to-end within the time window.
 
 <!-- Proof of completion -->
