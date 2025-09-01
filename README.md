@@ -3,6 +3,7 @@
 ## OpenAI to Z Challenge — Jungle Anomaly Finder (NDVI Satellite Explorer)
 
 **Role:** Independent Researcher / Builder  
+https://www.kaggle.com/kgninja
 **Timeline:** 2025  
 **Format:** Selective, hackathon-style write-up track
 
