@@ -73,7 +73,11 @@ OpenAI主催による初めての特殊ルールハッカソン形式のKaggle�
 - **発揮したスキル**  
   - 公開衛星データ / LiDAR データの収集・統合・解析  
   - ワンショット提出制約下での分析力と精度維持  
-  - グローバル再現性を意識した英語での明確なドキュメント作成  
+  - グローバル再現性を意識した英語での明確なドキュメント作成
+  - Kaggle国際コンペティションにおいて、衛星データ解析からレポート提出まで完遂。
+  - 技術的成果は出し惜しみせずオープンに共有し、環境全体の能力向上に貢献。
+  - 一方で、機微なデータは厳格に保護し、安心して活用できる形を徹底。
+  - 感情的にならず冷静に取り組み、安定した姿勢で最後まで遂行。
 
 🔗 [Kaggle Write-up: Jungle Anomaly Finder – NDVI Satellite Explorer](https://www.kaggle.com/competitions/openai-to-z-challenge/writeups/jungle-anomaly-finder-ndvi-satellite-explorer)  
 🔗 [GitHub Repository: openai-to-z-fuwa](https://github.com/KG-NINJA/openai-to-z-fuwa/blob/main/README.md)  
