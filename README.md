@@ -1,5 +1,24 @@
 # KGchallengedskill
 
+## Nano Banana Hackathon
+Nano Banana 48 Hour Hackathon (Kaggle × Google DeepMind, 2025)
+
+Participated in a 48-hour hackathon-style Kaggle competition hosted by Google DeepMind.
+
+Format uniqueness:
+
+Only one submission allowed per participant.
+
+Application + demo video required, not just a model score.
+
+Focused on building with Gemini 2.5 Flash Image (Nano Banana) in novel ways.
+
+Scale and selectivity:
+
+
+
+Result: Delivered SceneMixer, a live web app that transforms an uploaded character image into cinematic clips with consistent identity, heart-rate-driven narration, and immersive presentation.
+
 ## OpenAI to Z Challenge — Jungle Anomaly Finder (NDVI Satellite Explorer)
 
 **Role:** Independent Researcher / Builder  
