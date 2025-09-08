@@ -108,7 +108,7 @@ Gemini 2.5 Flash Image (Nano Banana) を使ったアプリを斬新な方法で�
 シーンの内容をAIの音声がユーザーの心拍数によって変わる感情表現を交えてナレーションする動画を自動で作成するアプリ。
 動画生成の待ち時間の間に心拍数を測ることでユーザーの待ち時間すら意味のあるものに昇華しました。
 SceneMixer
-https ://www.kaggle.com/competitions/banana/writeups/scenemixer
+www.kaggle.com/competitions/banana/writeups/scenemixer
 
 ---
 
