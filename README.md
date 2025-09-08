@@ -28,6 +28,7 @@ Scale and selectivity:
 
 
 Result: Delivered SceneMixer, a live web app that transforms an uploaded character image into cinematic clips with consistent identity, heart-rate-driven narration, and immersive presentation.
+https://www.kaggle.com/competitions/banana/writeups/scenemixer
 
 ## OpenAI to Z Challenge — Jungle Anomaly Finder (NDVI Satellite Explorer)
 
