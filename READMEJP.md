@@ -83,6 +83,34 @@ OpenAI主催による初めての特殊ルールハッカソン形式のKaggle�
 🔗 [GitHub Repository: openai-to-z-fuwa](https://github.com/KG-NINJA/openai-to-z-fuwa/blob/main/README.md)  
 
 ---
+Nano Banana Hackathon
+Nano Banana 48 時間ハッカソン (Kaggle × Google DeepMind、2025 年)
+
+https://www.kaggle.com/competitions/banana
+
+Google DeepMind が主催する 48 時間のハッカソン形式の Kaggle コンテストに参加しました。
+
+フォーマット:
+
+参加者 1 人につき 1 件の提出のみが許可されます。
+
+参加者数 2,723名のうち
+816件の投稿が最終提出されました。
+（通過率約30％）
+
+計画立案だけでなく、実際に動くアプリケーション+デモビデオが必要です。
+
+Gemini 2.5 Flash Image (Nano Banana) を使ったアプリを斬新な方法で構築することに重点を置いています。
+
+私の場合は:
+
+結果: ユーザーにアップロードされたキャラクター画像を、一貫したアイデンティティで様々なシチュエーションの背景と合成して描画する Web アプリ、
+シーンの内容をAIの音声がユーザーの心拍数によって変わる感情表現を交えてナレーションする動画を自動で作成するアプリ。
+動画生成の待ち時間の間に心拍数を測ることでユーザーの待ち時間すら意味のあるものに昇華しました。
+SceneMixer
+https ://www.kaggle.com/competitions/banana/writeups/scenemixer
+
+---
 
 ## Soham Interviewing Simulator — 挑戦ログ
 
