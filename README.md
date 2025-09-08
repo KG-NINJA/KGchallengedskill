@@ -13,6 +13,12 @@ Format uniqueness:
 
 Only one submission allowed per participant.
 
+
+Participation
+2,723 Entrants
+
+816 Submissions
+
 Application + demo video required, not just a model score.
 
 Focused on building with Gemini 2.5 Flash Image (Nano Banana) in novel ways.
