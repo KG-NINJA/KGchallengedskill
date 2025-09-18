@@ -8,7 +8,7 @@ ChatGPT、Google Gemini、Claude、Grok
 ---
 
 ## プログラミング & スクリプト
-Python、JavaScript、HTML5、PowerShell、Ubuntu WSL
+TypeScript、Python、JavaScript、HTML5、PowerShell、Ubuntu WSL
 
 ---
 
