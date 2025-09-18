@@ -49,6 +49,43 @@ YouTube動画編集チャンネル運営、作詞、簡単な作曲、キーボ�
 
 # 実績
 
+AutoKaggler — Titanic Pipeline (CI + Kaggle API 自動提出)
+
+役割: 開発者 / 実演者
+期間: 2025年
+形式: Kaggle コンペティション自動化デモ
+
+📜 概要
+
+Kaggle Titanic コンペを題材に、CI/CD と Kaggle API を利用した自動提出パイプラインを構築。
+提出作業を安定的かつ再現性のある形で自動化し、AIオペレート技術の実用性を示した。
+
+技術的特徴
+
+GitHub Actions によるワークフロー設計
+
+Kaggle API を用いた自動提出
+
+JSON 入出力と構造化ログによる一貫性
+
+ランダムシード固定と Stratified CV による再現性確保
+
+feature importance 出力によるモデル解釈の補助
+
+成果
+
+Kaggle 公式フォーマットに完全一致する submission.csv を自動生成
+
+提出コメントにコミットハッシュを付与し、追跡性を確保
+
+安定して 0.75598 のスコアを出力（標準以上の水準）
+
+意義
+
+初学者が数時間要する提出プロセスを数秒で完了させる仕組みを実装
+
+Kaggle Titanic を「精度競争の入門課題」から「自動化・再現性の練習問題」へ再解釈
+
 ## OpenAI to Z Challenge — Jungle Anomaly Finder (NDVI衛星探査)
 
 **役割:** 独立研究者 / ビルダー  
