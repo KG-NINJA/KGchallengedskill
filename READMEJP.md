@@ -50,6 +50,7 @@ YouTube動画編集チャンネル運営、作詞、簡単な作曲、キーボ�
 # 実績
 
 AutoKaggler — Titanic Pipeline (CI + Kaggle API 自動提出)
+https://github.com/KG-NINJA/autokaggler
 
 役割: 開発者 / 実演者
 期間: 2025年
