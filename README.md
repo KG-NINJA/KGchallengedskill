@@ -1,5 +1,44 @@
 # KGchallengedskill
 
+##AutoKaggler — Titanic Pipeline (CI + Kaggle API Automated Submission) 
+
+https://github.com/KG-NINJA/autokaggler
+
+Role: Developer / Demonstrator
+Date: 2025
+Format: Kaggle Competition Automation Demo
+
+📜 Overview
+
+Using the Kaggle Titanic competition as a model, we built an automated submission pipeline using CI/CD and the Kaggle API. We automated the submission process in a stable and reproducible manner, demonstrating the practicality of AI-operated technology.
+
+Technical Features
+
+Workflow design using GitHub Actions
+
+Automatic submission using the Kaggle API
+
+Consistency through JSON input/output and structured logging
+
+Ensuring reproducibility through random seeding and stratified CV
+
+Supporting model interpretation through feature importance output
+
+Results
+
+Automatically generates submission.csv files that perfectly match the official Kaggle format
+
+Adding commit hashes to submission comments ensures traceability
+
+Consistently outputs a score of 0.75598 (above average)
+
+Significance
+
+Implemented a system that enables beginners to complete the submission process, which would normally take several hours, in just a few seconds
+
+Reinterpreting Kaggle Titanic from an "introductory exercise in accuracy competition" to an "exercise for automation and reproducibility"
+
+
 ## Nano Banana Hackathon
 Nano Banana 48 Hour Hackathon (Kaggle × Google DeepMind, 2025)
 
