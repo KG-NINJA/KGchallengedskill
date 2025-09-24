@@ -1,30 +1,21 @@
 # KGchallengedskill
 
-## Research & Prototyping Notes
-
 ### Kyoto voxel experiment
 - Converted **PLATEAU CityGML data of Kyoto (Gion / Higashiyama area)** into voxel blocks.  
 - Initial approach: **Minecraft-style cityscape**.  
 - Adjustments: applied height exaggeration, reduced block size, expanded radius.  
-- Final result: a **wireframe "megademo"-style visualization** of real Kyoto streets, lightweight enough to run in WebGL.
+- Final result: a **wireframe "megademo"-style visualization** built directly from **real Kyoto urban data**, lightweight enough to run in WebGL.  
 - https://x.com/FuwaCocoOwnerKG/status/1970435527989141817
-
 
 ### Osaka subway simulation
 - Built a prototype to simulate passenger flow on the **Osaka Metro Midosuji Line**.  
 - Parameters included station order, inflow per station, boarding/alighting counts, and capacity per train.  
-- Ran scenarios such as **one trainset running 4 round trips**, then compared the output with official ridership data (~1.2M daily passengers).  
+- Ran scenarios such as **one trainset running 4 round trips**, then compared the output with **official Osaka Metro ridership data (~1.2M daily passengers)**.  
 - Outcome:  
   - The model reproduced relative station load (Umeda, Namba, Tennoji as top stations).  
   - Absolute numbers were ~1/3 of real peak capacity (sim ~570 vs. real ~1,800 per train).  
-  - Demonstrated how **crowd simulation can approximate real congestion when scaled**.
+  - Demonstrated how **real ridership statistics can be used to scale crowd simulations toward realistic congestion levels**.  
   - https://x.com/FuwaCocoOwnerKG/status/1970366303123972212
-
-### Takeaway
-Both prototypes show how **real-world Japanese city datasets** (PLATEAU, Osaka Metro ridership) can be transformed into **playable or visualized simulations**.  
-The focus is not only on realism but also on exploring how **data → stylized representation** (voxels, wireframe, simplified flow) can make urban environments and infrastructure accessible in experimental, game-like formats.
-
-
 
 
 ##AutoKaggler — Titanic Pipeline (CI + Kaggle API Automated Submission) 
