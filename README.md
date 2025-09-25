@@ -202,7 +202,20 @@ Windows, Linux, Ubuntu, Raspberry Pi（Zero）, IoT（Raspberry Pi＋AI＋セン
 ## NLP & Knowledge
 NLP（自然言語処理）, OSM（OpenStreetMap）API, 地名解析（トポニム分析）
 
-## その他
-YouTube動画編集チャンネル運営　, 作詞　, 簡単な作曲 ,　キーボード楽器 , ギター,　歌唱
+##OSS Models via Japanese Cloud Servers
+
+Experimented with running open-source LLMs on Japanese cloud servers to handle Japanese text files without mojibake issues.
+
+Focused on ensuring compatibility with Windows environments where encoding defaults often cause problems.
+
+Tested end-to-end pipeline: PowerShell → OSS model API → BOM-safe text/PDF output.
+
+Demonstrated how cloud-hosted OSS models can bridge enterprise adoption of AI in Japan by eliminating encoding friction.
+
+##Others
+
+YouTube video editing & channel operation, Lyrics writing, Simple composition, Keyboard instruments, Guitar, Singing
+
+
 
 
