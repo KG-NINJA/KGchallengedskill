@@ -202,7 +202,7 @@ Windows, Linux, Ubuntu, Raspberry Pi（Zero）, IoT（Raspberry Pi＋AI＋セン
 ## NLP & Knowledge
 NLP（自然言語処理）, OSM（OpenStreetMap）API, 地名解析（トポニム分析）
 
-##OSS Models via Japanese Cloud Servers
+## OSS Models via Japanese Cloud Servers
 
 Experimented with running open-source LLMs on Japanese cloud servers to handle Japanese text files without mojibake issues.
 
