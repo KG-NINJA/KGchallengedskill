@@ -212,7 +212,7 @@ Tested end-to-end pipeline: PowerShell → OSS model API → BOM-safe text/PDF o
 
 Demonstrated how cloud-hosted OSS models can bridge enterprise adoption of AI in Japan by eliminating encoding friction.
 
-##Others
+## Others
 
 YouTube video editing & channel operation, Lyrics writing, Simple composition, Keyboard instruments, Guitar, Singing
 
