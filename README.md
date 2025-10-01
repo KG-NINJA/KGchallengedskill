@@ -1,5 +1,9 @@
 # KGchallengedskill
 
+### 🌐 Welo Data Talent Network (Welocalize HQ) – Registered Member
+Registered in the Welo Data Talent Network (Welocalize HQ) as a bilingual linguist and creative technologist.
+
+
 ### Kyoto voxel experiment
 - Converted **PLATEAU CityGML data of Kyoto (Gion / Higashiyama area)** into voxel blocks.  
 - Initial approach: **Minecraft-style cityscape**.  
