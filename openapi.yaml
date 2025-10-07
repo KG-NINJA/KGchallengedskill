@@ -3,7 +3,9 @@ info:
   title: Jungle NDVI Explorer API
   version: 1.0.0
 servers:
-  - url: "https://kg-ninja.github.io/KGchallengedskill"
+  - url: "servers:
+  - url: "https://ndvi-mock.free.beeceptor.com"
+"
 paths:
   /ndvi:
     get:
