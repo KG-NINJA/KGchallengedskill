@@ -1,0 +1,12 @@
+### Jungle NDVI Explorer API 呼び出し例
+
+#### 自然言語
+> 「このGeoTIFFのNDVI平均値を計算して」  
+> URL: https://example.com/sample.tif
+
+#### API
+```bash
+curl "https://KG-NINJA.github.io/KGchallengedskill/ndvi?url=https://example.com/sample.tif"
+```
+
+📌 現時点ではダミーJSONを返します。

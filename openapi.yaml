@@ -1,11 +1,29 @@
-openapi: 3.1.0
 info:
-  title: KGNINJA Skills API
+  title: Jungle NDVI Explorer API
   version: 1.0.0
+openapi: 3.1.0
 paths:
-  /hello:
+  /ndvi:
     get:
-      summary: Helloメッセージを返す
+      parameters:
+      - description: 解析対象となるGeoTIFFファイルのURL
+        in: query
+        name: url
+        required: true
+        schema:
+          type: string
       responses:
         '200':
-          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  mean_ndvi:
+                    description: 平均NDVI値
+                    type: number
+                  pixel_count:
+                    description: 解析対象ピクセル数
+                    type: integer
+                type: object
+          description: 正常に解析が完了した場合
+      summary: NDVI GeoTIFFファイルを解析して統計値を返す
