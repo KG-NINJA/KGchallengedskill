@@ -13,7 +13,7 @@ paths:
         - in: query
           name: url
           required: true
-          description: GeoTIFF file URL
+          description: URL of the GeoTIFF file to analyze
           schema:
             type: string
       responses:
