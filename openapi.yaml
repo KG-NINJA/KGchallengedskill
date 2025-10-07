@@ -5,17 +5,17 @@ info:
 paths:
   /ndvi:
     get:
-      summary: NDVI GeoTIFFファイルを解析して統計値を返す
+      summary: Analyze an NDVI GeoTIFF file from a given URL and return basic NDVI statistics.
       parameters:
         - name: url
           in: query
           required: true
-          description: 解析対象となるGeoTIFFファイルのURL
+          description: Public URL of the GeoTIFF file to analyze.
           schema:
             type: string
       responses:
         '200':
-          description: 正常に解析が完了した場合
+          description: NDVI analysis completed successfully.
           content:
             application/json:
               schema:
@@ -23,7 +23,7 @@ paths:
                 properties:
                   mean_ndvi:
                     type: number
-                    description: 平均NDVI値
+                    description: Mean NDVI value of the analyzed image.
                   pixel_count:
                     type: integer
-                    description: 解析対象ピクセル数
+                    description: Number of pixels included in the NDVI calculation.
