@@ -3,13 +3,13 @@ info:
   title: Jungle NDVI Explorer API
   version: 1.0.0
 servers:
-  - url: "https://ndvi-mock.free.beeceptor.com" # ← BeeceptorのURLに置き換える
+  - url: "https://ndvi-mock.free.beeceptor.com"
 paths:
   /ndvi:
     get:
       summary: Analyze NDVI from GeoTIFF
       description: Returns mean NDVI and pixel count from a GeoTIFF file URL.
-      operationId: getNdviStats   # ← 🟡 これが重要！
+      operationId: getNdviStats
       parameters:
         - in: query
           name: url
