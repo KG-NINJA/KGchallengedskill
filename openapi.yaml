@@ -3,7 +3,8 @@ info:
   title: Jungle NDVI Explorer API
   version: 1.0.0
 servers:
-  - url: "https://ndvi-mock.free.beeceptor.com"  # ← BeeceptorのURLに置き換える
+  - url: servers:
+  - url: "https://ndvi-mock.free.beeceptor.com" # ← BeeceptorのURLに置き換える
 paths:
   /ndvi:
     get:
