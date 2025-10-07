@@ -1,0 +1,11 @@
+openapi: 3.1.0
+info:
+  title: KGNINJA Skills API
+  version: 1.0.0
+paths:
+  /hello:
+    get:
+      summary: Helloメッセージを返す
+      responses:
+        '200':
+          description: OK
