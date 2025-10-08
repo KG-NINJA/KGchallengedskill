@@ -2,8 +2,8 @@ name: 🚨 Noroshi AI Pulsar
 
 on:
   schedule:
-    - cron: '0 15 * * *'  # 🕒 UTC15時＝日本時間0時（毎晩）
-  workflow_dispatch:      # 手動実行も可能
+    - cron: "0 15 * * *"   # UTC15時（日本時間0時）
+  workflow_dispatch:
 
 jobs:
   pulse:
@@ -11,26 +11,24 @@ jobs:
 
     steps:
       - name: Checkout repository
-      uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Generate NOROSHI_SIGNAL.md
-      run: |
-        echo "🚨 NOROSHI SIGNAL LOG" > NOROSHI_SIGNAL.md
-        echo "" >> NOROSHI_SIGNAL.md
-        echo "KG-NINJA skill pulse — $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> NOROSHI_SIGNAL.md
-        echo "" >> NOROSHI_SIGNAL.md
-        # README.md からランダムに3行抽出
-        shuf -n 3 README.md >> NOROSHI_SIGNAL.md
-        echo "" >> NOROSHI_SIGNAL.md
-        echo "#KGNINJA #NOROSHI #AIPulsar" >> NOROSHI_SIGNAL.md
+        run: |
+          echo "🚨 NOROSHI SIGNAL LOG" > NOROSHI_SIGNAL.md
+          echo "" >> NOROSHI_SIGNAL.md
+          echo "KG-NINJA skill pulse — $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> NOROSHI_SIGNAL.md
+          echo "" >> NOROSHI_SIGNAL.md
+          shuf -n 3 README.md >> NOROSHI_SIGNAL.md
+          echo "" >> NOROSHI_SIGNAL.md
+          echo "#KGNINJA #NOROSHI #AIPulsar" >> NOROSHI_SIGNAL.md
 
       - name: Commit changes
-      run: |
-        git config --local user.name "github-actions[bot]"
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git add NOROSHI_SIGNAL.md
-        git commit -m "🔥 Noroshi pulse signal update"
-        git push
-      env:
-        # これがないと権限エラーになる
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add NOROSHI_SIGNAL.md
+          git commit -m "🔥 Noroshi pulse signal update"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
