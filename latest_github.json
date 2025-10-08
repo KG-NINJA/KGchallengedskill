@@ -1,0 +1,50 @@
+[
+  {
+    "id": "55781273694",
+    "type": "PushEvent",
+    "actor": {
+      "id": 203419627,
+      "login": "KG-NINJA",
+      "display_login": "KG-NINJA",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/KG-NINJA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
+    },
+    "repo": {
+      "id": 1019568386,
+      "name": "KG-NINJA/KGchallengedskill",
+      "url": "https://api.github.com/repos/KG-NINJA/KGchallengedskill"
+    },
+    "payload": {
+      "repository_id": 1019568386,
+      "push_id": 27353003463,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/main",
+      "head": "26d98f2bcc98d8b05eb3855f146ac888ea84ab24",
+      "before": "ab78d4b85df9eda98f79c3aca881b08f6daa9320",
+      "commits": [
+        {
+          "sha": "26d98f2bcc98d8b05eb3855f146ac888ea84ab24",
+          "author": {
+            "email": "fuwafuwow@gmail.com",
+            "name": "KG"
+          },
+          "message": "Update noroshi.yml",
+          "distinct": true,
+          "url": "https://api.github.com/repos/KG-NINJA/KGchallengedskill/commits/26d98f2bcc98d8b05eb3855f146ac888ea84ab24"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2025-10-08T13:39:08Z"
+  },
+  {
+    "id": "55776391666",
+    "type": "PushEvent",
+    "actor": {
+      "id": 203419627,
+      "login": "KG-NINJA",
+      "display_login": "KG-NINJA",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/KG-NINJA",
