@@ -1,8 +1,8 @@
-name: Noroshi Signal
+name: Noroshi Pulse RSS
 
 on:
   schedule:
-    - cron: '0 15 * * *'  # 毎日24:00 JST（UTC 15:00）に実行
+    - cron: "0 3 * * *"  # 毎日1回（UTC3時＝日本時間12時）
   workflow_dispatch:
 
 jobs:
@@ -10,17 +10,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Update noroshi signal file
-      run: |
-        echo "Last signal: $(date -u)" > NOROSHI_SIGNAL.md
+      - name: Install dependencies
+        run: pip install feedparser
 
-    - name: Commit and push changes
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git add NOROSHI_SIGNAL.md
-        git commit -m "🔥 Noroshi pulse signal update"
-        git push
+      - name: Fetch latest RSS headline
+        id: rss
+        run: |
+          MSG=$(python3 rss_trigger.py)
+          echo "msg=$MSG" >> $GITHUB_OUTPUT
+
+      - name: Update noroshi signal file
+        run: |
+          echo "Last signal: $(date -u)" > NOROSHI_SIGNAL.md
+          echo "Headline: ${{ steps.rss.outputs.msg }}" >> NOROSHI_SIGNAL.md
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add NOROSHI_SIGNAL.md
+          git commit -m "🚀 Noroshi RSS signal update" || exit 0
+          git push
