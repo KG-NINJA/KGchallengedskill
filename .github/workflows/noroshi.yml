@@ -2,7 +2,7 @@ name: Noroshi Revenue Pulse
 
 on:
   schedule:
-  - cron: '30 9 * * *'   # UTC9:30＝日本時間18:30
+    - cron: '30 9 * * *'   # UTC9:30＝日本時間18:30
   workflow_dispatch:
 
 jobs:
@@ -40,10 +40,14 @@ jobs:
           echo "" >> NOROSHI_SIGNAL.md
           echo "#NOROSHI #KGNINJA #AIPulsar" >> NOROSHI_SIGNAL.md
 
+      - name: Generate index.md for GitHub Pages
+        run: |
+          cp NOROSHI_SIGNAL.md index.md
+
       - name: Commit and push changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add NOROSHI_SIGNAL.md
+          git add NOROSHI_SIGNAL.md index.md
           git commit -m "📡 Noroshi signal update with random message" || exit 0
           git push
