@@ -1,34 +1,34 @@
-name: 🚨 Noroshi AI Pulsar
+name: Noroshi Revenue Pulse
 
 on:
   schedule:
-    - cron: "0 15 * * *"   # UTC15時（日本時間0時）
+    - cron: '0 15 * * *'   # UTC15時＝日本時間0時（毎晩）
   workflow_dispatch:
 
 jobs:
   pulse:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Generate NOROSHI_SIGNAL.md
+      - name: Generate NOROSHI signal with revenue & links
         run: |
-          echo "🚨 NOROSHI SIGNAL LOG" > NOROSHI_SIGNAL.md
+          echo "Last signal: $(date -u)" > NOROSHI_SIGNAL.md
           echo "" >> NOROSHI_SIGNAL.md
-          echo "KG-NINJA skill pulse — $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> NOROSHI_SIGNAL.md
+          echo "🚀 **KG-NINJA | AI × Geospatial × Automation**" >> NOROSHI_SIGNAL.md
+          echo "Building autonomous AI pipelines and experimental prototypes." >> NOROSHI_SIGNAL.md
           echo "" >> NOROSHI_SIGNAL.md
-          shuf -n 3 README.md >> NOROSHI_SIGNAL.md
+          echo "☕ [Buy Me a Coffee](https://www.buymeacoffee.com/kgninja)" >> NOROSHI_SIGNAL.md
+          echo "🌐 [Linktree - All Links](https://linktr.ee/kgkk)" >> NOROSHI_SIGNAL.md
+          echo "💼 [Lancers（ランサーズ）](https://www.lancers.jp/profile/KGKGKG)" >> NOROSHI_SIGNAL.md
           echo "" >> NOROSHI_SIGNAL.md
-          echo "#KGNINJA #NOROSHI #AIPulsar" >> NOROSHI_SIGNAL.md
+          echo "#NOROSHI #KGNINJA #AIPulsar" >> NOROSHI_SIGNAL.md
 
-      - name: Commit changes
+      - name: Commit and push changes
         run: |
-          git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add NOROSHI_SIGNAL.md
-          git commit -m "🔥 Noroshi pulse signal update"
+          git commit -m "💰 Noroshi signal with revenue & links"
           git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
