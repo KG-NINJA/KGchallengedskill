@@ -1,0 +1,40 @@
+name: Noroshi Revenue Goal
+
+on:
+  schedule:
+    - cron: '0 15 * * *'   # UTC15時＝日本時間0時（毎晩）
+  workflow_dispatch:
+
+env:
+  REVENUE_GOAL_JPY: 2500000  # 🏆 月間収益目標（理論上限）
+
+jobs:
+  pulse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Generate NOROSHI revenue goal signal
+        run: |
+          echo "Last signal: $(date -u)" > NOROSHI_SIGNAL.md
+          echo "" >> NOROSHI_SIGNAL.md
+          echo "🚀 **KG-NINJA | AI × Geospatial × Automation**" >> NOROSHI_SIGNAL.md
+          echo "Building autonomous AI pipelines and experimental prototypes." >> NOROSHI_SIGNAL.md
+          echo "" >> NOROSHI_SIGNAL.md
+          echo "💰 Monthly Revenue Goal: ¥${REVENUE_GOAL_JPY}" >> NOROSHI_SIGNAL.md
+          echo "" >> NOROSHI_SIGNAL.md
+          echo "☕ [Buy Me a Coffee](https://www.buymeacoffee.com/kgninja)" >> NOROSHI_SIGNAL.md
+          echo "🌐 [Linktree - All Links](https://linktr.ee/kgkk)" >> NOROSHI_SIGNAL.md
+          echo "💼 [Lancers（ランサーズ）](https://www.lancers.jp/profile/KGKGKG)" >> NOROSHI_SIGNAL.md
+          echo "▶️ [YouTube - FuwaCoco Channel](https://www.youtube.com/@FuwaCoco)" >> NOROSHI_SIGNAL.md
+          echo "" >> NOROSHI_SIGNAL.md
+          echo "#NOROSHI #KGNINJA #AIPulsar #RevenuePulsar" >> NOROSHI_SIGNAL.md
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add NOROSHI_SIGNAL.md
+          git commit -m "🚨 Noroshi signal with revenue goal ¥${REVENUE_GOAL_JPY}"
+          git push
