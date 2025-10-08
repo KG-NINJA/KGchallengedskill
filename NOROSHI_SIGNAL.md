@@ -1,2 +1,9 @@
-Last signal: Wed Oct  8 03:36:30 UTC 2025
-Headline: Physicists just built a quantum lie detector. It works - https://www.sciencedaily.com/releases/2025/10/251007081840.htm
+🚨 NOROSHI SIGNAL LOG
+
+KG-NINJA skill pulse — 2025-10-08 04:03:08 UTC
+
+NLP（自然言語処理）, OSM（OpenStreetMap）API, 地名解析（トポニム分析）
+![Kaggle challenge stats (host/prize/entrants/submissions)](openai-to-z-stats.png)
+Format uniqueness:
+
+#KGNINJA #NOROSHI #AIPulsar
