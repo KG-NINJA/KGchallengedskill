@@ -2,7 +2,7 @@ name: Noroshi Revenue Pulse
 
 on:
   schedule:
-    - cron: '0 15 * * *'   # UTC15時＝日本時間0時（毎晩）
+  - cron: '30 9 * * *'   # UTC9:30＝日本時間18:30
   workflow_dispatch:
 
 jobs:
