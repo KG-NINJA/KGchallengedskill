@@ -1,9 +1,9 @@
-name: Noroshi Pulse RSS
+name: 🚨 Noroshi AI Pulsar
 
 on:
   schedule:
-     - cron: "0 15 * * *"  # 毎日 15:00 UTC = 翌日 0:00 JST
-  workflow_dispatch:
+    - cron: '0 15 * * *'  # 🕒 UTC15時＝日本時間0時（毎晩）
+  workflow_dispatch:      # 手動実行も可能
 
 jobs:
   pulse:
@@ -11,26 +11,26 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+      uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: pip install feedparser
+      - name: Generate NOROSHI_SIGNAL.md
+      run: |
+        echo "🚨 NOROSHI SIGNAL LOG" > NOROSHI_SIGNAL.md
+        echo "" >> NOROSHI_SIGNAL.md
+        echo "KG-NINJA skill pulse — $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> NOROSHI_SIGNAL.md
+        echo "" >> NOROSHI_SIGNAL.md
+        # README.md からランダムに3行抽出
+        shuf -n 3 README.md >> NOROSHI_SIGNAL.md
+        echo "" >> NOROSHI_SIGNAL.md
+        echo "#KGNINJA #NOROSHI #AIPulsar" >> NOROSHI_SIGNAL.md
 
-      - name: Fetch latest RSS headline
-        id: rss
-        run: |
-          MSG=$(python3 rss_trigger.py)
-          echo "msg=$MSG" >> $GITHUB_OUTPUT
-
-      - name: Update noroshi signal file
-        run: |
-          echo "Last signal: $(date -u)" > NOROSHI_SIGNAL.md
-          echo "Headline: ${{ steps.rss.outputs.msg }}" >> NOROSHI_SIGNAL.md
-
-      - name: Commit and push changes
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add NOROSHI_SIGNAL.md
-          git commit -m "🚀 Noroshi RSS signal update" || exit 0
-          git push
+      - name: Commit changes
+      run: |
+        git config --local user.name "github-actions[bot]"
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git add NOROSHI_SIGNAL.md
+        git commit -m "🔥 Noroshi pulse signal update"
+        git push
+      env:
+        # これがないと権限エラーになる
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
