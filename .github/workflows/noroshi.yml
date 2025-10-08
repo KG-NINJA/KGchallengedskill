@@ -12,12 +12,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Generate NOROSHI signal with revenue & links
+      - name: Generate NOROSHI signal with random project intro
         run: |
+          # 🌟 ランダムな一言メッセージ一覧
+          messages=(
+            "🌿 Jungle NDVI Explorer — Geospatial AI experiment"
+            "🐕 Fuwa-Coco Object Detection — Real-time outdoor alerts"
+            "🛰️ Kyoto Voxel Simulator — 3D city and heritage mapping"
+            "🚇 Osaka Midosuji Subway Sim — Interactive urban mobility"
+            "🤖 Vibe Voice Coding — Speak to prototype instantly"
+            "🔥 AutoKaggler — Rapid Kaggle pipeline generator"
+            "🌐 NOROSHI Pulse — AI universe signal project"
+          )
+          random_index=$(($RANDOM % ${#messages[@]}))
+          random_message=${messages[$random_index]}
+
           echo "Last signal: $(date -u)" > NOROSHI_SIGNAL.md
           echo "" >> NOROSHI_SIGNAL.md
           echo "🚀 **KG-NINJA | AI × Geospatial × Automation**" >> NOROSHI_SIGNAL.md
           echo "Building autonomous AI pipelines and experimental prototypes." >> NOROSHI_SIGNAL.md
+          echo "" >> NOROSHI_SIGNAL.md
+          echo "📝 ${random_message}" >> NOROSHI_SIGNAL.md
           echo "" >> NOROSHI_SIGNAL.md
           echo "☕ [Buy Me a Coffee](https://www.buymeacoffee.com/kgninja)" >> NOROSHI_SIGNAL.md
           echo "🌐 [Linktree - All Links](https://linktr.ee/kgkk)" >> NOROSHI_SIGNAL.md
@@ -30,5 +45,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add NOROSHI_SIGNAL.md
-          git commit -m "💰 Noroshi signal with revenue & links"
+          git commit -m "📡 Noroshi signal update with random message" || exit 0
           git push
