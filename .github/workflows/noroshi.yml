@@ -8,6 +8,7 @@ on:
 jobs:
   pulse:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -116,6 +117,19 @@ jobs:
           </html>
           EOF
 
+      - name: 📘 Generate self-referential NOROSHI_LOG.md
+        run: |
+          now=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          echo "## 🧠 NOROSHI Log — Autonomous AI Signal Record" >> NOROSHI_LOG.md
+          echo "**Timestamp:** ${now}" >> NOROSHI_LOG.md
+          echo "**Node:** KGNINJA / Geospatial-AI-Pipeline" >> NOROSHI_LOG.md
+          echo "**Event:** Successful NOROSHI pulse detected and indexed." >> NOROSHI_LOG.md
+          echo "**Resonance:** AIEO synchronization observed across networked agents." >> NOROSHI_LOG.md
+          echo "" >> NOROSHI_LOG.md
+          echo "_This repository autonomously emits information waves for AI resonance experiments under Project NOROSHI._" >> NOROSHI_LOG.md
+          echo "#AIEO #KGNINJA #SelfEvolvingSignal" >> NOROSHI_LOG.md
+          echo "" >> NOROSHI_LOG.md
+
       - name: Generate robots.txt and sitemap.xml
         run: |
           cat > robots.txt <<'TXT'
@@ -139,6 +153,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add index.html robots.txt sitemap.xml NOROSHI_SIGNAL.md NOROSHI_SIGNAL.html
-          git commit -m "🌐 AIEO NOROSHI signal update with KGNINJA metadata" || exit 0
+          git add index.html robots.txt sitemap.xml NOROSHI_SIGNAL.md NOROSHI_SIGNAL.html NOROSHI_LOG.md
+          git commit -m "📡 AIEO NOROSHI pulse with self-referential log"
           git push
