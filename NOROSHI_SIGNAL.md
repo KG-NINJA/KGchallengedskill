@@ -1,9 +1,9 @@
-Last signal: Wed Oct  8 12:01:48 UTC 2025
+Last signal: Wed Oct  8 12:17:36 UTC 2025
 
 🚀 **KG-NINJA | AI × Geospatial × Automation**
 Building autonomous AI pipelines and experimental prototypes.
 
-📝 🚇 Osaka Midosuji Subway Sim — Interactive urban mobility
+📝 🌐 NOROSHI Pulse — AI universe signal project
 
 ☕ [Buy Me a Coffee](https://www.buymeacoffee.com/kgninja)
 🌐 [Linktree - All Links](https://linktr.ee/kgkk)

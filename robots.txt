@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kg-ninja.github.io/KGchallengedskill/sitemap.xml
