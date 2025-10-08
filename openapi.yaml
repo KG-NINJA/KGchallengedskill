@@ -3,20 +3,13 @@ info:
   title: Jungle NDVI Explorer API
   version: 1.0.0
 servers:
-  - url: "https://ndvi-mock.free.beeceptor.com"
+  - url: "https://kg-ninja.github.io/KGchallengedskill/mock"
 paths:
-  /ndvi:
+  /ndvi.json:
     get:
-      summary: Analyze NDVI from GeoTIFF
-      description: Returns mean NDVI and pixel count from a GeoTIFF file URL.
-      operationId: getNdviStats
-      parameters:
-        - in: query
-          name: url
-          required: true
-          description: URL of the GeoTIFF file to analyze
-          schema:
-            type: string
+      summary: Get mock NDVI data
+      description: Returns a fixed NDVI response for testing.
+      operationId: getNdviMock
       responses:
         '200':
           description: NDVI statistics
