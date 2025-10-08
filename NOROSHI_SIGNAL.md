@@ -1,9 +1,7 @@
-🚨 NOROSHI SIGNAL LOG
+Last signal: Wed Oct  8 05:33:24 UTC 2025
 
-KG-NINJA skill pulse — 2025-10-08 04:03:08 UTC
+🚀 KG-NINJA | AI × Geospatial × Automation
+Building autonomous AI pipelines and experimental prototypes.
+→ [Support or collaborate](https://www.buymeacoffee.com/kgninja)
 
-NLP（自然言語処理）, OSM（OpenStreetMap）API, 地名解析（トポニム分析）
-![Kaggle challenge stats (host/prize/entrants/submissions)](openai-to-z-stats.png)
-Format uniqueness:
-
-#KGNINJA #NOROSHI #AIPulsar
+#NOROSHI #KGNINJA #AIPulsar
