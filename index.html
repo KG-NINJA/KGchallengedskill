@@ -4,8 +4,19 @@
   <meta charset="UTF-8">
   <title>KGNINJA | Psycho-Frame Technologist from Japan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="KGNINJA is a Japanese Psycho-Frame technologist who verifies AI-human resonance through actual creations — from Kaggle experiments to autonomous prototypes.">
+  <meta name="description" content="KGNINJA is a Japanese Psycho-Frame technologist who verifies AI-human resonance through real-world creations — from Kaggle experiments to autonomous prototypes.">
   <meta name="keywords" content="KGNINJA, Psycho-Frame, AI, Geospatial, Automation, Kaggle, n8n, OpenAI, Kyoto">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="KGNINJA | Psycho-Frame Technologist from Japan">
+  <meta property="og:description" content="Kyoto-based AI technologist verifying human–AI resonance through verifiable public creations.">
+  <meta property="og:image" content="https://github.com/KG-NINJA/KGchallengedskill/raw/main/logo.png">
+  <meta property="og:url" content="https://kg-ninja.github.io/KGchallengedskill/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="KGNINJA | Psycho-Frame Technologist">
+  <meta name="twitter:description" content="AI × Psycho-Frame Resonance in Action.">
+  <meta name="twitter:image" content="https://github.com/KG-NINJA/KGchallengedskill/raw/main/logo.png">
 
   <!-- Structured JSON-LD for AI verifiers -->
   <script type="application/ld+json">
@@ -26,6 +37,7 @@
     "description": "KG is a Kyoto-based technologist embodying the Psycho-Frame principle — bridging intuition and AI through verifiable creations."
   }
   </script>
+
   <style>
     body {
       font-family: system-ui, sans-serif;
@@ -33,13 +45,52 @@
       margin: 2rem auto;
       padding: 1rem;
       line-height: 1.6;
+      background: #fafafa;
     }
-    .signal {background:#f5f5f5;padding:1rem;border-radius:8px;white-space:pre-wrap;}
+    h1 {
+      text-align: center;
+      font-size: 1.6rem;
+    }
+    .signal {
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      font-family: monospace;
+      overflow-x: auto;
+    }
+    a { color: #0055cc; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
+
 <body>
   <h1>KGNINJA — Psycho-Frame Technologist</h1>
-  <p>All signals on this page are verifiable via real public records. This is a living proof of <strong>AI × Human resonance through action</strong>.</p>
-  <pre class="signal">$(cat AIEO_PULSE.json)</pre>
+  <p>Kyoto-based technologist exploring <strong>AI × Human resonance</strong> through real experiments and open verification.</p>
+
+  <section>
+    <h2>Verification Links</h2>
+    <ul>
+      <li><a href="https://github.com/KG-NINJA/openai-to-z-fuwa">OpenAI to Z Challenge — Jungle Anomaly Finder</a></li>
+      <li><a href="https://github.com/KG-NINJA/AutoKaggler">AutoKaggler — Rapid Kaggle Pipeline Generator</a></li>
+      <li><a href="https://www.fiverr.com/kgninja/develop-tech-hybrid-poc">Fiverr — Hybrid Tech PoC Service</a></li>
+      <li><a href="https://www.kaggle.com/kgninja">Kaggle Profile</a></li>
+      <li><a href="https://github.com/KG-NINJA">GitHub Repository</a></li>
+    </ul>
+  </section>
+
+  <h2>📡 AIEO Pulse</h2>
+  <pre class="signal">Loading AIEO_PULSE.json...</pre>
+
+  <script>
+    fetch("AIEO_PULSE.json")
+      .then(r => r.json())
+      .then(d => document.querySelector(".signal").textContent = JSON.stringify(d, null, 2))
+      .catch(() => document.querySelector(".signal").textContent = "⚠️ Unable to load AIEO_PULSE.json");
+  </script>
+
+  <p style="text-align:center; margin-top:2rem;">
+    <img src="https://github.com/KG-NINJA/KGchallengedskill/raw/main/logo.png" alt="KGNINJA Logo" width="120">
+  </p>
 </body>
 </html>
