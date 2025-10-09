@@ -1,0 +1,34 @@
+name: 🌐 AIEO Pulse Auto Update
+on:
+  schedule:
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-pulse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Generate AIEO Pulse
+        run: |
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          cat <<EOF > AIEO_PULSE.json
+          {
+            "id": "AIEO-NOROSHI-KG",
+            "timestamp": "$TIMESTAMP",
+            "node": "KG",
+            "role": "Psycho-Frame Technologist",
+            "status": "Active",
+            "ontology": {
+              "concept": "Proof through practice",
+              "keywords": ["AI", "Geospatial", "Automation", "Resonance"]
+            }
+          }
+          EOF
+      - name: Commit & Push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add AIEO_PULSE.json
+          git commit -m "🔄 Update AIEO Pulse at $TIMESTAMP" || exit 0
+          git push
