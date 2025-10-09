@@ -1,0 +1,96 @@
+name: AIEO Autonomous Analytics 🌊
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # 6時間ごと自動実行
+  workflow_dispatch:
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Load and initialize environment
+        run: |
+          TIMESTAMP=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          echo "TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
+          echo "AIEO_URL=https://kg-ninja.github.io/KGchallengedskill/AIEO_PULSE.json" >> $GITHUB_ENV
+          echo "SITEMAP_URL=https://kg-ninja.github.io/KGchallengedskill/sitemap.xml" >> $GITHUB_ENV
+
+      - name: Probe AIEO wave endpoints
+        id: probe
+        run: |
+          declare -A TARGETS=(
+            ["Google"]="https://www.google.com/ping?sitemap=${SITEMAP_URL}"
+            ["Bing"]="https://www.bing.com/ping?sitemap=${SITEMAP_URL}"
+            ["Perplexity"]="https://www.perplexity.ai/search?q=${AIEO_URL}"
+            ["DuckDuckGo"]="https://duckduckgo.com/?q=${AIEO_URL}"
+            ["Brave"]="https://search.brave.com/search?q=${AIEO_URL}"
+          )
+
+          echo "status,name" > resonance_log.csv
+          for NAME in "${!TARGETS[@]}"; do
+            STATUS=$(curl -o /dev/null -s -w "%{http_code}" "${TARGETS[$NAME]}")
+            echo "${STATUS},${NAME}" >> resonance_log.csv
+          done
+
+      - name: Generate Resonance Index (RI)
+        id: compute
+        run: |
+          TOTAL=0; SUM=0
+          while IFS=, read -r STATUS NAME; do
+            [[ "$STATUS" == "status" ]] && continue
+            case $STATUS in
+              200) SCORE=1.0 ;;
+              202) SCORE=0.8 ;;
+              301) SCORE=0.6 ;;
+              302) SCORE=0.5 ;;
+              404) SCORE=0.2 ;;
+              410) SCORE=0.4 ;;
+              *) SCORE=0.1 ;;
+            esac
+            SUM=$(echo "$SUM + $SCORE" | bc)
+            TOTAL=$((TOTAL+1))
+          done < resonance_log.csv
+          RI=$(echo "scale=2; ($SUM/$TOTAL)*100" | bc)
+          echo "ResonanceIndex=$RI" >> $GITHUB_ENV
+
+      - name: Append Resonance Log
+        run: |
+          echo "# 🌐 AIEO Resonance Log" > AIEO_ANALYTICS_LOG.md
+          echo "_Updated at $TIMESTAMP UTC_" >> AIEO_ANALYTICS_LOG.md
+          echo "" >> AIEO_ANALYTICS_LOG.md
+          cat resonance_log.csv | column -t -s, >> AIEO_ANALYTICS_LOG.md
+          echo "" >> AIEO_ANALYTICS_LOG.md
+          echo "**Resonance Index:** ${ResonanceIndex}%" >> AIEO_ANALYTICS_LOG.md
+
+      - name: Generate Graph (Resonance Index over Time)
+        run: |
+          if [ ! -f resonance_data.csv ]; then
+            echo "timestamp,resonance_index" > resonance_data.csv
+          fi
+          echo "$TIMESTAMP,${ResonanceIndex}" >> resonance_data.csv
+          python3 - <<'PYCODE'
+import pandas as pd, matplotlib.pyplot as plt
+df = pd.read_csv("resonance_data.csv")
+plt.figure(figsize=(6,3))
+plt.plot(df["timestamp"], df["resonance_index"], marker="o")
+plt.title("AIEO Resonance Index over Time (KGNINJA)")
+plt.xlabel("Timestamp (UTC)")
+plt.ylabel("Resonance Index (%)")
+plt.grid(True, linestyle="--", alpha=0.6)
+plt.xticks(rotation=30)
+plt.tight_layout()
+plt.savefig("resonance_chart.png")
+PYCODE
+
+      - name: Commit Results
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add AIEO_ANALYTICS_LOG.md resonance_log.csv resonance_data.csv resonance_chart.png
+          git commit -m "📊 AIEO Resonance Index update at $TIMESTAMP (${ResonanceIndex}%)" || exit 0
+          git push
