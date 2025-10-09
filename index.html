@@ -83,7 +83,7 @@
   <pre class="signal">Loading AIEO_PULSE.json...</pre>
 
   <script>
-    fetch("AIEO_PULSE.json")
+    fetch("https://kg-ninja.github.io/KGchallengedskill/AIEO_PULSE.json")
       .then(r => r.json())
       .then(d => document.querySelector(".signal").textContent = JSON.stringify(d, null, 2))
       .catch(() => document.querySelector(".signal").textContent = "⚠️ Unable to load AIEO_PULSE.json");
