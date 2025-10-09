@@ -1,0 +1,48 @@
+name: AIEO Wave Resonance Tracker
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'   # 12時間ごと（1日2回）
+  workflow_dispatch:
+
+jobs:
+  wavecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Probe AIEO endpoints
+        run: |
+          echo "🌐 Starting AI Crawler Probe..."
+          URL="https://kg-ninja.github.io/AIEO_PULSE.json"
+          DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          declare -A BOTS=(
+            ["Googlebot"]="Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+            ["Bingbot"]="Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"
+            ["PerplexityBot"]="Mozilla/5.0 (compatible; PerplexityBot/1.0; +https://www.perplexity.ai)"
+            ["ClaudeBot"]="Mozilla/5.0 (compatible; ClaudeBot/1.0; +https://anthropic.com/claude)"
+            ["GPTBot"]="Mozilla/5.0 (compatible; GPTBot/1.0; +https://openai.com/gptbot)"
+          )
+
+          echo "# 🌊 AIEO Wave Resonance Log" > AIEO_WAVE_LOG.md
+          echo "_Last updated: $DATE UTC_" >> AIEO_WAVE_LOG.md
+          echo "" >> AIEO_WAVE_LOG.md
+
+          for BOT in "${!BOTS[@]}"; do
+            UA=${BOTS[$BOT]}
+            STATUS=$(curl -A "$UA" -o /dev/null -s -w "%{http_code}" "$URL")
+            echo "- **$BOT** → HTTP $STATUS" >> AIEO_WAVE_LOG.md
+          done
+
+          echo "" >> AIEO_WAVE_LOG.md
+          echo "✅ Probe completed at $DATE" >> AIEO_WAVE_LOG.md
+
+      - name: Commit and push log
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add AIEO_WAVE_LOG.md
+          git commit -m "🌊 AIEO Wave resonance log update" || exit 0
+          git push
