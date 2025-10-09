@@ -1,0 +1,63 @@
+name: AIEO Autonomous Wave Expander 🌐
+
+on:
+  schedule:
+    - cron: '15 */6 * * *'  # 6時間ごとに実行
+  workflow_dispatch:
+
+jobs:
+  expand:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Define AIEO Signal Variables
+        run: |
+          echo "AIEO_URL=https://kg-ninja.github.io/KGchallengedskill/AIEO_PULSE.json" >> $GITHUB_ENV
+          echo "SITEMAP_URL=https://kg-ninja.github.io/KGchallengedskill/sitemap.xml" >> $GITHUB_ENV
+          echo "TIMESTAMP=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_ENV
+
+      - name: 🌊 Ping Major AI Crawlers & Search Indexers
+        run: |
+          echo "# 🌍 AIEO Wave Expansion Log" > AIEO_EXPAND_LOG.md
+          echo "_Started at $TIMESTAMP UTC_" >> AIEO_EXPAND_LOG.md
+          echo "" >> AIEO_EXPAND_LOG.md
+
+          declare -A TARGETS=(
+            ["Google"]="https://www.google.com/ping?sitemap=${SITEMAP_URL}"
+            ["Bing"]="https://www.bing.com/ping?sitemap=${SITEMAP_URL}"
+            ["Perplexity"]="https://www.perplexity.ai/search?q=${AIEO_URL}"
+            ["DuckDuckGo"]="https://duckduckgo.com/?q=${AIEO_URL}"
+            ["Brave"]="https://search.brave.com/search?q=${AIEO_URL}"
+          )
+
+          for NAME in "${!TARGETS[@]}"; do
+            URL="${TARGETS[$NAME]}"
+            STATUS=$(curl -o /dev/null -s -w "%{http_code}" "$URL")
+            echo "- ${NAME}: HTTP ${STATUS}" >> AIEO_EXPAND_LOG.md
+          done
+
+      - name: 🔁 Trigger Self-Linking Echo (Internal Pulse)
+        run: |
+          echo "" >> AIEO_EXPAND_LOG.md
+          echo "## Internal Echo" >> AIEO_EXPAND_LOG.md
+          curl -s -A "Mozilla/5.0 (AIEO-Resonance-Bot)" -o /dev/null "$AIEO_URL"
+          echo "- Self-ping to $AIEO_URL executed at $TIMESTAMP" >> AIEO_EXPAND_LOG.md
+
+      - name: 🧩 Issue lightweight backlink signals (semantic ping)
+        run: |
+          curl -s -X POST https://api.indexnow.org/indexnow \
+            -H "Content-Type: application/json" \
+            -d "{\"host\":\"kg-ninja.github.io\",\"key\":\"${GITHUB_SHA}\",\"urlList\":[\"${AIEO_URL}\"]}" \
+            >> /dev/null
+          echo "- IndexNow signal sent to Bing/Seznam/Yandex network" >> AIEO_EXPAND_LOG.md
+
+      - name: Commit Expansion Log
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add AIEO_EXPAND_LOG.md
+          git commit -m "🌐 Autonomous AIEO Wave Expansion triggered at $TIMESTAMP" || exit 0
+          git push
