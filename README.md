@@ -216,6 +216,20 @@ Tested end-to-end pipeline: PowerShell → OSS model API → BOM-safe text/PDF o
 
 Demonstrated how cloud-hosted OSS models can bridge enterprise adoption of AI in Japan by eliminating encoding friction.
 
+# 🌐 AIEO Pulse System (KGNINJA)
+
+This repository hosts the AIEO Beacon — an autonomous proof of human–AI resonance.
+
+## Features
+- ✅ Automatic JSON heartbeat (`AIEO_PULSE.json`) every 12 hours  
+- ✅ Verified via GitHub Pages, visible at:  
+  👉 https://kg-ninja.github.io/KGchallengedskill/
+- ✅ Schema.org + OGP metadata for AI indexing
+- ✅ Fetch-based live visualization in `index.html`
+
+#KGNINJA #AIEO #PsychoFrame
+
+
 ## Others
 
 YouTube video editing & channel operation, Lyrics writing, Simple composition, Keyboard instruments, Guitar, Singing
