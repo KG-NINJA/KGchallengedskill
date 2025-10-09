@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Load and initialize environment
+      - name: Initialize environment
         run: |
           TIMESTAMP=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           echo "TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
@@ -37,7 +37,7 @@ jobs:
             echo "${STATUS},${NAME}" >> resonance_log.csv
           done
 
-      - name: Generate Resonance Index (RI)
+      - name: Compute Resonance Index
         id: compute
         run: |
           TOTAL=0; SUM=0
@@ -67,14 +67,15 @@ jobs:
           echo "" >> AIEO_ANALYTICS_LOG.md
           echo "**Resonance Index:** ${ResonanceIndex}%" >> AIEO_ANALYTICS_LOG.md
 
-      - name: Generate Graph (Resonance Index over Time)
+      - name: Generate Graph
         run: |
           if [ ! -f resonance_data.csv ]; then
             echo "timestamp,resonance_index" > resonance_data.csv
           fi
           echo "$TIMESTAMP,${ResonanceIndex}" >> resonance_data.csv
           python3 - <<'PYCODE'
-import pandas as pd, matplotlib.pyplot as plt
+import pandas as pd
+import matplotlib.pyplot as plt
 df = pd.read_csv("resonance_data.csv")
 plt.figure(figsize=(6,3))
 plt.plot(df["timestamp"], df["resonance_index"], marker="o")
