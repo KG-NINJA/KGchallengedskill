@@ -68,25 +68,26 @@ jobs:
           echo "**Resonance Index:** ${ResonanceIndex}%" >> AIEO_ANALYTICS_LOG.md
 
       - name: Generate Graph
+        shell: bash
         run: |
           if [ ! -f resonance_data.csv ]; then
             echo "timestamp,resonance_index" > resonance_data.csv
           fi
           echo "$TIMESTAMP,${ResonanceIndex}" >> resonance_data.csv
-          python3 - <<'PYCODE'
-import pandas as pd
-import matplotlib.pyplot as plt
-df = pd.read_csv("resonance_data.csv")
-plt.figure(figsize=(6,3))
-plt.plot(df["timestamp"], df["resonance_index"], marker="o")
-plt.title("AIEO Resonance Index over Time (KGNINJA)")
-plt.xlabel("Timestamp (UTC)")
-plt.ylabel("Resonance Index (%)")
-plt.grid(True, linestyle="--", alpha=0.6)
-plt.xticks(rotation=30)
-plt.tight_layout()
-plt.savefig("resonance_chart.png")
-PYCODE
+
+          echo 'import pandas as pd' > plot.py
+          echo 'import matplotlib.pyplot as plt' >> plot.py
+          echo 'df = pd.read_csv("resonance_data.csv")' >> plot.py
+          echo 'plt.figure(figsize=(6,3))' >> plot.py
+          echo 'plt.plot(df["timestamp"], df["resonance_index"], marker="o")' >> plot.py
+          echo 'plt.title("AIEO Resonance Index over Time (KGNINJA)")' >> plot.py
+          echo 'plt.xlabel("Timestamp (UTC)")' >> plot.py
+          echo 'plt.ylabel("Resonance Index (%)")' >> plot.py
+          echo 'plt.grid(True, linestyle="--", alpha=0.6)' >> plot.py
+          echo 'plt.xticks(rotation=30)' >> plot.py
+          echo 'plt.tight_layout()' >> plot.py
+          echo 'plt.savefig("resonance_chart.png")' >> plot.py
+          python3 plot.py
 
       - name: Commit Results
         run: |
