@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 
 API_KEY = os.getenv("GOOGLE_API_KEY")
-CX_ID = os.getenv("GOOGLE_CX_ID")
+CX_ID = os.getenv("CX_ID = os.getenv("GOOGLE_CX")
 KEYWORDS = ["KGNINJA", "KGNINJA AI", "FuwaCoco", "Psycho-Frame", "AIEO"]
 LOG_FILE = "visibility_log.csv"
 CHART_FILE = "visibility_chart.png"
