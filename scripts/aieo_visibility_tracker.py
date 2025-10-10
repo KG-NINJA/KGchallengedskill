@@ -1,6 +1,5 @@
 import os
 import csv
-import json
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -57,7 +56,7 @@ def plot_visibility_chart():
 def main():
     print("🚀 Running AIEO Visibility Pulse (Enhanced Mode)")
     if not API_KEY or not CX_ID:
-        raise ValueError("❌ GOOGLE_API_KEY または GOOGLE_CX_ID が設定されていません")
+        raise ValueError("❌ GOOGLE_API_KEY または GOOGLE_CX が設定されていません")
 
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     for keyword in KEYWORDS:
