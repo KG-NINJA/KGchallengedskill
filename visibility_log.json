@@ -20,5 +20,16 @@
       "KGNINJA n8n": 0,
       "KGNINJA OpenAI": 0
     }
+  },
+  {
+    "timestamp": "2025-10-10T09:16:06Z",
+    "scores": {
+      "KGNINJA AI": 0.71,
+      "KGNINJA Psycho-Frame": 0.0,
+      "KGNINJA FuwaCoco": 0.0,
+      "KGNINJA Kaggle": 0.01,
+      "KGNINJA n8n": 0.01,
+      "KGNINJA OpenAI": 0.01
+    }
   }
 ]
