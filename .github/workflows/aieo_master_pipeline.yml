@@ -1,16 +1,16 @@
+# .github/workflows/aieo_master_pipeline.yml
 name: 🌀 AIEO Master Pipeline (Visibility → Effect → Resonance)
 
 on:
-  workflow_dispatch:  # 手動実行も可
+  workflow_dispatch:
   schedule:
-    - cron: "0 13 * * *"  # 毎日22:00 JST（13:00 UTC）に自動実行
+    - cron: "0 13 * * *"  # JST22時
 
 concurrency:
   group: aieo_master_pipeline
   cancel-in-progress: true
 
 jobs:
-  # ① Visibility Tracker
   visibility:
     name: 🌐 Visibility Pulse
     runs-on: ubuntu-latest
@@ -22,17 +22,16 @@ jobs:
         run: pip install pandas matplotlib requests
 
       - name: Run Visibility Tracker
-        run: python scripts/aieo_visibility.py
+        run: python scripts/aieo_visibility_tracker.py   # ← ✅ 修正！
 
       - name: Commit & Push visibility results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add visibility_log.csv visibility_chart.png
-          git commit -m "🌐 Updated AIEO Visibility Pulse" || echo "No changes to commit"
+          git commit -m "🌐 Updated AIEO Visibility Pulse" || echo "No changes"
           git push
 
-  # ② Effect Analyzer（Visibility結果を受け取る）
   effect:
     name: 🎯 Effect Analyzer
     needs: visibility
@@ -45,17 +44,16 @@ jobs:
         run: pip install pandas matplotlib
 
       - name: Run Effect Analyzer
-        run: python scripts/aieo_effect_analyzer.py
+        run: python scripts/aieo_effect_compose.py   # ← ✅ 修正！
 
       - name: Commit & Push effect results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add aieo_effect_chart.png aieo_effect_log.csv
-          git commit -m "🎯 Updated AIEO Effect Analyzer" || echo "No changes to commit"
+          git commit -m "🎯 Updated AIEO Effect Analyzer" || echo "No changes"
           git push
 
-  # ③ Resonance Composite（最終連鎖）
   resonance:
     name: 🎵 Resonance Composite
     needs: effect
@@ -68,12 +66,12 @@ jobs:
         run: pip install pandas matplotlib
 
       - name: Run Resonance Composite
-        run: python scripts/aieo_composite.py
+        run: python scripts/aieo_composite_tracker.py   # ← ✅ 修正！
 
       - name: Commit & Push resonance results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add aieo_effect_chart.png aieo_effect_log.csv
-          git commit -m "🎵 Updated AIEO Resonance Composite" || echo "No changes to commit"
+          git add aieo_resonance_chart.png aieo_resonance_log.csv
+          git commit -m "🎵 Updated AIEO Resonance Composite" || echo "No changes"
           git push
