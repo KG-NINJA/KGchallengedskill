@@ -1,0 +1,106 @@
+name: AIEO Master Pipeline (Visibility → Effect → Resonance)
+
+on:
+  schedule:
+    - cron: "30 9 * * *"  # 日本時間18:30
+  workflow_dispatch:
+
+concurrency:
+  group: aieo_pipeline
+  cancel-in-progress: true
+
+jobs:
+  aieo_master:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: pip install pandas matplotlib requests beautifulsoup4
+
+      # 1️⃣ Google検索スコア計測（Visibility）
+      - name: Measure Search Visibility
+        run: |
+          python - <<'PY'
+          import requests, pandas as pd, datetime
+          from bs4 import BeautifulSoup
+
+          # 設定
+          keywords = ["KGNINJA AI", "AIEO KG", "Psycho Frame KG"]
+          scores = []
+          ts = datetime.datetime.utcnow().isoformat()
+
+          for kw in keywords:
+              url = f"https://www.google.com/search?q={kw}"
+              headers = {"User-Agent": "Mozilla/5.0"}
+              r = requests.get(url, headers=headers)
+              count = r.text.count("https://kg-ninja.github.io/")
+              scores.append({"keyword": kw, "score": count, "timestamp": ts})
+
+          df = pd.DataFrame(scores)
+          df.to_csv("visibility_log.csv", index=False)
+          print(df)
+          PY
+
+      # 2️⃣ 効果分析（Effect）
+      - name: Analyze AIEO Effect
+        run: |
+          python - <<'PY'
+          import pandas as pd, matplotlib.pyplot as plt, datetime
+          from pathlib import Path
+
+          vis = Path("visibility_log.csv")
+          if not vis.exists():
+              raise FileNotFoundError("visibility_log.csv がありません。")
+
+          df = pd.read_csv(vis)
+          df["score_norm"] = df["score"] / df["score"].max().clip(lower=1)
+          df["timestamp"] = pd.to_datetime(df["timestamp"])
+
+          plt.figure(figsize=(6,3))
+          plt.plot(df["timestamp"], df["score_norm"], marker="o")
+          plt.title("AIEO Effect Over Time")
+          plt.xlabel("Time")
+          plt.ylabel("Normalized Visibility")
+          plt.grid(True)
+          plt.tight_layout()
+          plt.savefig("aieo_effect_chart.png")
+
+          df.to_csv("aieo_effect_log.csv", index=False)
+          print(df.tail())
+          PY
+
+      # 3️⃣ 共鳴解析（Resonance）
+      - name: Compute AIEO Resonance
+        run: |
+          python - <<'PY'
+          import pandas as pd, datetime, json
+
+          eff = pd.read_csv("aieo_effect_log.csv")
+          avg_score = eff["score_norm"].mean()
+          trend = eff["score_norm"].diff().mean()
+          resonance = round((avg_score + trend + 1) * 50, 2)
+
+          pulse = {
+              "timestamp": datetime.datetime.utcnow().isoformat(),
+              "avg_visibility": round(avg_score, 3),
+              "trend": round(trend, 3),
+              "resonance_index": resonance
+          }
+
+          with open("AIEO_PULSE.json", "w") as f:
+              json.dump(pulse, f, indent=2)
+
+          print(json.dumps(pulse, indent=2))
+          PY
+
+      # 4️⃣ 結果コミット
+      - name: Commit and Push results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add visibility_log.csv aieo_effect_chart.png aieo_effect_log.csv AIEO_PULSE.json || true
+          git commit -m "💫 AIEO Master Update (Visibility → Resonance)" || echo "No changes"
+          git push
