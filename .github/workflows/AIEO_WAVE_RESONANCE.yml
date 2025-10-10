@@ -1,0 +1,32 @@
+name: AIEO Wave Resonance Tracker
+
+on:
+  workflow_run:
+    workflows: ["AIEO Effect Analyzer"]
+    types: [completed]
+
+concurrency:
+  group: aieo_pipeline
+  cancel-in-progress: true
+
+jobs:
+  resonate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: pip install pandas matplotlib
+
+      - name: Run resonance tracker
+        run: python scripts/aieo_resonance_tracker.py
+
+      - name: Commit & Push resonance results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add aieo_effect_chart.png aieo_effect_log.csv
+          git commit -m "🎵 Updated AIEO Resonance Effect" || echo "No changes"
+          git push

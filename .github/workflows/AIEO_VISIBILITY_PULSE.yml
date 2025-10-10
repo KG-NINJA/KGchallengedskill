@@ -1,0 +1,32 @@
+name: AIEO Multi-Keyword Visibility Pulse
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"  # 6時間ごと
+
+concurrency:
+  group: aieo_pipeline
+  cancel-in-progress: true
+
+jobs:
+  pulse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: pip install pandas matplotlib
+
+      - name: Run AIEO visibility pulse
+        run: python scripts/aieo_visibility_tracker.py
+
+      - name: Commit & Push visibility results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add visibility_chart.png visibility_log.csv
+          git commit -m "📡 Updated AIEO Visibility Pulse" || echo "No changes"
+          git push
