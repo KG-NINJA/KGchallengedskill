@@ -1,140 +1,79 @@
-name: AIEO Master Pipeline
+name: 🌀 AIEO Master Pipeline (Visibility → Effect → Resonance)
 
 on:
-  workflow_dispatch:        # 手動実行可
+  workflow_dispatch:  # 手動実行も可
   schedule:
-    - cron: "0 */6 * * *"   # 6時間ごと自動実行
+    - cron: "0 13 * * *"  # 毎日22:00 JST（13:00 UTC）に自動実行
 
 concurrency:
   group: aieo_master_pipeline
   cancel-in-progress: true
 
 jobs:
-  master:
+  # ① Visibility Tracker
+  visibility:
+    name: 🌐 Visibility Pulse
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: |
-          pip install pandas matplotlib numpy
+        run: pip install pandas matplotlib requests
 
-      # =======================================================
-      # ① AIEO Visibility Tracker
-      # =======================================================
-      - name: Run AIEO Visibility Tracker
-        run: |
-          python - <<'PY'
-          import pandas as pd, matplotlib.pyplot as plt, datetime
-          from pathlib import Path
-          import random
+      - name: Run Visibility Tracker
+        run: python scripts/aieo_visibility.py
 
-          keywords = [
-              "KGNINJA AI",
-              "KGNINJA Psycho-Frame",
-              "KGNINJA FuwaCoco",
-              "KGNINJA Kaggle",
-              "KGNINJA n8n",
-              "KGNINJA OpenAI"
-          ]
-
-          timestamp = datetime.datetime.utcnow().isoformat() + "Z"
-          data = [{"timestamp": timestamp, "keyword": k, "score": random.uniform(0, 1)} for k in keywords]
-          df = pd.DataFrame(data)
-
-          log_path = Path("visibility_log.csv")
-          if log_path.exists():
-              old = pd.read_csv(log_path)
-              df = pd.concat([old, df], ignore_index=True)
-          df.to_csv(log_path, index=False)
-
-          plt.figure(figsize=(8,4))
-          for k, g in df.groupby("keyword"):
-              plt.plot(pd.to_datetime(g["timestamp"], format="ISO8601", errors="coerce"), g["score"], marker="o", label=k)
-          plt.legend()
-          plt.title("AIEO Visibility Index over Time (Google Search)")
-          plt.xlabel("Timestamp (UTC)")
-          plt.ylabel("Visibility Index (0–1)")
-          plt.grid(True)
-          plt.tight_layout()
-          plt.savefig("visibility_chart.png")
-          PY
-
-      # =======================================================
-      # ② AIEO Effect Analyzer（NumPy + pandas 新仕様対応）
-      # =======================================================
-      - name: Analyze AIEO Effect
-        run: |
-          python - <<'PY'
-          import pandas as pd, matplotlib.pyplot as plt
-          from pathlib import Path
-
-          vis = Path("visibility_log.csv")
-          if not vis.exists():
-              raise FileNotFoundError("visibility_log.csv が見つかりません。")
-
-          df = pd.read_csv(vis)
-          max_score = max(df["score"].max(), 1)  # ← clip()非使用で安全
-          df["score_norm"] = df["score"] / max_score
-
-          # 🔧 ISO8601対応
-          df["timestamp"] = pd.to_datetime(df["timestamp"], format="ISO8601", errors="coerce")
-
-          plt.figure(figsize=(6,3))
-          plt.plot(df["timestamp"], df["score_norm"], marker="o")
-          plt.title("AIEO Effect Over Time")
-          plt.xlabel("Time (UTC)")
-          plt.ylabel("Normalized Visibility")
-          plt.grid(True)
-          plt.tight_layout()
-          plt.savefig("aieo_effect_chart.png")
-
-          df.to_csv("aieo_effect_log.csv", index=False)
-          print(df.tail())
-          PY
-
-      # =======================================================
-      # ③ AIEO Resonance Tracker（Visibility × Effect）
-      # =======================================================
-      - name: Compute Resonance Index
-        run: |
-          python - <<'PY'
-          import pandas as pd, matplotlib.pyplot as plt
-          from pathlib import Path
-
-          vis = pd.read_csv("visibility_log.csv")
-          eff = pd.read_csv("aieo_effect_log.csv")
-
-          # ISO8601形式で安全に変換
-          vis["timestamp"] = pd.to_datetime(vis["timestamp"], format="ISO8601", errors="coerce")
-          eff["timestamp"] = pd.to_datetime(eff["timestamp"], format="ISO8601", errors="coerce")
-
-          merged = pd.merge(vis, eff, on=["timestamp","keyword"], how="inner", suffixes=("_vis","_eff"))
-          merged["resonance"] = merged["score_vis"] * merged["score_eff"]
-
-          merged.to_csv("aieo_resonance_log.csv", index=False)
-
-          plt.figure(figsize=(8,4))
-          for k, g in merged.groupby("keyword"):
-              plt.plot(g["timestamp"], g["resonance"], marker="o", label=k)
-          plt.legend()
-          plt.title("AIEO Resonance Index (Visibility × Effect)")
-          plt.xlabel("Timestamp (UTC)")
-          plt.ylabel("Resonance Strength")
-          plt.grid(True)
-          plt.tight_layout()
-          plt.savefig("aieo_resonance_chart.png")
-          PY
-
-      # =======================================================
-      # Commit & Push
-      # =======================================================
-      - name: Commit & Push updates
+      - name: Commit & Push visibility results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add visibility_log.csv visibility_chart.png aieo_effect_log.csv aieo_effect_chart.png aieo_resonance_log.csv aieo_resonance_chart.png
-          git commit -m "🌐 Updated AIEO Visibility + Effect + Resonance indices" || echo "No changes to commit"
+          git add visibility_log.csv visibility_chart.png
+          git commit -m "🌐 Updated AIEO Visibility Pulse" || echo "No changes to commit"
+          git push
+
+  # ② Effect Analyzer（Visibility結果を受け取る）
+  effect:
+    name: 🎯 Effect Analyzer
+    needs: visibility
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: pip install pandas matplotlib
+
+      - name: Run Effect Analyzer
+        run: python scripts/aieo_effect_analyzer.py
+
+      - name: Commit & Push effect results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add aieo_effect_chart.png aieo_effect_log.csv
+          git commit -m "🎯 Updated AIEO Effect Analyzer" || echo "No changes to commit"
+          git push
+
+  # ③ Resonance Composite（最終連鎖）
+  resonance:
+    name: 🎵 Resonance Composite
+    needs: effect
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: pip install pandas matplotlib
+
+      - name: Run Resonance Composite
+        run: python scripts/aieo_composite.py
+
+      - name: Commit & Push resonance results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add aieo_effect_chart.png aieo_effect_log.csv
+          git commit -m "🎵 Updated AIEO Resonance Composite" || echo "No changes to commit"
           git push
