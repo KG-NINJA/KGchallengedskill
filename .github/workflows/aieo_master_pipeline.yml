@@ -1,6 +1,4 @@
 name: AIEO Master Pipeline (Visibility → Effect → Resonance)
-# 🚫 Disabled workflows placeholder
-
 on:
   schedule:
     - cron: "30 9 * * *"  # 日本時間18:30
