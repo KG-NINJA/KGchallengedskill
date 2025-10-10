@@ -1,6 +1,3 @@
-status,name
-410,Bing
-301,Perplexity
-202,DuckDuckGo
-404,Google
-200,Brave
+timestamp,resonance_index
+2025-10-10T00:00:00Z,0.6
+2025-10-11T00:00:00Z,0.8
