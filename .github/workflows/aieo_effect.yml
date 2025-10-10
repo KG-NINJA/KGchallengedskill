@@ -1,0 +1,34 @@
+name: AIEO Effect Analyzer
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'  # 毎日UTC 0時に実行
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install pandas matplotlib
+
+      - name: Run AIEO Effect Composite
+        run: |
+          python scripts/aieo_effect_composite.py
+
+      - name: Commit & Push AIEO Effect Chart
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add aieo_effect_chart.png aieo_effect_log.csv
+          git commit -m "🔁 Updated AIEO Effect (Visibility × Resonance)"
+          git push
