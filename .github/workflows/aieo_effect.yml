@@ -1,4 +1,20 @@
 name: AIEO Effect Analyzer
+# 🚫 Disabled workflows placeholder
+disabled: true
+
+# 目的：
+# - 旧ワークフローを一時保管
+# - 再有効化時は disabled を削除して運用再開可能
+
+# on:
+#   schedule:
+#     - cron: '0 0 * * *'
+#   workflow_dispatch:
+# jobs:
+#   placeholder:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - run: echo "Disabled Autonomous Actions Archive"
 
 on:
   workflow_dispatch:
