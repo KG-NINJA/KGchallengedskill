@@ -1,0 +1,104 @@
+name: AIEO Multi-Keyword Visibility Pulse
+
+on:
+  schedule:
+    - cron: '0 9 * * *'   # UTC9:00＝日本時間18:00に自動実行
+  workflow_dispatch:
+
+jobs:
+  visibility:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get install -y python3-pip
+          pip install beautifulsoup4 matplotlib requests
+
+      - name: Run Visibility Tracker
+        run: |
+          cat > visibility_tracker.py <<'PYCODE'
+          import requests, re, matplotlib.pyplot as plt
+          from bs4 import BeautifulSoup
+          from datetime import datetime
+          import json, os
+
+          # --- 複数キーワードを追跡 ---
+          keywords = [
+              "KGNINJA AI",
+              "KGNINJA Psycho-Frame",
+              "KGNINJA FuwaCoco",
+              "KGNINJA Kaggle",
+              "KGNINJA n8n",
+              "KGNINJA OpenAI",
+          ]
+
+          data = {}
+          for kw in keywords:
+              url = f"https://www.google.com/search?q={kw.replace(' ', '+')}"
+              headers = {"User-Agent": "Mozilla/5.0"}
+              html = requests.get(url, headers=headers).text
+              soup = BeautifulSoup(html, "html.parser")
+
+              # 件数を抽出
+              text = soup.get_text()
+              match = re.search(r"約([0-9,]+)件", text)
+              count = int(match.group(1).replace(",", "")) if match else 0
+
+              # KGNINJA関連URLのスコア
+              urls = [a['href'] for a in soup.find_all('a', href=True)]
+              own_links = [u for u in urls if any(x in u for x in [
+                  "github.com/KG-NINJA",
+                  "buymeacoffee.com/kgninja",
+                  "kgninja",
+                  "psycho-frame"
+              ])]
+
+              # 件数＋関連リンク数からVisibilityスコア算出
+              score = min(100, (count / 1000) + len(own_links) * 5)
+              data[kw] = round(score, 2)
+
+          # タイムスタンプ付きで記録
+          timestamp = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+          record = {"timestamp": timestamp, "scores": data}
+
+          # 履歴ファイルを更新
+          hist_path = "visibility_log.json"
+          history = []
+          if os.path.exists(hist_path):
+              with open(hist_path) as f:
+                  history = json.load(f)
+          history.append(record)
+          with open(hist_path, "w") as f:
+              json.dump(history, f, indent=2, ensure_ascii=False)
+
+          # --- グラフ生成 ---
+          plt.figure(figsize=(10, 5))
+          for kw in keywords:
+              plt.plot(
+                  [h["timestamp"] for h in history],
+                  [h["scores"].get(kw, 0) for h in history],
+                  marker='o',
+                  label=kw
+              )
+          plt.xticks(rotation=45)
+          plt.title("AIEO Visibility Index over Time (Google Search)")
+          plt.xlabel("Timestamp (UTC)")
+          plt.ylabel("Visibility Index (0–100)")
+          plt.legend()
+          plt.tight_layout()
+          plt.savefig("visibility_chart.png")
+          PYCODE
+
+          python3 visibility_tracker.py
+
+      - name: Commit and push updates
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add visibility_chart.png visibility_log.json || true
+          git commit -m "📊 Updated AIEO multi-keyword visibility index" || exit 0
+          git push
