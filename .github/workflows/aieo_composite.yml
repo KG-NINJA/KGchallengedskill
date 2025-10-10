@@ -1,25 +1,47 @@
-name: 🧠 AIEO Composite Tracker
+name: AIEO Effect Analyzer
 
 on:
+  workflow_dispatch:   # 手動実行対応
   schedule:
-    - cron: "30 0 * * *"   # 毎日 UTC 0:30（日本時間 9:30）
-  workflow_dispatch:
+    - cron: '0 0 * * *'  # 毎日UTC 0時に自動実行（日本時間9時）
 
 jobs:
   analyze:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      - name: Run composite index generator
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # rebaseに必要な全履歴を取得
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
         run: |
           pip install pandas matplotlib
-          python scripts/aieo_composite_tracker.py
 
-      - name: Commit & Push composite index
+      - name: Run AIEO Effect Composite
+        run: |
+          python scripts/aieo_effect_composite.py
+
+      - name: Commit & Push AIEO Effect Chart (safe rebase)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add aieo_composite_chart.png aieo_composite_log.csv
-          git commit -m "🧠 Updated AIEO Composite Index"
-          git push
+          
+          # 最新mainを取得してrebase
+          git fetch origin main
+          git pull origin main --rebase || true
+          
+          # 変更ファイル追加
+          git add aieo_effect_chart.png aieo_effect_log.csv
+          
+          # 変更がある場合のみコミット
+          git diff --cached --quiet || git commit -m "🔁 Updated AIEO Effect (Visibility × Resonance)"
+          
+          # mainへ安全にpush
+          git push origin main
