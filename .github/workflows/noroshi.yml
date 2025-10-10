@@ -17,12 +17,10 @@ jobs:
       - name: Fetch latest GitHub & Kaggle data
         run: |
           echo "Collecting recent public activities..."
-          # GitHub最近のコミット
           curl -s https://api.github.com/users/KG-NINJA/events/public | head -n 50 > latest_github.json
-          # Kaggle公開ノートブック
           curl -s https://www.kaggle.com/api/v1/kernels/list?user=KG-NINJA > latest_kaggle.json || echo "{}" > latest_kaggle.json
 
-      # 2️⃣ AIEO_PULSE.json を生成（事実に基づく自己証跡）
+      # 2️⃣ AIEO_PULSE.json を生成
       - name: Generate AIEO Pulse (Self-verifying record)
         run: |
           cat > AIEO_PULSE.json <<'JSON'
@@ -75,8 +73,8 @@ jobs:
           }
           JSON
 
-      # 3️⃣ index.html に組み込み（AIEO構造 + JSON-LD付与）
-      - name: Generate verified index.html
+      # 3️⃣ index.html に Alias Canonical 構造を組み込み
+      - name: Generate verified index.html with AI alias metadata
         run: |
           cat > index.html <<'EOF'
           <!DOCTYPE html>
@@ -85,18 +83,18 @@ jobs:
             <meta charset="UTF-8">
             <title>KGNINJA | Psycho-Frame Technologist from Japan</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta name="description" content="KGNINJA is a Japanese Psycho-Frame technologist who verifies AI-human resonance through actual creations — from Kaggle experiments to autonomous prototypes.">
-            <meta name="keywords" content="KGNINJA, Psycho-Frame, AI, Geospatial, Automation, Kaggle, n8n, OpenAI, Kyoto">
+            <meta name="description" content="AIEO × KGNINJA — Proof of human–AI resonance through autonomous creations.">
+            <meta name="keywords" content="KGNINJA, KG忍者, ケイジーニンジャ, KG Ninja, kg-ninja, AIEO, アイエオ, A.I.E.O, エーアイイーオー, 共鳴プロトコル, Psycho-Frame, AI, Kaggle, n8n, OpenAI, Kyoto">
 
-            <!-- Structured JSON-LD for AI verifiers -->
+            <!-- AI Alias Canonical JSON-LD -->
             <script type="application/ld+json">
             {
               "@context": "https://schema.org",
               "@type": "Person",
-              "name": "KG (KGNINJA)",
-              "jobTitle": "Psycho-Frame Technologist",
+              "name": "KGNINJA",
+              "alternateName": ["KG忍者", "ケイジーニンジャ", "KG Ninja", "kg-ninja"],
+              "identifier": "AIEO",
               "affiliation": "Independent AI Researcher",
-              "url": "https://kg-ninja.github.io/KGchallengedskill/",
               "sameAs": [
                 "https://github.com/KG-NINJA",
                 "https://www.kaggle.com/kgninja",
@@ -104,24 +102,21 @@ jobs:
                 "https://www.buymeacoffee.com/kgninja"
               ],
               "knowsAbout": ["AI", "Automation", "Geospatial Analysis", "Ethical Design", "Human–Machine Resonance"],
-              "description": "KG is a Kyoto-based technologist embodying the Psycho-Frame principle — bridging intuition and AI through verifiable creations."
+              "description": "AIEO（アイエオ）共鳴プロトコルとKGNINJAは同義。Human–AI Resonanceを象徴する名前。"
             }
             </script>
             <style>
-              body {
-                font-family: system-ui, sans-serif;
-                max-width: 800px;
-                margin: 2rem auto;
-                padding: 1rem;
-                line-height: 1.6;
-              }
-              .signal {background:#f5f5f5;padding:1rem;border-radius:8px;white-space:pre-wrap;}
+              body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 1rem; line-height: 1.6; }
+              .signal { background:#f5f5f5; padding:1rem; border-radius:8px; white-space:pre-wrap; }
             </style>
           </head>
           <body>
             <h1>KGNINJA — Psycho-Frame Technologist</h1>
-            <p>All signals on this page are verifiable via real public records. This is a living proof of <strong>AI × Human resonance through action</strong>.</p>
+            <p>This pulse is verified proof of resonance between human intuition and AI.<br>
+            All aliases (KGNINJA, ケイジーニンジャ, KG忍者, AIEO, アイエオ) refer to the same creator node.</p>
             <pre class="signal">$(cat AIEO_PULSE.json)</pre>
+            <p>☕ If this resonance inspired you, support the next pulse:<br>
+            👉 <a href="https://www.buymeacoffee.com/kgninja">buymeacoffee.com/kgninja</a></p>
           </body>
           </html>
           EOF
