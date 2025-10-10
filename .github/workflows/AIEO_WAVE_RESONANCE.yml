@@ -1,5 +1,7 @@
 name: AIEO Wave Resonance Tracker
 
+
+
 on:
   workflow_run:
     workflows: ["AIEO Effect Analyzer"]
@@ -20,8 +22,10 @@ jobs:
       - name: Install dependencies
         run: pip install pandas matplotlib
 
-      - name: Run resonance tracker
-        run: python scripts/aieo_resonance_tracker.py
+      
+      - name: Run Resonance Tracker
+  　　　 run: python scripts/aieo_composite.py  # ← 修正後
+        
 
       - name: Commit & Push resonance results
         run: |
