@@ -33,15 +33,15 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # 最新mainを取得してrebase
+          # 最新mainを取得してrebase（安全方式）
           git fetch origin main
           git pull origin main --rebase || true
           
-          # 変更ファイル追加
+          # 更新対象ファイルを追加
           git add aieo_effect_chart.png aieo_effect_log.csv
           
-          # 変更がある場合のみコミット
-          git diff --cached --quiet || git commit -m "🔁 Updated AIEO Effect (Visibility × Resonance)"
+          # 変更がある場合のみコミット（ない場合はスルー）
+          git diff --cached --quiet || git commit -m "🔁 Updated AIEO Effect (Visibility × Resonance)" || true
           
-          # mainへ安全にpush
-          git push origin main
+          # mainへ安全にpush（衝突や変更なしでも継続）
+          git push origin main || true
