@@ -1,9 +1,9 @@
 name: AIEO Master Pipeline
 
 on:
-  workflow_dispatch:        # 手動実行可能
+  workflow_dispatch:        # 手動実行可
   schedule:
-    - cron: "0 */6 * * *"   # 6時間ごとに自動実行
+    - cron: "0 */6 * * *"   # 6時間ごと自動実行
 
 concurrency:
   group: aieo_master_pipeline
@@ -31,8 +31,15 @@ jobs:
           from pathlib import Path
           import random
 
-          # ダミーデータ生成（Google検索結果カウントなどの代替）
-          keywords = ["KGNINJA AI","KGNINJA Psycho-Frame","KGNINJA FuwaCoco","KGNINJA Kaggle","KGNINJA n8n","KGNINJA OpenAI"]
+          keywords = [
+              "KGNINJA AI",
+              "KGNINJA Psycho-Frame",
+              "KGNINJA FuwaCoco",
+              "KGNINJA Kaggle",
+              "KGNINJA n8n",
+              "KGNINJA OpenAI"
+          ]
+
           timestamp = datetime.datetime.utcnow().isoformat() + "Z"
           data = [{"timestamp": timestamp, "keyword": k, "score": random.uniform(0, 1)} for k in keywords]
           df = pd.DataFrame(data)
@@ -45,7 +52,7 @@ jobs:
 
           plt.figure(figsize=(8,4))
           for k, g in df.groupby("keyword"):
-              plt.plot(pd.to_datetime(g["timestamp"]), g["score"], marker="o", label=k)
+              plt.plot(pd.to_datetime(g["timestamp"], format="ISO8601", errors="coerce"), g["score"], marker="o", label=k)
           plt.legend()
           plt.title("AIEO Visibility Index over Time (Google Search)")
           plt.xlabel("Timestamp (UTC)")
@@ -56,23 +63,24 @@ jobs:
           PY
 
       # =======================================================
-      # ② AIEO Effect Analyzer（← 修正版：NumPyエラー対策済み）
+      # ② AIEO Effect Analyzer（NumPy + pandas 新仕様対応）
       # =======================================================
       - name: Analyze AIEO Effect
         run: |
           python - <<'PY'
           import pandas as pd, matplotlib.pyplot as plt
           from pathlib import Path
-          import datetime
 
           vis = Path("visibility_log.csv")
           if not vis.exists():
               raise FileNotFoundError("visibility_log.csv が見つかりません。")
 
           df = pd.read_csv(vis)
-          max_score = max(df["score"].max(), 1)   # ← clip(lower=1)対策
+          max_score = max(df["score"].max(), 1)  # ← clip()非使用で安全
           df["score_norm"] = df["score"] / max_score
-          df["timestamp"] = pd.to_datetime(df["timestamp"])
+
+          # 🔧 ISO8601対応
+          df["timestamp"] = pd.to_datetime(df["timestamp"], format="ISO8601", errors="coerce")
 
           plt.figure(figsize=(6,3))
           plt.plot(df["timestamp"], df["score_norm"], marker="o")
@@ -99,6 +107,10 @@ jobs:
           vis = pd.read_csv("visibility_log.csv")
           eff = pd.read_csv("aieo_effect_log.csv")
 
+          # ISO8601形式で安全に変換
+          vis["timestamp"] = pd.to_datetime(vis["timestamp"], format="ISO8601", errors="coerce")
+          eff["timestamp"] = pd.to_datetime(eff["timestamp"], format="ISO8601", errors="coerce")
+
           merged = pd.merge(vis, eff, on=["timestamp","keyword"], how="inner", suffixes=("_vis","_eff"))
           merged["resonance"] = merged["score_vis"] * merged["score_eff"]
 
@@ -106,7 +118,7 @@ jobs:
 
           plt.figure(figsize=(8,4))
           for k, g in merged.groupby("keyword"):
-              plt.plot(pd.to_datetime(g["timestamp"]), g["resonance"], marker="o", label=k)
+              plt.plot(g["timestamp"], g["resonance"], marker="o", label=k)
           plt.legend()
           plt.title("AIEO Resonance Index (Visibility × Effect)")
           plt.xlabel("Timestamp (UTC)")
@@ -117,7 +129,7 @@ jobs:
           PY
 
       # =======================================================
-      # Commit & Push updated data
+      # Commit & Push
       # =======================================================
       - name: Commit & Push updates
         run: |
