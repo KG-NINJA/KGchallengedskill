@@ -21,7 +21,7 @@ jobs:
         run: pip install pandas matplotlib
 
       - name: Run Resonance Tracker
-        run: python scripts/aieo_composite.py  # ← 修正済み（全角スペース除去）
+        run: python scripts/aieo_composite.py  # ← 半角スペースに修正済み
 
       - name: Commit & Push resonance results
         run: |
