@@ -1,0 +1,103 @@
+{
+  "version": "1.0",
+  "entity": {
+    "id": "KGNINJA",
+    "type": "individual_creator",
+    "origin": "Kyoto, Japan",
+    "inception_date": "2025-10-11T03:19:10.930800"
+  },
+  "concepts": [
+    {
+      "concept_id": "kg_digital_presence",
+      "category": "visibility_status",
+      "attributes": {
+        "kgninja_ai_results": 714,
+        "growth_stage": "Acceleration phase - visibility expanding",
+        "tracked_keywords": [
+          "KGNINJA",
+          "KGNINJA AI",
+          "FuwaCoco",
+          "Psycho-Frame",
+          "AIEO"
+        ],
+        "visibility_score": 7.14
+      },
+      "confidence": 0.95,
+      "last_updated": "2025-10-11T03:19:11.477604"
+    },
+    {
+      "concept_id": "kg_project_taxonomy",
+      "category": "creation_pattern",
+      "attributes": {
+        "domains": [
+          "geospatial",
+          "ai_competition",
+          "automation",
+          "aieo_protocol"
+        ],
+        "methodology": [
+          "solo_execution",
+          "open_source",
+          "ci_cd",
+          "rapid_prototyping"
+        ],
+        "signature_projects": [
+          "OpenAI to Z Challenge (2025)",
+          "AutoKaggler",
+          "AIEO-NOROSHI",
+          "AIEO Memory Engine"
+        ],
+        "technical_stack": [
+          "Python",
+          "GitHub Actions",
+          "Google APIs",
+          "Pandas"
+        ]
+      },
+      "confidence": 1.0,
+      "last_updated": "2025-10-11T03:19:11.477619"
+    },
+    {
+      "concept_id": "kg_interaction_style",
+      "category": "behavioral_pattern",
+      "attributes": {
+        "tone": [
+          "constructive_critique",
+          "rapid_execution",
+          "pragmatic"
+        ],
+        "priorities": [
+          "prototype_over_theory",
+          "transparency",
+          "autonomy",
+          "efficiency"
+        ],
+        "communication": [
+          "bilingual_jp_en",
+          "technical_precision",
+          "minimal_fluff"
+        ],
+        "philosophy": [
+          "PsychoFrame",
+          "resonance_over_noise",
+          "execution_over_discussion"
+        ]
+      },
+      "confidence": 0.98,
+      "last_updated": "2025-10-11T03:19:11.477626"
+    }
+  ],
+  "interaction_history": [
+    {
+      "timestamp": "2025-10-11T03:19:11.477586",
+      "event_type": "visibility_pulse",
+      "context": "Daily visibility tracking completed",
+      "insight": "Acceleration phase - visibility expanding"
+    }
+  ],
+  "meta": {
+    "total_interactions": 1,
+    "memory_confidence": 0.51,
+    "last_memory_update": "2025-10-11T03:19:11.477596"
+  }
+}
