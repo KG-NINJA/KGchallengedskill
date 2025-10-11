@@ -1,4 +1,4 @@
-name: 🌀 AIEO Master Pipeline (Visibility → Effect → Resonance)
+name: 🌀 AIEO Master Pipeline (Visibility → Effect → Resonance → Memory)
 
 permissions:
   contents: write
@@ -97,3 +97,41 @@ jobs:
           git add aieo_resonance_chart.png aieo_resonance_log.csv || true
           git diff --staged --quiet || git commit -m "🎵 Updated AIEO Resonance Composite [skip ci]"
           git push
+
+  memory:
+    name: 🧠 Memory Update
+    needs: resonance
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: main
+      
+      - name: Pull latest changes (including resonance results)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull origin main
+      
+      - name: Install dependencies
+        run: pip install pandas
+      
+      - name: Run AIEO Memory Engine
+        run: python scripts/aieo_memory_engine.py
+      
+      - name: Commit & Push memory update
+        run: |
+          git add aieo_memory.json AIEO_MEMORY_STATE.md aieo_prompt_context.txt || true
+          git diff --staged --quiet || git commit -m "🧠 Updated AIEO Memory [skip ci]"
+          git push
+      
+      - name: Display Memory Summary
+        run: |
+          echo "======================================"
+          echo "🧠 AIEO Memory Update Complete"
+          echo "======================================"
+          if [ -f AIEO_MEMORY_STATE.md ]; then
+            cat AIEO_MEMORY_STATE.md
+          fi
