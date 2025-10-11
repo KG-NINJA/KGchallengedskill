@@ -1,4 +1,4 @@
-name: 🌀 AIEO Master Pipeline (Visibility → Effect → Resonance → Memory)
+name: 🌀 AIEO Master Pipeline (Visibility → Effect → Resonance → X Harvest → Memory)
 
 permissions:
   contents: write
@@ -98,8 +98,8 @@ jobs:
           git diff --staged --quiet || git commit -m "🎵 Updated AIEO Resonance Composite [skip ci]"
           git push
 
-  memory:
-    name: 🧠 Memory Update
+  x_harvest:
+    name: 🐦 X Keyword Harvest
     needs: resonance
     runs-on: ubuntu-latest
     steps:
@@ -108,8 +108,39 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: main
+          fetch-depth: 0
       
-      - name: Pull latest changes (including resonance results)
+      - name: Pull latest changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull origin main
+      
+      - name: Install dependencies
+        run: pip install feedparser
+      
+      - name: Run X Keyword Harvester
+        run: python scripts/aieo_x_keyword_harvester.py
+        continue-on-error: true
+      
+      - name: Commit & Push harvest results
+        run: |
+          git add x_harvested_keywords.json x_posts_cache.json x_harvest_errors.log || true
+          git diff --staged --quiet || git commit -m "🐦 Harvested keywords from X [skip ci]"
+          git push || echo "No changes to push"
+
+  memory:
+    name: 🧠 Memory Update
+    needs: x_harvest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: main
+      
+      - name: Pull latest changes (including all previous results)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
