@@ -1,5 +1,8 @@
 name: 🌀 AIEO Master Pipeline (Visibility → Effect → Resonance)
 
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
   schedule:
@@ -16,22 +19,25 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      
       - name: Install dependencies
         run: pip install pandas matplotlib requests
-
+      
       - name: Run Visibility Tracker
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
         run: python scripts/aieo_visibility_tracker.py
-
+      
       - name: Commit & Push visibility results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add visibility_log.csv visibility_chart.png
-          git commit -m "🌐 Updated AIEO Visibility Pulse" || echo "No changes"
+          git add visibility_log.csv visibility_chart.png visibility_growth_rate.png || true
+          git diff --staged --quiet || git commit -m "🌐 Updated AIEO Visibility Pulse [skip ci]"
           git push
 
   effect:
@@ -41,19 +47,26 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: pip install pandas matplotlib
-
-      - name: Run Effect Analyzer
-        run: python scripts/aieo_effect_compose.py
-
-      - name: Commit & Push effect results
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: main
+      
+      - name: Pull latest changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add aieo_effect_chart.png aieo_effect_log.csv
-          git commit -m "🎯 Updated AIEO Effect Analyzer" || echo "No changes"
+          git pull origin main
+      
+      - name: Install dependencies
+        run: pip install pandas matplotlib
+      
+      - name: Run Effect Analyzer
+        run: python scripts/aieo_effect_compose.py
+      
+      - name: Commit & Push effect results
+        run: |
+          git add aieo_effect_chart.png aieo_effect_log.csv || true
+          git diff --staged --quiet || git commit -m "🎯 Updated AIEO Effect Analyzer [skip ci]"
           git push
 
   resonance:
@@ -63,17 +76,24 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: pip install pandas matplotlib
-
-      - name: Run Resonance Composite
-        run: python scripts/aieo_composite_tracker.py
-
-      - name: Commit & Push resonance results
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: main
+      
+      - name: Pull latest changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add aieo_resonance_chart.png aieo_resonance_log.csv
-          git commit -m "🎵 Updated AIEO Resonance Composite" || echo "No changes"
+          git pull origin main
+      
+      - name: Install dependencies
+        run: pip install pandas matplotlib
+      
+      - name: Run Resonance Composite
+        run: python scripts/aieo_composite_tracker.py
+      
+      - name: Commit & Push resonance results
+        run: |
+          git add aieo_resonance_chart.png aieo_resonance_log.csv || true
+          git diff --staged --quiet || git commit -m "🎵 Updated AIEO Resonance Composite [skip ci]"
           git push
