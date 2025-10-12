@@ -1,31 +1,81 @@
-name: AIEO Multi-Keyword Visibility Pulse
+name: 🌀 AIEO Multi-Keyword Visibility Pulse
+
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 */6 * * *"  # 6時間ごと
+    - cron: "0 */6 * * *"  # 6時間ごと（UTC）
 
 concurrency:
-  group: aieo_pipeline
+  group: aieo_visibility_pipeline
   cancel-in-progress: true
 
 jobs:
   pulse:
+    name: 📡 Visibility Tracking
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
       - name: Install dependencies
-        run: pip install pandas matplotlib
-
-      - name: Run AIEO visibility pulse
+        run: |
+          pip install --upgrade pip
+          pip install pandas matplotlib requests feedparser
+      
+      - name: Run AIEO Visibility Tracker
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
         run: python scripts/aieo_visibility_tracker.py
-
+        continue-on-error: false
+      
+      - name: Verify generated files
+        run: |
+          echo "Checking for generated files..."
+          ls -lh visibility*.png visibility*.csv || echo "Some files missing"
+      
       - name: Commit & Push visibility results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add visibility_chart.png visibility_log.csv
-          git commit -m "📡 Updated AIEO Visibility Pulse" || echo "No changes"
-          git push
+          
+          # Add all visibility-related files
+          git add visibility_log.csv \
+                  visibility_chart.png \
+                  visibility_growth_rate.png \
+                  || true
+          
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "📭 No changes to commit"
+          else
+            git commit -m "📡 Updated AIEO Visibility Pulse - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+            git push
+            echo "✅ Visibility data updated successfully"
+          fi
+      
+      - name: Display summary
+        if: always()
+        run: |
+          echo "=========================================="
+          echo "📊 AIEO Visibility Pulse Summary"
+          echo "=========================================="
+          if [ -f visibility_log.csv ]; then
+            echo "Latest entries:"
+            tail -n 5 visibility_log.csv
+          else
+            echo "⚠️ visibility_log.csv not found"
+          fi
