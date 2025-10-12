@@ -23,7 +23,7 @@
         "visibility_score": 7.14
       },
       "confidence": 0.95,
-      "last_updated": "2025-10-12T01:02:04.225322"
+      "last_updated": "2025-10-12T06:52:02.613743"
     },
     {
       "concept_id": "kg_project_taxonomy",
@@ -111,11 +111,17 @@
       "event_type": "visibility_pulse",
       "context": "Daily visibility tracking completed",
       "insight": "Acceleration phase - visibility expanding"
+    },
+    {
+      "timestamp": "2025-10-12T06:52:02.613724",
+      "event_type": "visibility_pulse",
+      "context": "Daily visibility tracking completed",
+      "insight": "Acceleration phase - visibility expanding"
     }
   ],
   "meta": {
-    "total_interactions": 4,
-    "memory_confidence": 0.54,
-    "last_memory_update": "2025-10-12T01:02:04.225311"
+    "total_interactions": 5,
+    "memory_confidence": 0.55,
+    "last_memory_update": "2025-10-12T06:52:02.613734"
   }
 }
