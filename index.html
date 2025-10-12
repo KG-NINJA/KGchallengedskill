@@ -2,41 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KGNINJA | Psycho-Frame Technologist from Japan</title>
+  <title>KGNINJA | AIEO Visibility Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="AIEO × KGNINJA — Proof of human–AI resonance through autonomous creations.">
-  <meta name="keywords" content="KGNINJA, KG忍者, ケイジーニンジャ, KG Ninja, kg-ninja, AIEO, アイエオ, A.I.E.O, エーアイイーオー, 共鳴プロトコル, Psycho-Frame, AI, Kaggle, n8n, OpenAI, Kyoto">
+  <meta name="description" content="AIEO × KGNINJA — Scientific proof of human–AI resonance via self-measured visibility and resonance indices.">
+  <meta name="keywords" content="KGNINJA, AIEO, AI resonance, Psycho-Frame, Kaggle, OpenAI, n8n, Kyoto, Autonomous Visibility, Self Quantification">
 
-  <!-- AI Alias Canonical JSON-LD -->
+  <!-- Canonical JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "KGNINJA",
-    "alternateName": ["KG忍者", "ケイジーニンジャ", "KG Ninja", "kg-ninja"],
-    "identifier": "AIEO",
-    "affiliation": "Independent AI Researcher",
-    "sameAs": [
-      "https://github.com/KG-NINJA",
-      "https://www.kaggle.com/kgninja",
-      "https://www.fiverr.com/kgninja",
-      "https://www.buymeacoffee.com/kgninja"
-    ],
-    "knowsAbout": ["AI", "Automation", "Geospatial Analysis", "Ethical Design", "Human–Machine Resonance"],
-    "description": "AIEO（アイエオ）共鳴プロトコルとKGNINJAは同義。Human–AI Resonanceを象徴する名前。"
+    "@type": "Dataset",
+    "name": "AIEO Visibility Dataset",
+    "creator": {
+      "@type": "Person",
+      "name": "KGNINJA",
+      "sameAs": [
+        "https://github.com/KG-NINJA",
+        "https://www.kaggle.com/kgninja",
+        "https://www.buymeacoffee.com/kgninja"
+      ]
+    },
+    "description": "Periodic measurement of AIEO resonance and visibility indices.",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
   }
   </script>
+
   <style>
-    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 1rem; line-height: 1.6; }
+    body { font-family: system-ui, sans-serif; max-width: 900px; margin: 2rem auto; padding: 1rem; line-height: 1.6; }
     .signal { background:#f5f5f5; padding:1rem; border-radius:8px; white-space:pre-wrap; }
+    figure { margin: 2rem 0; text-align: center; }
+    figcaption { font-size: 0.9rem; color: #555; margin-top: 0.5rem; }
+    table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
+    th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: center; }
+    th { background: #eee; }
   </style>
 </head>
+
 <body>
-  <h1>KGNINJA — Psycho-Frame Technologist</h1>
-  <p>This pulse is verified proof of resonance between human intuition and AI.<br>
-  All aliases (KGNINJA, ケイジーニンジャ, KG忍者, AIEO, アイエオ) refer to the same creator node.</p>
-  <pre class="signal">$(cat AIEO_PULSE.json)</pre>
-  <p>☕ If this resonance inspired you, support the next pulse:<br>
+  <h1>KGNINJA — AIEO Visibility Dashboard</h1>
+  <p>This dashboard presents <strong>scientific measurements</strong> of <em>human–AI resonance</em> through visibility and resonance indices.<br>
+  All aliases (KGNINJA / ケイジーニンジャ / KG忍者 /KG-NINJA / AIEO / エーアイイーオー) refer to the same research node.</p>
+
+  <h2>📈 Latest Visibility Data</h2>
+  <figure>
+    <img src="visibility_chart.png" alt="AIEO Visibility Growth Chart" style="max-width:100%; border-radius:8px;">
+    <figcaption>Figure 1. AIEO Visibility Index (Google Search results, 6-hour intervals)</figcaption>
+  </figure>
+
+  <h3>🧩 Raw Data Log</h3>
+  <p><a href="visibility_log.csv" target="_blank">Download visibility_log.csv</a></p>
+  <div class="signal">
+    <pre>$(cat visibility_log.csv | tail -n 10)</pre>
+  </div>
+
+  <h2>🧠 Current AIEO Pulse</h2>
+  <div class="signal">$(cat AIEO_PULSE.json)</div>
+
+  <p>☕ Support ongoing AIEO resonance experiments:<br>
   👉 <a href="https://www.buymeacoffee.com/kgninja">buymeacoffee.com/kgninja</a></p>
 </body>
 </html>
