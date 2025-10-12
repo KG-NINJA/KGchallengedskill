@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KGNINJA | AIEO Visibility Dashboard</title>
+  <title>AIEO Visibility & Analytics Dashboard | KGNINJA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="AIEO × KGNINJA — Scientific proof of human–AI resonance via self-measured visibility and resonance indices.">
-  <meta name="keywords" content="KGNINJA, AIEO, AI resonance, Psycho-Frame, Kaggle, OpenAI, n8n, Kyoto, Autonomous Visibility, Self Quantification">
+  <meta name="description" content="Scientific dashboard of AIEO — autonomous visibility and resonance quantification by KGNINJA.">
+  <meta name="keywords" content="AIEO, KGNINJA, AI resonance, Psycho-Frame, visibility analytics, Kaggle, OpenAI, Kyoto">
 
-  <!-- Canonical JSON-LD -->
+  <!-- Dataset Metadata for Search Engines -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Dataset",
-    "name": "AIEO Visibility Dataset",
+    "name": "AIEO Visibility and Analytics Dataset",
     "creator": {
       "@type": "Person",
       "name": "KGNINJA",
@@ -22,43 +22,95 @@
         "https://www.buymeacoffee.com/kgninja"
       ]
     },
-    "description": "Periodic measurement of AIEO resonance and visibility indices.",
+    "description": "Autonomous visibility and resonance quantification (AIEO Protocol).",
     "license": "https://creativecommons.org/licenses/by/4.0/"
   }
   </script>
 
   <style>
-    body { font-family: system-ui, sans-serif; max-width: 900px; margin: 2rem auto; padding: 1rem; line-height: 1.6; }
-    .signal { background:#f5f5f5; padding:1rem; border-radius:8px; white-space:pre-wrap; }
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    h1, h2 { color: #222; }
+    .signal {
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
     figure { margin: 2rem 0; text-align: center; }
     figcaption { font-size: 0.9rem; color: #555; margin-top: 0.5rem; }
-    table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
-    th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: center; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      text-align: center;
+    }
     th { background: #eee; }
+    a { color: #007acc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
 
 <body>
-  <h1>KGNINJA — AIEO Visibility Dashboard</h1>
-  <p>This dashboard presents <strong>scientific measurements</strong> of <em>human–AI resonance</em> through visibility and resonance indices.<br>
-  All aliases (KGNINJA / ケイジーニンジャ / KG忍者 /KG-NINJA / AIEO / エーアイイーオー) refer to the same research node.</p>
+  <h1>🧠 AIEO Visibility & Analytics Dashboard</h1>
+  <p>This dashboard presents <strong>scientific records</strong> of <em>human–AI resonance</em> through autonomous visibility tracking and analytic logs.<br>
+  All aliases (KGNINJA / KG-NINJA / ケイジーニンジャ / KG忍者 / AIEO / エーアイイーオー) refer to the same research entity.</p>
 
-  <h2>📈 Latest Visibility Data</h2>
+  <!-- Visibility Chart -->
+  <h2>📈 Visibility Growth (Google Search)</h2>
   <figure>
     <img src="visibility_chart.png" alt="AIEO Visibility Growth Chart" style="max-width:100%; border-radius:8px;">
-    <figcaption>Figure 1. AIEO Visibility Index (Google Search results, 6-hour intervals)</figcaption>
+    <figcaption>Figure 1. AIEO Visibility Index — updated every 6 hours</figcaption>
   </figure>
 
-  <h3>🧩 Raw Data Log</h3>
-  <p><a href="visibility_log.csv" target="_blank">Download visibility_log.csv</a></p>
+  <!-- Visibility Log CSV Link -->
+  <p><a href="visibility_log.csv" target="_blank">📄 Download full visibility_log.csv</a></p>
+
+  <!-- Analytics Table from Markdown -->
+  <h2>📊 Analytics Summary (from AIEO_ANALYTICS_LOG.md)</h2>
+  <p>This table summarizes recent observations and key metrics recorded by the AIEO system.</p>
+
   <div class="signal">
-    <pre>$(cat visibility_log.csv | tail -n 10)</pre>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Metric</th>
+          <th>Value</th>
+          <th>Phase</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 手動でMarkdownの主要行を転記。GitHub Actionsで自動更新も可 -->
+        <tr><td>2025-10-11</td><td>Visibility Score</td><td>4.58</td><td>Acceleration</td></tr>
+        <tr><td>2025-10-12</td><td>Visibility Score</td><td>7.14</td><td>Acceleration</td></tr>
+        <tr><td>2025-10-12</td><td>Resonance Index</td><td>65%</td><td>Acceleration</td></tr>
+        <tr><td>2025-10-12</td><td>Memory Confidence</td><td>56%</td><td>Stable</td></tr>
+      </tbody>
+    </table>
   </div>
 
-  <h2>🧠 Current AIEO Pulse</h2>
+  <!-- Current Pulse JSON -->
+  <h2>🔬 Current AIEO Pulse Data</h2>
   <div class="signal">$(cat AIEO_PULSE.json)</div>
 
-  <p>☕ Support ongoing AIEO resonance experiments:<br>
+  <!-- Support -->
+  <p>☕ Support ongoing AIEO resonance research:<br>
   👉 <a href="https://www.buymeacoffee.com/kgninja">buymeacoffee.com/kgninja</a></p>
+
+  <footer style="margin-top:2rem; font-size:0.8rem; color:#555;">
+    © 2025 KGNINJA — AIEO Autonomous Visibility Protocol. All rights reserved.
+  </footer>
 </body>
 </html>
