@@ -1,6 +1,6 @@
 [
   {
-    "id": "55958614101",
+    "id": "55959371524",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -17,30 +17,30 @@
     },
     "payload": {
       "repository_id": 1019568386,
-      "push_id": 27445566378,
+      "push_id": 27445987946,
       "size": 1,
       "distinct_size": 1,
       "ref": "refs/heads/main",
-      "head": "75c137afaddc184daf7e32e56c245ab680b396b4",
-      "before": "97cdcb97f93bc1acba54807b439e90b8e09de59b",
+      "head": "0f612fb958e46b4bd2340ec1816cc680a5af122e",
+      "before": "357ba1dd7d3ff67e5b465aba23e41ae07c18414d",
       "commits": [
         {
-          "sha": "75c137afaddc184daf7e32e56c245ab680b396b4",
+          "sha": "0f612fb958e46b4bd2340ec1816cc680a5af122e",
           "author": {
             "email": "fuwafuwow@gmail.com",
             "name": "KG"
           },
-          "message": "Update aieo_visibility_tracker.py",
+          "message": "Update noroshi_wave.yml",
           "distinct": true,
-          "url": "https://api.github.com/repos/KG-NINJA/KGchallengedskill/commits/75c137afaddc184daf7e32e56c245ab680b396b4"
+          "url": "https://api.github.com/repos/KG-NINJA/KGchallengedskill/commits/0f612fb958e46b4bd2340ec1816cc680a5af122e"
         }
       ]
     },
     "public": true,
-    "created_at": "2025-10-13T01:14:40Z"
+    "created_at": "2025-10-13T01:54:08Z"
   },
   {
-    "id": "55958572898",
+    "id": "55959248517",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
