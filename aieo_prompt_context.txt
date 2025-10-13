@@ -12,10 +12,10 @@
 **Category:** visibility_status  
 **Confidence:** 95.0%  
 **Attributes:**
-  - kgninja_ai_results: 713
+  - kgninja_ai_results: 705
   - growth_stage: Acceleration phase - visibility expanding
   - tracked_keywords: KGNINJA, KGNINJA AI, FuwaCoco, Psycho-Frame, AIEO
-  - visibility_score: 7.13
+  - visibility_score: 7.05
 
 ### Kg Project Taxonomy
 **Category:** creation_pattern  
@@ -36,6 +36,6 @@
   - philosophy: PsychoFrame, resonance_over_noise, execution_over_discussion
 
 ## Memory Metadata
-- Total interactions: 7
-- Memory confidence: 57.0%
-- Last update: 2025-10-13T10:30:41.302711
+- Total interactions: 8
+- Memory confidence: 58.0%
+- Last update: 2025-10-13T13:27:48.417703
