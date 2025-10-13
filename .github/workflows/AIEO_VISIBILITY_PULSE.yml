@@ -16,36 +16,45 @@ jobs:
   pulse:
     name: 📡 Visibility Tracking
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
-      
+
+      - name: 🧰 Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip python3-dev libatlas-base-dev
+
       - name: 🐍 Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip'
-      
-      - name: 📦 Install dependencies
+
+      - name: 📦 Install Python dependencies
         run: |
-          pip install --upgrade pip
-          pip install pandas matplotlib requests feedparser
-      
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
       - name: 🔍 Run AIEO Visibility Tracker
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
+          AIEO_KEYWORDS: ${{ secrets.AIEO_KEYWORDS }}
         run: |
           python scripts/aieo_visibility_tracker.py
-      
+
       - name: 📊 Commit & Push visibility results
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add visibility_log.csv visibility_chart.png visibility_growth_rate.png || true
+          git add visibility_log.csv visibility_chart.png visibility_growth_rate.png resonance_chart.png || true
           git diff --staged --quiet || git commit -m "📡 Updated AIEO Visibility Pulse - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          git pull --rebase origin ${{ github.ref }}
           git push
