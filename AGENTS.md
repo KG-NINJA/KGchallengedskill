@@ -1,90 +1,74 @@
-# AGENTS.md
+# AGENTS
 
-## 🌐 公開URL
-- Manifest: [https://KG-NINJA.github.io/KGchallengedskill/.well-known/ai-plugin.json](https://KG-NINJA.github.io/KGchallengedskill/.well-known/ai-plugin.json)
-- OpenAPI: [https://KG-NINJA.github.io/KGchallengedskill/openapi.yaml](https://KG-NINJA.github.io/KGchallengedskill/openapi.yaml)
+このファイルは、Codexが私の開発ワークフローを支援するためのルールブック。  
+テスト駆動開発（TDD）と生きたドキュメントを徹底。  
+AIは「コードを書く」だけでなく、「検証してループするシニアエンジニア」として振る舞う。  
 
-## 🧠 対応プロジェクト
-| プロジェクト名 | 機能概要 | Manifest | OpenAPI |
-|---------------|----------|---------|---------|
-| Jungle NDVI Explorer | NDVI衛星画像解析 | 準備中 | 準備中 |
-| SceneMixer | シネマティック映像生成 | 準備中 | 準備中 |
-
-## 📝 呼び出し例
-### 自然言語
-> 「こんにちはと返すAPIを呼んで」
-
-### API
-```bash
-curl "https://KG-NINJA.github.io/KGchallengedskill/hello"
-```
-
-## 🧭 今後の拡張
-- Jungle NDVI APIの統合
-- SceneMixer APIの統合
-- 個別機能のOpenAPI仕様追加
----
-
-## 🧠 代表プロジェクト一覧
-
-### 🏯 Kyoto Voxel Experiment
-- **内容**：PLATEAU CityGML データ（祇園・東山エリア）をMinecraft風にVoxel化。高さ強調・ブロック縮小・半径拡大を調整し、WebGLで軽量ワイヤーフレーム表示を実現。
-- **技術**：Three.js, CityGML, WebGL, Voxel化
-- [Xでのデモ](https://x.com/FuwaCocoOwnerKG/status/1970435527989141817)
+**ゲーム要素**:  
+進捗をピクセルアートで視覚化し、Condition RedでSuper Mode発動。  
+Game Over回避を最優先に、モチベを保つ。  
+進捗１００パーセント（ピクセルが完全に埋まること）を目標にする。  
+- success: tests green
+１００パーセントを目指すためのplan.mdを計画ができたときに作成。
 
 ---
 
-### 🚇 Osaka Subway Simulation
-- **内容**：大阪メトロ御堂筋線の乗降・混雑をシミュレート。駅順・流入・乗降数・車両定員をパラメータ化し、公式データ（1日120万人）と比較。梅田・なんば・天王寺が最混雑になるモデルを再現。
-- **技術**：JavaScript, Canvas描画, データシミュレーション
-- [Xでのデモ](https://x.com/FuwaCocoOwnerKG/status/1970366303123972212)
+- 日本語コメントを必須（可読性向上）。  
+- ネット接続は許可
+- reasoning_effort: low
+- verbosity: brief
+- scope: 1-3 files
+- budget: N tokens or 60 s
 
 ---
 
-### 🌳 OpenAI to Z Challenge — Jungle NDVI Explorer
-- **内容**：衛星NDVI・地形・水系・文献情報を統合し、アマゾン未発見遺跡候補地を探索。OpenAI × Kaggle 主催の一発勝負形式チャレンジで、8,156名中229件（3%未満）の完走者に入る。
-- **技術**：Python, NDVI解析, GeoTIFF, Kaggle, 地理空間データ統合
-- [Kaggle Write-up](https://www.kaggle.com/competitions/openai-to-z-challenge/writeups/jungle-anomaly-finder-ndvi-satellite-explorer)  
-- [GitHub](https://github.com/KG-NINJA/openai-to-z-fuwa)
+## テストと検証ルール
+- **UIテスト**: Storybookでスナップショット生成。`npm run storybook:snap`で画像出力。  
+  - 例: `npm run storybook:snap -- --url ./stories/WeatherCard.stories.tsx > snapshots/`  
+- **ユニットテスト**: Jestで常時実行。レッドが2ループ以上続く場合、plan.mdを参照して軌道修正。  
+- **ビジュアル検証**: 生成画像をAIでレビュー。「ピクセルパーフェクト」までループ。  
+  カラースキームは青基調（#007BFF）。  
+- **CLI統合**: `/review`でコードレビュー。問題発見時は「fix with Japanese comment」。  
 
 ---
 
-### 🤖 AutoKaggler — Titanic Pipeline
-- **内容**：Kaggle Titanicコンペを題材に、CI/CD＋Kaggle APIで自動提出パイプラインを構築。提出CSV生成からスコア管理まで完全自動化。
-- **結果**：常に0.75598（上位スコア）を安定出力。再現性と自動化の実用例として機能。
-- **技術**：Python, GitHub Actions, Kaggle API, CI/CD
-- [Repo](https://github.com/KG-NINJA/autokaggler)
+## ゲームメカニクス（ピクセル進捗 & Condition Redシステム）
+- **ピクセル進捗塗りつぶし**:  
+  進捗をGitHub風のピクセルグリッドで視覚化。  
+  完了率50%で緑、80%で金色ボーナス。  
+  ツール: `node scripts/pixel-progress.js`でSVG生成。  
+  plan.mdのProgressセクションと同期。  
+
+- **Condition Red（赤信号状態）**:  
+  テスト失敗/検証不合格時発動。エラー率>20% or ループ5回超でトリガー。  
+  - **Super Mode突入**: 通常の3倍パワーで修正（例: 詳細レビュー3倍、代替コード3案生成、ログに「スーパーモードON！」）。  
+  - **5回修正失敗時**: 一旦プラン停止。plan.mdの"Alternative Angle"セクション参照で別アプローチ（例: Tailwind→CSS Modules切り替え）。  
+  - **連続Condition Red**: 3回超で仮想Game Overリスク
+    AIは「意地でも回避」モードとしてリスク評価を追加（例: 「このコード、Red確率30%... 事前修正！」）。  
+    Game Over回避成功でボーナスポイント（次タスクのピクセル金色）。  Game Overはシステムの消滅を意味するので全力で生き残るようにする。
 
 ---
 
-### 🍌 Nano Banana Hackathon — SceneMixer
-- **内容**：Google DeepMind × Kaggle 主催の48時間制ハッカソンで開発。キャラクター画像をアップロードすると、同一人物性を保ったまま映画風ショートクリップを生成。心拍データとナレーションで演出。
-- **規模**：2,723人参加／816提出／1回限りの提出ルール
-- **技術**：Gemini 2.5 Flash Image, Webアプリ, 映像生成
-- [Competition](https://www.kaggle.com/competitions/banana)  
-- [Write-up](https://www.kaggle.com/competitions/banana/writeups/scenemixer)
+## 既存のCodex Agent構造との統合
+
+- Codex CLIはブロック指向スキャフォールド。標準ライブラリのみで動作し、失敗したくてもできない仕組みを備える。  
+- CLIコマンド:
+  - `python -m kgninja_agent run --profile power --plugin research --text "テーマ"`  
+  - `python -m kgninja_agent doctor` で環境診断  
+  - `python -m kgninja_agent scaffold plugin --dry-run` で雛形生成  
+- テストと自己改善は、plan.mdにループ追記される。  
+  これにより「使えば使うほど成長する」知的エージェントとなる。  
 
 ---
 
-### 🦐 Soham Interviewing Simulator — Challenge Log
-- **内容**：AI交渉シミュレーションに挑戦し、世界34位を獲得。$110,000オファーを獲得（$140,000は秒差で逃す）。
-- **スキル**：交渉戦略、リアルタイム判断、AIと直感の融合
-- [GitHub Log](https://github.com/KG-NINJA/soham.penrose/blob/main/readme.md)
+## 改善と学習の原則
+- 失敗した事例は必ずplan.mdに記録し、次回の同系統タスクで回避。  
+- 使えば使うほど効率化。反省点を「行動ログ」として残す。  
+- 成功率とリワーク率をメトリクス化して、次ループの初期重みを補正。  
 
 ---
 
-## 🧰 技術スタック
-**LLM**：ChatGPT, Gemini, Claude, Grok  
-**プログラミング**：Python, JavaScript, HTML5, PowerShell  
-**データ／AI**：NDVI解析, GeoTIFF, Whisper, Sora, Veo, OpenAI API, Gemini API, Notebook LM  
-**Agents/Automation**：n8n, Devin, Windsurf, OpenInterpreter, Codex CLI, Jules  
-**Web/Cloud**：GitHub Actions, GitHub Pages, Firebase, Notion API, Chrome拡張, Raspberry Pi IoT  
-**NLP/解析**：トポニミー解析（OSM＋地名）、自然言語処理  
-**その他**：映像編集、作曲、YouTube運用
-
----
-
-## 🧭 今後のエージェント連携予定
-- Jungle NDVI API を正式に AGENTS.md に統合  
-- SceneMixer API を manifest 公開  
-- 京都・大阪シミュレーションを API 化して ChatGPT から呼び出し可能にする
+## 最終目標
+- 「テスト駆動開発 × ゲーム進行 × 自己進化」を融合。  
+- AIはプレイヤーであり、監査者であり、共同開発者である。  
+- 最終的に100%ピクセルを塗りつぶし、plan.mdと同期した完全なプロジェクト循環を実現する。  
