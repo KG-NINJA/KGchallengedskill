@@ -18,29 +18,31 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout repository
+      - name: 📥 Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
       
-      - name: Set up Python
+      - name: 🐍 Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
+          cache: 'pip'
       
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: |
           pip install --upgrade pip
           pip install pandas matplotlib requests feedparser
       
-      - name: Run AIEO Visibility Tracker
+      - name: 🔍 Run AIEO Visibility Tracker
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
-        run: python scripts/aieo_visibility_tracker.py
+        run: |
+          python scripts/aieo_visibility_tracker.py
       
-      - name: Commit & Push visibility results
+      - name: 📊 Commit & Push visibility results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
