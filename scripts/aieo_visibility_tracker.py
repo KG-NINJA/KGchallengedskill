@@ -4,9 +4,10 @@ import datetime
 import time
 import random
 import os
+import requests # 外部APIを想定し、requestsを保持
 
 # --- Configuration ---
-LOG_FILE = 'aieo_visibility_log.csv'
+LOG_FILE = 'visibility_log.csv' # ファイル名を 'aieo_' から 'visibility_' に変更 (YAMLと合わせるため)
 SEARCH_TERMS = {
     'KGNINJA': 'KGNINJA',
     'KGNINJA AI': 'KGNINJA AI',
@@ -18,7 +19,10 @@ COLUMNS = ['Timestamp'] + list(SEARCH_TERMS.keys()) + ['Duration', 'Status', 'No
 
 # --- Simulated Data Generation ---
 def run_search_pulse():
-    """Simulates the search process and returns a dictionary of results."""
+    """
+    シミュレートされた検索プロセスを実行し、結果を返します。
+    実際には、ここでGoogle Custom Search APIなどへの呼び出しが行われます。
+    """
     print("🚀 Running AIEO Visibility Pulse (Ultra Enhanced Mode)")
     
     results = {}
@@ -26,6 +30,8 @@ def run_search_pulse():
     
     # Simulate search results and logging
     for term, query in SEARCH_TERMS.items():
+        # 実際には、requests.get(API_URL, params={...}) の処理が入る
+        
         # Generate some hits and duration (simulated)
         hits = random.randint(100, 20000000)
         duration = round(random.uniform(0.2, 0.4), 2)
@@ -41,7 +47,7 @@ def run_search_pulse():
     return results, total_duration
 
 def append_to_log(results, duration):
-    """Appends the latest search results to the CSV log file."""
+    """最新の検索結果をCSVログファイルに追加します。"""
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
     # Create the data row
@@ -63,31 +69,31 @@ def append_to_log(results, duration):
     print(f"✅ {'AIEO':<10}: {results.get('AIEO', 0):,} hits ({duration}s)")
 
 
-# --- Main Logic (The function that failed in your traceback) ---
 def plot_dual_axis_chart():
     """
-    Reads the log file and plots a dual-axis chart.
-    Contains the fix for the pandas.errors.ParserError.
+    ログファイルを読み込み、デュアル軸チャートをプロットします。
+    pandas.errors.ParserErrorの修正を含みます。
     """
     print(f"\n📊 Generating chart from {LOG_FILE}...")
     try:
-        # --- FIX FOR ParserError ---
-        # The 'on_bad_lines='skip'' argument handles rows with too many/few columns,
-        # preventing the "Expected 9 fields in line 7, saw 12" error.
+        # --- FIX FOR ParserError (Line 117 in original traceback) ---
+        # 'on_bad_lines='skip'' により、フィールド数の不一致によるエラーを回避します。
         df = pd.read_csv(LOG_FILE, on_bad_lines='skip')
-        # ---------------------------
+        # -----------------------------------------------------------
 
         # Convert Timestamp to datetime objects for plotting
         df['Timestamp'] = pd.to_datetime(df['Timestamp'])
         
         # --- Data Preparation ---
+        # 表示数の多い項目 (Primary) と少ない項目 (Secondary) に分ける
         primary_columns = ['Psycho-Frame', 'AIEO']
         secondary_columns = ['KGNINJA', 'KGNINJA AI', 'FuwaCoco']
         
         # --- Plotting ---
+        # グラフを生成し、プライマリ軸(ax1)を設定
         fig, ax1 = plt.subplots(figsize=(12, 6))
 
-        # Primary Axis (ax1) - Visibility terms with large counts
+        # Primary Axis (ax1) - Large visibility counts
         ax1.set_xlabel('Date')
         ax1.set_ylabel('High Visibility (Hits)', color='tab:blue')
         
@@ -96,8 +102,8 @@ def plot_dual_axis_chart():
             
         ax1.tick_params(axis='y', labelcolor='tab:blue')
 
-        # Secondary Axis (ax2) - Visibility terms with small counts
-        ax2 = ax1.twinx()  # Shared x-axis
+        # Secondary Axis (ax2) - Small visibility counts (ax1とX軸を共有)
+        ax2 = ax1.twinx()  
         ax2.set_ylabel('Low Visibility (Hits)', color='tab:red')
         
         for col in secondary_columns:
@@ -109,30 +115,32 @@ def plot_dual_axis_chart():
         fig.tight_layout() 
         plt.title('AIEO Visibility Tracker Over Time')
         
-        # Combine legends
+        # 凡例を結合して一つにまとめる
         lines1, labels1 = ax1.get_legend_handles_labels()
         lines2, labels2 = ax2.get_legend_handles_labels()
         ax2.legend(lines1 + lines2, labels1 + labels2, loc='upper left')
 
-        # Save and show the plot
-        plt.savefig('aieo_visibility_tracker.png')
-        print("✅ Chart saved as aieo_visibility_tracker.png")
+        # Save the plot
+        plt.savefig('visibility_chart.png')
+        print("✅ Chart saved as visibility_chart.png")
         
     except FileNotFoundError:
+        # ログファイルが存在しない場合のエラー処理
         print(f"❌ Error: Log file '{LOG_FILE}' not found. Run the script once to create it.")
     except Exception as e:
+        # その他の予期せぬエラー処理
         print(f"❌ An unexpected error occurred during plotting: {e}")
 
 
 def main():
     """Main execution function."""
-    # 1. Run the simulated search process
+    # 1. 検索パルスを実行 (データ取得)
     results, duration = run_search_pulse()
 
-    # 2. Append the results to the log file
+    # 2. 結果をログファイルに追加 (CSVファイルへの書き込み)
     append_to_log(results, duration)
     
-    # 3. Generate the chart (This is the section that was failing)
+    # 3. チャートを生成 (CSVファイルの読み込みとグラフ生成)
     plot_dual_axis_chart()
 
 if __name__ == "__main__":
