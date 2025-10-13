@@ -28,6 +28,16 @@ def calculate_composite_index():
         # CSVファイルを読み込む。on_bad_lines='skip'で破損した行をスキップし、堅牢性を確保。
         df = pd.read_csv(INPUT_LOG_FILE, on_bad_lines='skip')
 
+        # --- 修正: Timestamp列の堅牢性向上 ---
+        # 小文字の 'timestamp' が存在する場合、大文字の 'Timestamp' にリネームする
+        if 'timestamp' in df.columns and 'Timestamp' not in df.columns:
+            df.rename(columns={'timestamp': 'Timestamp'}, inplace=True)
+        
+        # 必要な 'Timestamp' 列が存在するか確認
+        if 'Timestamp' not in df.columns:
+            raise KeyError("The required 'Timestamp' column is missing or incorrectly named in the log file.")
+        # -----------------------------------
+
         # タイムスタンプをdatetime型に変換
         df['Timestamp'] = pd.to_datetime(df['Timestamp'])
 
@@ -40,7 +50,8 @@ def calculate_composite_index():
 
         if not active_weights:
             print("❌ Error: None of the required keyword columns were found in the log file.")
-            return None, None
+            # エラー発生時の戻り値を修正し、Noneを2つ返さないように修正
+            return None
 
         for term, weight in active_weights.items():
             # 検索ヒット数を数値型に変換し、NaNを0として扱う
@@ -60,6 +71,10 @@ def calculate_composite_index():
 
     except FileNotFoundError:
         print(f"❌ Error: Input log file '{INPUT_LOG_FILE}' not found. Aborting analysis.")
+        return None
+    except KeyError as e:
+        # KeyErrorを捕獲し、元のエラーメッセージをより分かりやすくする
+        print(f"❌ Data Structure Error: Check the column names in the CSV. {e}")
         return None
     except Exception as e:
         print(f"❌ An unexpected error occurred during composite calculation: {e}")
