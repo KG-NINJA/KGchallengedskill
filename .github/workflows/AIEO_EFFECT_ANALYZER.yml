@@ -1,22 +1,13 @@
-name: AIEO Effect Analyzer
-# 🚫 Disabled workflows placeholder
-disabled: true
+name: AIEO Effect Analyzer 📈
 
-# 目的：
-# - 旧ワークフローを一時保管
-# - 再有効化時は disabled を削除して運用再開可能
+# 目的:
+# - Visibility Pulse (トラッカー) の実行完了を待ってから、分析スクリプトを実行する。
+# - 複数のキーワードデータを統合し、複合インデックス (Composite Index) を計算・可視化する。
 
-# on:
-#   schedule:
-#     - cron: '0 0 * * *'
-#   workflow_dispatch:
-# jobs:
-#   placeholder:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - run: echo "Disabled Autonomous Actions Archive"
+# 修正点: 'disabled: true' を削除し、ワークフローを有効化しました。
 
 on:
+  # 'AIEO Multi-Keyword Visibility Pulse' が完了したときに起動
   workflow_run:
     workflows: ["AIEO Multi-Keyword Visibility Pulse"]
     types: [completed]
@@ -27,16 +18,51 @@ concurrency:
 
 jobs:
   analyze:
+    # Visibility Pulse が成功した場合のみ実行
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Download Artifacts (Visibility Logs)
+        uses: actions/github-script@v6
+        with:
+          script: |
+            # 成功したVisibility Pulseのワークフロー実行IDを取得
+            const runId = context.payload.workflow_run.id;
+            
+            // Artifacts APIを使用して生成されたログファイルをダウンロード
+            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: runId,
+            });
+
+            // ArtifactsはVisibility Pulseでコミット済みのため、ここではスキップまたは、
+            // 必要に応じてダウンロードして最新のログファイルを確保するロジックを実装
+            
+            // 例: ログファイルがArtifactとしてアップロードされている場合
+            // const matchArtifact = artifacts.data.artifacts.find(artifact => artifact.name == "visibility-data");
+            // if (matchArtifact) {
+            //   const download = await github.rest.actions.downloadArtifact({
+            //     owner: context.repo.owner,
+            //     repo: context.repo.repo,
+            //     artifact_id: matchArtifact.id,
+            //     archive_format: 'zip',
+            //   });
+            //   const fs = require('fs');
+            //   fs.writeFileSync('visibility-data.zip', Buffer.from(download.data));
+            //   // unzip and process
+            // }
+
 
       - name: Install dependencies
         run: pip install pandas matplotlib
 
       - name: Run composite index generator
+        # scripts/aieo_composite_tracker.py を実行し、分析を開始
         run: python scripts/aieo_composite_tracker.py
 
       - name: Commit & Push composite index
@@ -44,5 +70,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add aieo_composite_chart.png aieo_composite_log.csv
-          git commit -m "🔁 Updated AIEO Composite Index" || echo "No changes"
+          # 変更がない場合はコミットをスキップし、ジョブ全体は成功とする
+          git commit -m "🔁 Updated AIEO Composite Index" || exit 0
           git push
