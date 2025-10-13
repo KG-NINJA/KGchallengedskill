@@ -1,202 +1,49 @@
-import os
-import csv
-import requests
-from datetime import datetime
-import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
+name: 🌀 AIEO Multi-Keyword Visibility Pulse
 
-# 環境変数から取得
-GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
-GOOGLE_CX = os.environ.get('GOOGLE_CX')
+permissions:
+  contents: write
 
-# 監視するキーワードリスト
-KEYWORDS = [
-    "AIEO",
-    "AI倫理",
-    "生成AI",
-    "プロンプトエンジニアリング",
-    "LLM活用",
-]
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
 
-LOG_FILE = "visibility_log.csv"
-CHART_FILE = "visibility_chart.png"
-GROWTH_CHART_FILE = "visibility_growth_rate.png"
+concurrency:
+  group: aieo_visibility_pipeline
+  cancel-in-progress: true
 
-def google_search(query, api_key, cx, num=10):
-    """Google Custom Search APIで検索"""
-    url = "https://www.googleapis.com/customsearch/v1"
-    params = {
-        'key': api_key,
-        'cx': cx,
-        'q': query,
-        'num': num
-    }
+jobs:
+  pulse:
+    name: 📡 Visibility Tracking
+    runs-on: ubuntu-latest
     
-    try:
-        response = requests.get(url, params=params, timeout=10)
-        response.raise_for_status()
-        return response.json()
-    except Exception as e:
-        print(f"⚠️  Search error for '{query}': {e}")
-        return None
-
-def find_position(results, target_domain="github.com"):
-    """検索結果から対象ドメインの順位を取得"""
-    if not results or 'items' not in results:
-        return None
-    
-    for i, item in enumerate(results.get('items', []), 1):
-        link = item.get('link', '')
-        if target_domain in link:
-            return i
-    
-    return None
-
-def track_visibility():
-    """キーワードごとの検索順位を追跡"""
-    print("📊 Running Composite Index Analysis from visibility_log.csv...")
-    
-    if not GOOGLE_API_KEY or not GOOGLE_CX:
-        print("❌ Error: Google API credentials not found.")
-        return
-    
-    timestamp = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
-    
-    # 既存ログの読み込み
-    data = []
-    file_exists = os.path.exists(LOG_FILE)
-    
-    if file_exists:
-        try:
-            with open(LOG_FILE, 'r', encoding='utf-8') as f:
-                reader = csv.DictReader(f)
-                data = list(reader)
-        except Exception as e:
-            print(f"⚠️  Could not read existing log: {e}")
-    
-    # 新規データの収集
-    new_entries = []
-    for keyword in KEYWORDS:
-        print(f"🔍 Searching for: {keyword}")
-        results = google_search(keyword, GOOGLE_API_KEY, GOOGLE_CX)
-        position = find_position(results)
-        
-        entry = {
-            'timestamp': timestamp,
-            'keyword': keyword,
-            'position': position if position else 'Not Found',
-            'total_results': results.get('searchInformation', {}).get('totalResults', 'N/A') if results else 'N/A'
-        }
-        new_entries.append(entry)
-        print(f"   Position: {entry['position']}")
-    
-    # データを結合
-    data.extend(new_entries)
-    
-    # CSVに書き込み
-    if data:
-        fieldnames = ['timestamp', 'keyword', 'position', 'total_results']
-        with open(LOG_FILE, 'w', encoding='utf-8', newline='') as f:
-            writer = csv.DictWriter(f, fieldnames=fieldnames)
-            writer.writeheader()
-            writer.writerows(data)
-        print(f"✅ Logged {len(new_entries)} new entries to {LOG_FILE}")
-    
-    return data
-
-def analyze_and_visualize(data):
-    """データを分析してグラフを生成"""
-    if not data:
-        print("⚠️  No data to analyze")
-        return
-    
-    df = pd.DataFrame(data)
-    df['timestamp'] = pd.to_datetime(df['timestamp'])
-    
-    # 数値変換（Not Foundは100として扱う）
-    df['position_num'] = df['position'].apply(
-        lambda x: 100 if x == 'Not Found' else (int(x) if str(x).isdigit() else 100)
-    )
-    
-    # グラフ1: 時系列での順位変化
-    plt.figure(figsize=(14, 8))
-    for keyword in KEYWORDS:
-        kw_data = df[df['keyword'] == keyword].sort_values('timestamp')
-        if not kw_data.empty:
-            plt.plot(kw_data['timestamp'], kw_data['position_num'], 
-                    marker='o', label=keyword, linewidth=2)
-    
-    plt.xlabel('Date', fontsize=12)
-    plt.ylabel('Search Position (lower is better)', fontsize=12)
-    plt.title('AIEO Multi-Keyword Visibility Tracking', fontsize=14, fontweight='bold')
-    plt.legend(loc='best')
-    plt.grid(True, alpha=0.3)
-    plt.gca().invert_yaxis()  # 順位は低い方が良い
-    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
-    plt.gcf().autofmt_xdate()
-    plt.tight_layout()
-    plt.savefig(CHART_FILE, dpi=150, bbox_inches='tight')
-    print(f"✅ Chart saved to {CHART_FILE}")
-    plt.close()
-    
-    # グラフ2: 改善率の計算
-    plt.figure(figsize=(14, 8))
-    for keyword in KEYWORDS:
-        kw_data = df[df['keyword'] == keyword].sort_values('timestamp')
-        if len(kw_data) >= 2:
-            # 最初と最後の値から改善率を計算
-            first_pos = kw_data.iloc[0]['position_num']
-            positions = kw_data['position_num'].values
-            improvements = [(first_pos - pos) / first_pos * 100 if first_pos > 0 else 0 
-                          for pos in positions]
-            plt.plot(kw_data['timestamp'], improvements, 
-                    marker='s', label=keyword, linewidth=2)
-    
-    plt.xlabel('Date', fontsize=12)
-    plt.ylabel('Improvement Rate (%)', fontsize=12)
-    plt.title('Visibility Growth Rate Over Time', fontsize=14, fontweight='bold')
-    plt.legend(loc='best')
-    plt.grid(True, alpha=0.3)
-    plt.axhline(y=0, color='black', linestyle='--', alpha=0.5)
-    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
-    plt.gcf().autofmt_xdate()
-    plt.tight_layout()
-    plt.savefig(GROWTH_CHART_FILE, dpi=150, bbox_inches='tight')
-    print(f"✅ Growth chart saved to {GROWTH_CHART_FILE}")
-    plt.close()
-    
-    # 統計情報の表示
-    print("\n" + "="*60)
-    print("📈 Current Statistics")
-    print("="*60)
-    
-    for keyword in KEYWORDS:
-        kw_data = df[df['keyword'] == keyword].sort_values('timestamp')
-        if not kw_data.empty:
-            latest = kw_data.iloc[-1]
-            best = kw_data['position_num'].min()
-            avg = kw_data['position_num'].mean()
-            
-            print(f"\n🔑 {keyword}")
-            print(f"   Latest Position: {latest['position']}")
-            print(f"   Best Position: {int(best) if best < 100 else 'Not Found'}")
-            print(f"   Average Position: {avg:.1f}")
-            print(f"   Total Checks: {len(kw_data)}")
-
-def main():
-    """メイン処理"""
-    print("📡 Starting AIEO Visibility Tracker...")
-    print(f"⏰ Timestamp: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}\n")
-    
-    # データ収集
-    data = track_visibility()
-    
-    # 分析と可視化
-    if data:
-        analyze_and_visualize(data)
-    
-    print("\n✅ Analysis complete.")
-
-if __name__ == "__main__":
-    main()
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install pandas matplotlib requests feedparser
+      
+      - name: Run AIEO Visibility Tracker
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
+        run: python scripts/aieo_visibility_tracker.py
+      
+      - name: Commit & Push visibility results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add visibility_log.csv visibility_chart.png visibility_growth_rate.png || true
+          git diff --staged --quiet || git commit -m "📡 Updated AIEO Visibility Pulse - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          git push
