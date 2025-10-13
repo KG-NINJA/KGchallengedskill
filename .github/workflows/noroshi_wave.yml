@@ -1,25 +1,11 @@
-name: AIEO Wave Resonance Tracker
-# 🚫 Disabled workflows placeholder
-disabled: true
+name: 🌊 AIEO noroshi Wave Resonance Tracker
 
 # 目的：
-# - 旧ワークフローを一時保管
-# - 再有効化時は disabled を削除して運用再開可能
-
-# on:
-#   schedule:
-#     - cron: '0 0 * * *'
-#   workflow_dispatch:
-# jobs:
-#   placeholder:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - run: echo "Disabled Autonomous Actions Archive"
-
+# - 主要なAIクローラーのユーザーエージェントを使用し、AIEOコンテンツの到達可能性とHTTPレスポンスを12時間ごとにチェックする。
 
 on:
   schedule:
-    - cron: '0 */12 * * *'   # 12時間ごと（1日2回）
+    - cron: '0 */12 * * *'    # 12時間ごと（1日2回）
   workflow_dispatch:
 
 jobs:
@@ -27,14 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4 # actions/checkout@v3 から @v4 に更新しました。
 
       - name: Probe AIEO endpoints
         run: |
           echo "🌐 Starting AI Crawler Probe..."
+          # チェック対象のURL
           URL="https://kg-ninja.github.io/AIEO_PULSE.json"
           DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
+          # 主要なAI/検索エンジンのボットリスト
           declare -A BOTS=(
             ["Googlebot"]="Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
             ["Bingbot"]="Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"
@@ -47,8 +35,10 @@ jobs:
           echo "_Last updated: $DATE UTC_" >> AIEO_WAVE_LOG.md
           echo "" >> AIEO_WAVE_LOG.md
 
+          # 各ボットとしてアクセスを試み、ステータスコードを取得
           for BOT in "${!BOTS[@]}"; do
             UA=${BOTS[$BOT]}
+            # curl で User-Agent を設定し、出力は破棄し、HTTPステータスコードのみを取得
             STATUS=$(curl -A "$UA" -o /dev/null -s -w "%{http_code}" "$URL")
             echo "- **$BOT** → HTTP $STATUS" >> AIEO_WAVE_LOG.md
           done
@@ -61,5 +51,6 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add AIEO_WAVE_LOG.md
-          git commit -m "🌊 AIEO Wave resonance log update" || exit 0
+          # 変更がない場合は commit をスキップし、パイプラインを成功させる
+          git commit -m "🌊 AIEO Wave resonance log update" || true
           git push
