@@ -10,8 +10,8 @@ OUTPUT_CHART_FILE = 'aieo_composite_chart.png'
 # 各キーワードの重み付け (Composite Index算出のため)
 # AIEOの核となるキーワードに高い重みを与えます。
 WEIGHTS = {
-    'AIEO': 1.8,          # 最も重要
-    'KGNINJA AI': 1.5,    # AI連携で重要
+    'KGNINJA AI': 1.8,       # 最も重要
+    'AIEO': 1.5,  # AI連携で重要
     'KGNINJA': 1.0,       # ベースとなる認知度
     'FuwaCoco': 0.5,      # 関連性の高いエンティティ
     'Psycho-Frame': 0.1   # 競合/コンテキストとしての参照用（低く設定）
