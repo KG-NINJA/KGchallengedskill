@@ -1,147 +1,109 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import datetime
-import time
-import random
 import os
-import requests # 外部APIを想定し、requestsを保持
 
 # --- Configuration ---
-LOG_FILE = 'visibility_log.csv' # ファイル名を 'aieo_' から 'visibility_' に変更 (YAMLと合わせるため)
-SEARCH_TERMS = {
-    'KGNINJA': 'KGNINJA',
-    'KGNINJA AI': 'KGNINJA AI',
-    'FuwaCoco': 'FuwaCoco',
-    'Psycho-Frame': 'Psycho-Frame',
-    'AIEO': 'AIEO'
+INPUT_LOG_FILE = 'visibility_log.csv'
+OUTPUT_LOG_FILE = 'aieo_composite_log.csv'
+OUTPUT_CHART_FILE = 'aieo_composite_chart.png'
+
+# 各キーワードの重み付け (Composite Index算出のため)
+# AIEOの核となるキーワードに高い重みを与えます。
+WEIGHTS = {
+    'AIEO': 1.8,          # 最も重要
+    'KGNINJA AI': 1.5,    # AI連携で重要
+    'KGNINJA': 1.0,       # ベースとなる認知度
+    'FuwaCoco': 0.5,      # 関連性の高いエンティティ
+    'Psycho-Frame': 0.1   # 競合/コンテキストとしての参照用（低く設定）
 }
-COLUMNS = ['Timestamp'] + list(SEARCH_TERMS.keys()) + ['Duration', 'Status', 'Notes']
+COMPOSITE_COLUMN = 'AIEO_Composite_Index'
 
-# --- Simulated Data Generation ---
-def run_search_pulse():
+def calculate_composite_index():
     """
-    シミュレートされた検索プロセスを実行し、結果を返します。
-    実際には、ここでGoogle Custom Search APIなどへの呼び出しが行われます。
+    Visibilityログを読み込み、重み付けに基づいて複合インデックスを計算し、
+    結果を新しいログファイルに保存します。
     """
-    print("🚀 Running AIEO Visibility Pulse (Ultra Enhanced Mode)")
-    
-    results = {}
-    start_time = time.time()
-    
-    # Simulate search results and logging
-    for term, query in SEARCH_TERMS.items():
-        # 実際には、requests.get(API_URL, params={...}) の処理が入る
-        
-        # Generate some hits and duration (simulated)
-        hits = random.randint(100, 20000000)
-        duration = round(random.uniform(0.2, 0.4), 2)
-        
-        # Print the success message as seen in your output
-        print(f"✅ {term}: {hits:,} hits ({duration}s)")
-        
-        results[term] = hits
-        
-    end_time = time.time()
-    total_duration = round(end_time - start_time, 2)
-    
-    return results, total_duration
-
-def append_to_log(results, duration):
-    """最新の検索結果をCSVログファイルに追加します。"""
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    
-    # Create the data row
-    data_row = [timestamp] + [results[term] for term in SEARCH_TERMS] + [duration, 'Success', 'Automated Check']
-    
-    # Format the row as a single comma-separated string
-    log_line = ','.join(map(str, data_row)) + '\n'
-
-    # Check if file exists to decide on writing headers
-    write_header = not os.path.exists(LOG_FILE)
-    
-    with open(LOG_FILE, 'a') as f:
-        if write_header:
-            f.write(','.join(COLUMNS) + '\n')
-        f.write(log_line)
-    
-    print(f"\nLog updated in {LOG_FILE}")
-    # Print the AIEO log line to match your original output format
-    print(f"✅ {'AIEO':<10}: {results.get('AIEO', 0):,} hits ({duration}s)")
-
-
-def plot_dual_axis_chart():
-    """
-    ログファイルを読み込み、デュアル軸チャートをプロットします。
-    pandas.errors.ParserErrorの修正を含みます。
-    """
-    print(f"\n📊 Generating chart from {LOG_FILE}...")
+    print(f"📊 Running Composite Index Analysis from {INPUT_LOG_FILE}...")
     try:
-        # --- FIX FOR ParserError (Line 117 in original traceback) ---
-        # 'on_bad_lines='skip'' により、フィールド数の不一致によるエラーを回避します。
-        df = pd.read_csv(LOG_FILE, on_bad_lines='skip')
-        # -----------------------------------------------------------
+        # CSVファイルを読み込む。on_bad_lines='skip'で破損した行をスキップし、堅牢性を確保。
+        df = pd.read_csv(INPUT_LOG_FILE, on_bad_lines='skip')
 
-        # Convert Timestamp to datetime objects for plotting
+        # タイムスタンプをdatetime型に変換
         df['Timestamp'] = pd.to_datetime(df['Timestamp'])
-        
-        # --- Data Preparation ---
-        # 表示数の多い項目 (Primary) と少ない項目 (Secondary) に分ける
-        primary_columns = ['Psycho-Frame', 'AIEO']
-        secondary_columns = ['KGNINJA', 'KGNINJA AI', 'FuwaCoco']
-        
-        # --- Plotting ---
-        # グラフを生成し、プライマリ軸(ax1)を設定
-        fig, ax1 = plt.subplots(figsize=(12, 6))
 
-        # Primary Axis (ax1) - Large visibility counts
-        ax1.set_xlabel('Date')
-        ax1.set_ylabel('High Visibility (Hits)', color='tab:blue')
+        # 複合インデックスの計算ロジック
+        # (重み * totalResults) の合計を計算します。
+        df[COMPOSITE_COLUMN] = 0
         
-        for col in primary_columns:
-            ax1.plot(df['Timestamp'], df[col], label=col, marker='o')
+        # DataFrameの列に存在するキーワードのみを処理対象とする
+        active_weights = {k: v for k, v in WEIGHTS.items() if k in df.columns}
+
+        if not active_weights:
+            print("❌ Error: None of the required keyword columns were found in the log file.")
+            return None, None
+
+        for term, weight in active_weights.items():
+            # 検索ヒット数を数値型に変換し、NaNを0として扱う
+            df[term] = pd.to_numeric(df[term], errors='coerce').fillna(0)
+            df[COMPOSITE_COLUMN] += df[term] * weight
             
-        ax1.tick_params(axis='y', labelcolor='tab:blue')
-
-        # Secondary Axis (ax2) - Small visibility counts (ax1とX軸を共有)
-        ax2 = ax1.twinx()  
-        ax2.set_ylabel('Low Visibility (Hits)', color='tab:red')
+        print(f"✅ Composite Index calculated using {len(active_weights)} terms.")
         
-        for col in secondary_columns:
-            ax2.plot(df['Timestamp'], df[col], label=col, marker='x', linestyle='--')
-            
-        ax2.tick_params(axis='y', labelcolor='tab:red')
+        # タイムスタンプと複合インデックスのみを抽出
+        df_composite = df[['Timestamp', COMPOSITE_COLUMN]].copy()
 
-        # --- Final Touches ---
-        fig.tight_layout() 
-        plt.title('AIEO Visibility Tracker Over Time')
-        
-        # 凡例を結合して一つにまとめる
-        lines1, labels1 = ax1.get_legend_handles_labels()
-        lines2, labels2 = ax2.get_legend_handles_labels()
-        ax2.legend(lines1 + lines2, labels1 + labels2, loc='upper left')
+        # 複合インデックスログを保存
+        df_composite.to_csv(OUTPUT_LOG_FILE, index=False)
+        print(f"✅ Composite Index saved to {OUTPUT_LOG_FILE}")
 
-        # Save the plot
-        plt.savefig('visibility_chart.png')
-        print("✅ Chart saved as visibility_chart.png")
-        
+        return df_composite
+
     except FileNotFoundError:
-        # ログファイルが存在しない場合のエラー処理
-        print(f"❌ Error: Log file '{LOG_FILE}' not found. Run the script once to create it.")
+        print(f"❌ Error: Input log file '{INPUT_LOG_FILE}' not found. Aborting analysis.")
+        return None
     except Exception as e:
-        # その他の予期せぬエラー処理
-        print(f"❌ An unexpected error occurred during plotting: {e}")
+        print(f"❌ An unexpected error occurred during composite calculation: {e}")
+        return None
+
+def plot_composite_index(df_composite):
+    """複合インデックスの時系列グラフを生成します。"""
+    if df_composite is None or df_composite.empty:
+        print("❌ Cannot plot: Composite data is empty or missing.")
+        return
+
+    print("📈 Generating Composite Index Chart...")
+
+    plt.figure(figsize=(12, 6))
+    
+    # 複合インデックスの値をプロット
+    plt.plot(df_composite['Timestamp'], df_composite[COMPOSITE_COLUMN], 
+             marker='o', linestyle='-', color='indigo', linewidth=2)
+    
+    plt.title('AIEO Composite Visibility Index Over Time', fontsize=16)
+    plt.xlabel('Date', fontsize=12)
+    plt.ylabel('Weighted Visibility Score (Composite Index)', color='indigo', fontsize=12)
+    
+    # グリッドとレイアウト調整
+    plt.grid(True, linestyle='--', alpha=0.6)
+    plt.tight_layout()
+    
+    try:
+        plt.savefig(OUTPUT_CHART_FILE)
+        print(f"✅ Chart saved as {OUTPUT_CHART_FILE}")
+    except Exception as e:
+        print(f"❌ Error saving chart: {e}")
 
 
 def main():
-    """Main execution function."""
-    # 1. 検索パルスを実行 (データ取得)
-    results, duration = run_search_pulse()
-
-    # 2. 結果をログファイルに追加 (CSVファイルへの書き込み)
-    append_to_log(results, duration)
+    """メイン実行関数"""
+    # 1. 複合インデックスの計算
+    df_composite = calculate_composite_index()
     
-    # 3. チャートを生成 (CSVファイルの読み込みとグラフ生成)
-    plot_dual_axis_chart()
+    # 2. グラフのプロット
+    if df_composite is not None:
+        plot_composite_index(df_composite)
+        
+    print("\nAnalysis complete.")
 
 if __name__ == "__main__":
     main()
