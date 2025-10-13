@@ -16,7 +16,7 @@ SEARCH_TERMS = {
 }
 COLUMNS = ['Timestamp'] + list(SEARCH_TERMS.keys()) + ['Duration', 'Status', 'Notes']
 
-# --- Simulated Data Generation (to mimic your script's output) ---
+# --- Simulated Data Generation ---
 def run_search_pulse():
     """Simulates the search process and returns a dictionary of results."""
     print("🚀 Running AIEO Visibility Pulse (Ultra Enhanced Mode)")
@@ -59,7 +59,7 @@ def append_to_log(results, duration):
         f.write(log_line)
     
     print(f"\nLog updated in {LOG_FILE}")
-    # Simulate the data logging you showed in your output
+    # Print the AIEO log line to match your original output format
     print(f"✅ {'AIEO':<10}: {results.get('AIEO', 0):,} hits ({duration}s)")
 
 
@@ -67,14 +67,13 @@ def append_to_log(results, duration):
 def plot_dual_axis_chart():
     """
     Reads the log file and plots a dual-axis chart.
-    This function contains the fix for the ParserError.
+    Contains the fix for the pandas.errors.ParserError.
     """
     print(f"\n📊 Generating chart from {LOG_FILE}...")
     try:
         # --- FIX FOR ParserError ---
-        # The 'on_bad_lines='skip'' argument tells pandas to skip any rows 
-        # that have the wrong number of columns (like line 7 in your error), 
-        # thus preventing the ParserError.
+        # The 'on_bad_lines='skip'' argument handles rows with too many/few columns,
+        # preventing the "Expected 9 fields in line 7, saw 12" error.
         df = pd.read_csv(LOG_FILE, on_bad_lines='skip')
         # ---------------------------
 
@@ -82,9 +81,7 @@ def plot_dual_axis_chart():
         df['Timestamp'] = pd.to_datetime(df['Timestamp'])
         
         # --- Data Preparation ---
-        # Select key visibility metrics for the primary axis (millions/thousands)
         primary_columns = ['Psycho-Frame', 'AIEO']
-        # Select metrics for the secondary axis (hundreds/tens)
         secondary_columns = ['KGNINJA', 'KGNINJA AI', 'FuwaCoco']
         
         # --- Plotting ---
@@ -100,7 +97,7 @@ def plot_dual_axis_chart():
         ax1.tick_params(axis='y', labelcolor='tab:blue')
 
         # Secondary Axis (ax2) - Visibility terms with small counts
-        ax2 = ax1.twinx()  # Instantiate a second axes that shares the same x-axis
+        ax2 = ax1.twinx()  # Shared x-axis
         ax2.set_ylabel('Low Visibility (Hits)', color='tab:red')
         
         for col in secondary_columns:
@@ -109,10 +106,10 @@ def plot_dual_axis_chart():
         ax2.tick_params(axis='y', labelcolor='tab:red')
 
         # --- Final Touches ---
-        fig.tight_layout() # otherwise the right y-label might be slightly clipped
+        fig.tight_layout() 
         plt.title('AIEO Visibility Tracker Over Time')
         
-        # Combine legends from both axes
+        # Combine legends
         lines1, labels1 = ax1.get_legend_handles_labels()
         lines2, labels2 = ax2.get_legend_handles_labels()
         ax2.legend(lines1 + lines2, labels1 + labels2, loc='upper left')
@@ -135,7 +132,7 @@ def main():
     # 2. Append the results to the log file
     append_to_log(results, duration)
     
-    # 3. Generate the chart (This is where your original error was)
+    # 3. Generate the chart (This is the section that was failing)
     plot_dual_axis_chart()
 
 if __name__ == "__main__":
