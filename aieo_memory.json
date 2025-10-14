@@ -11,19 +11,19 @@
       "concept_id": "kg_digital_presence",
       "category": "visibility_status",
       "attributes": {
-        "kgninja_ai_results": 705,
+        "kgninja_ai_results": 753,
         "growth_stage": "Acceleration phase - visibility expanding",
         "tracked_keywords": [
-          "KGNINJA",
           "KGNINJA AI",
-          "FuwaCoco",
-          "Psycho-Frame",
-          "AIEO"
+          "KGNINJA",
+          "AIEO",
+          "Vibe Coding",
+          "KGNINJA Prototype"
         ],
-        "visibility_score": 7.05
+        "visibility_score": 7.53
       },
       "confidence": 0.95,
-      "last_updated": "2025-10-13T13:27:48.417712"
+      "last_updated": "2025-10-14T13:28:21.929339"
     },
     {
       "concept_id": "kg_project_taxonomy",
@@ -135,11 +135,17 @@
       "event_type": "visibility_pulse",
       "context": "Daily visibility tracking completed",
       "insight": "Acceleration phase - visibility expanding"
+    },
+    {
+      "timestamp": "2025-10-14T13:28:21.929318",
+      "event_type": "visibility_pulse",
+      "context": "Daily visibility tracking completed",
+      "insight": "Acceleration phase - visibility expanding"
     }
   ],
   "meta": {
-    "total_interactions": 8,
-    "memory_confidence": 0.58,
-    "last_memory_update": "2025-10-13T13:27:48.417703"
+    "total_interactions": 9,
+    "memory_confidence": 0.59,
+    "last_memory_update": "2025-10-14T13:28:21.929329"
   }
 }
