@@ -322,4 +322,95 @@ def generate_strategic_recommendations(keyword_stats):
                 print(f"      → Expected: 40%+ visibility within 2 weeks")
             elif avg_results < 100000:
                 print(f"      → Medium competition ({avg_results:,.0f} results)")
-                print(f"      → Action: Publish comprehensive guide or
+                print(f"      → Action: Publish comprehensive guide or tutorial")
+                print(f"      → Expected: 20-30% visibility within 1 month")
+            else:
+                print(f"      → High competition ({avg_results:,.0f} results)")
+                print(f"      → Action: Create unique, differentiated content")
+                print(f"      → Focus on long-tail variations (e.g., 'AIEO implementation')")
+    
+    print("\n📊 PRIORITY MATRIX:")
+    print("\n   High Priority (Work on these NOW):")
+    high_priority = []
+    for keyword, stats in sorted_keywords:
+        score = calculate_visibility_score(stats)
+        avg_results = sum(stats['total_results']) / len(stats['total_results']) if stats['total_results'] else 0
+        # Low competition + low visibility = high opportunity
+        if score < 20 and avg_results < 10000:
+            high_priority.append(keyword)
+            print(f"      • {keyword} (Low competition, needs content)")
+    
+    print("\n   Medium Priority (Maintain & Grow):")
+    for keyword, stats in sorted_keywords:
+        score = calculate_visibility_score(stats)
+        if 20 <= score < 60:
+            print(f"      • {keyword} (Building momentum)")
+    
+    print("\n   Low Priority (Already Strong):")
+    for keyword, stats in sorted_keywords:
+        score = calculate_visibility_score(stats)
+        if score >= 60:
+            print(f"      • {keyword} (Maintain current efforts)")
+
+
+def print_deprecated_notice():
+    """廃止されたキーワードの通知"""
+    if DEPRECATED_KEYWORDS:
+        print("\n" + "="*80)
+        print("📝 DEPRECATED KEYWORDS (No longer tracked)")
+        print("="*80)
+        for keyword in DEPRECATED_KEYWORDS:
+            print(f"   ❌ {keyword}")
+        print("\nThese keywords have been removed due to:")
+        print("   • Low visibility (<10%)")
+        print("   • High competition (millions of results)")
+        print("   • Better ROI with strategic keywords")
+        print("="*80)
+
+
+def main():
+    """メイン処理"""
+    print("="*80)
+    print("🔍 ENHANCED AIEO VISIBILITY ANALYZER (OPTIMIZED)")
+    print("="*80)
+    print(f"⏰ Analysis Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"🎯 Focus: Strategic, high-impact keywords only")
+    print("="*80 + "\n")
+    
+    # データ読み込み
+    data = load_and_clean_data()
+    if not data:
+        print("⚠️  No data found or no strategic keywords in log")
+        return
+    
+    print(f"✅ Loaded {len(data)} records (strategic keywords only)")
+    
+    # 分析
+    keyword_stats = analyze_keyword_performance(data)
+    print(f"✅ Analyzing {len(keyword_stats)} strategic keywords\n")
+    
+    # 廃止されたキーワードの通知
+    print_deprecated_notice()
+    
+    # 詳細分析を表示
+    print_detailed_analysis(keyword_stats)
+    
+    # 可視化
+    visualize_trends(data)
+    
+    # 戦略的推奨事項
+    generate_strategic_recommendations(keyword_stats)
+    
+    print("\n" + "="*80)
+    print("✅ Strategic Analysis Complete!")
+    print("="*80)
+    print("\n💡 Quick Actions:")
+    print("   1. Focus on keywords with <1000 competition")
+    print("   2. Create content for 0% visibility keywords")
+    print("   3. Maintain momentum on 60%+ keywords")
+    print("   4. Review weekly and adjust strategy")
+    print("="*80 + "\n")
+
+
+if __name__ == "__main__":
+    main()
