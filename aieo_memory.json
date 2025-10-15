@@ -11,7 +11,7 @@
       "concept_id": "kg_digital_presence",
       "category": "visibility_status",
       "attributes": {
-        "kgninja_ai_results": 762,
+        "kgninja_ai_results": 760,
         "growth_stage": "Acceleration phase - visibility expanding",
         "tracked_keywords": [
           "KGNINJA AI",
@@ -20,10 +20,10 @@
           "Vibe Coding",
           "KGNINJA Prototype"
         ],
-        "visibility_score": 7.62
+        "visibility_score": 7.6
       },
       "confidence": 0.95,
-      "last_updated": "2025-10-15T04:43:05.089081"
+      "last_updated": "2025-10-15T13:29:57.063668"
     },
     {
       "concept_id": "kg_project_taxonomy",
@@ -147,11 +147,17 @@
       "event_type": "visibility_pulse",
       "context": "Daily visibility tracking completed",
       "insight": "Acceleration phase - visibility expanding"
+    },
+    {
+      "timestamp": "2025-10-15T13:29:57.063650",
+      "event_type": "visibility_pulse",
+      "context": "Daily visibility tracking completed",
+      "insight": "Acceleration phase - visibility expanding"
     }
   ],
   "meta": {
-    "total_interactions": 10,
-    "memory_confidence": 0.6,
-    "last_memory_update": "2025-10-15T04:43:05.089072"
+    "total_interactions": 11,
+    "memory_confidence": 0.61,
+    "last_memory_update": "2025-10-15T13:29:57.063659"
   }
 }
