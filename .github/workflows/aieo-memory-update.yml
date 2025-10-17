@@ -1,74 +1,66 @@
-# 定期的にAIEOの可視性と共鳴を更新するワークフロー
-name: AIEO Memory Update
+name: AIEO Memory Update & Deploy
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
-  workflow_dispatch:
+    # 毎日午前3時（UTC）に実行
+    - cron: '0 3 * * *'
+  workflow_dispatch:  # 手動トリガーも可能
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
-  refresh-aieo-memory:
-    name: Refresh AIEO memory assets
+  update-memory:
     runs-on: ubuntu-latest
-    env:
-      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-      GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
+    
     steps:
-      - name: チェックアウト
+      # 1. リポジトリをチェックアウト
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Pythonをセットアップ
-        uses: actions/setup-python@v5
+      
+      # 2. Python環境をセットアップ
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-
-      - name: 依存関係をインストール
+          cache: 'pip'
+      
+      # 3. 依存パッケージをインストール
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
-      - name: 可視性トラッカーを実行
+      
+      # 4. メモリデータ取得スクリプトを実行
+      - name: Fetch and update AIEO memory
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
         run: |
-          python scripts/aieo_visibility_tracker.py
-
-      - name: レゾナンスインデクサーを実行
+          python scripts/update_aieo_memory.py
+      
+      # 5. 可視化スクリプトを実行（HTMLレポート生成）
+      - name: Generate visualization HTML
         run: |
-          if [ -f scripts/resonance_indexer.py ]; then
-            python scripts/resonance_indexer.py
-          else
-            echo "resonance_indexer.py が存在しないためジョブを停止します" >&2
-            exit 1
-          fi
-
-      - name: Gitユーザーを設定
+          python scripts/generate_visualization.py
+      
+      # 6. Git設定とコミット
+      - name: Commit and push changes
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      - name: 変更をコミット
-        run: |
-          if git status --short | grep -E 'visibility_log.csv|resonance_snapshot.png'; then
-            git add visibility_log.csv 2>/dev/null || true
-            git add resonance_snapshot.png 2>/dev/null || true
-            git commit -m "chore: update AIEO memory snapshots"
-          else
-            echo "更新ファイルなし"
-          fi
-
-      - name: 変更をプッシュ
-        if: success()
-        run: |
-          if git status --short | grep "^??"; then
-            echo "未追跡ファイルが残っています" >&2
-            exit 1
-          fi
-          if git status --short | grep -v '^??' >/dev/null; then
-            git push
-          else
-            echo "プッシュなし"
-          fi
+          git config --local user.email "action@github.com"
+          git config --local user.name "AIEO Bot"
+          git add -A
+          git commit -m "chore: Update AIEO memory and visualization - $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
+          git push
+      
+      # 7. GitHub Pages にデプロイ
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          cname: aieo-memory.example.com  # カスタムドメイン使用時のみ指定
