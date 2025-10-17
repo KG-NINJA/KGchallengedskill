@@ -1,0 +1,74 @@
+# 定期的にAIEOの可視性と共鳴を更新するワークフロー
+name: AIEO Memory Update
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-aieo-memory:
+    name: Refresh AIEO memory assets
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
+    steps:
+      - name: チェックアウト
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pythonをセットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 依存関係をインストール
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 可視性トラッカーを実行
+        run: |
+          python scripts/aieo_visibility_tracker.py
+
+      - name: レゾナンスインデクサーを実行
+        run: |
+          if [ -f scripts/resonance_indexer.py ]; then
+            python scripts/resonance_indexer.py
+          else
+            echo "resonance_indexer.py が存在しないためジョブを停止します" >&2
+            exit 1
+          fi
+
+      - name: Gitユーザーを設定
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: 変更をコミット
+        run: |
+          if git status --short | grep -E 'visibility_log.csv|resonance_snapshot.png'; then
+            git add visibility_log.csv 2>/dev/null || true
+            git add resonance_snapshot.png 2>/dev/null || true
+            git commit -m "chore: update AIEO memory snapshots"
+          else
+            echo "更新ファイルなし"
+          fi
+
+      - name: 変更をプッシュ
+        if: success()
+        run: |
+          if git status --short | grep "^??"; then
+            echo "未追跡ファイルが残っています" >&2
+            exit 1
+          fi
+          if git status --short | grep -v '^??' >/dev/null; then
+            git push
+          else
+            echo "プッシュなし"
+          fi
