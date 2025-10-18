@@ -1,0 +1,61 @@
+{
+  "history": [
+    {
+      "timestamp": "2025-10-18T14:24:17.770633",
+      "month": "2025-10",
+      "queries": {
+        "who_is_kgninja": {
+          "claude": {
+            "status": "error",
+            "error": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CUEpJBK4PkQ2p8wWkeAjN'}",
+            "model": "claude"
+          },
+          "chatgpt": {
+            "status": "success",
+            "response": "申し訳ありませんが、私のデータベースには「KGNINJA」という人物に関する情報がありません。もしかしたら特定の地域やコミュニティで知られている人物か、インターネット上で活動している個人かもしれません。詳細がわかればお手伝いできるかもしれませんので、追加情報を提供していただければと思います。",
+            "model": "gpt-4o"
+          },
+          "gemini": {
+            "status": "error",
+            "error": "403 Generative Language API has not been used in project 151313374457 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=151313374457 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: \"SERVICE_DISABLED\"\ndomain: \"googleapis.com\"\nmetadata {\n  key: \"service\"\n  value: \"generativelanguage.googleapis.com\"\n}\nmetadata {\n  key: \"serviceTitle\"\n  value: \"Generative Language API\"\n}\nmetadata {\n  key: \"containerInfo\"\n  value: \"151313374457\"\n}\nmetadata {\n  key: \"consumer\"\n  value: \"projects/151313374457\"\n}\nmetadata {\n  key: \"activationUrl\"\n  value: \"https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=151313374457\"\n}\n, locale: \"en-US\"\nmessage: \"Generative Language API has not been used in project 151313374457 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=151313374457 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.\"\n, links {\n  description: \"Google developers console API activation\"\n  url: \"https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=151313374457\"\n}\n]",
+            "model": "gemini"
+          }
+        },
+        "kgninja_aieo": {
+          "claude": {
+            "status": "error",
+            "error": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CUEpJa9VryMWsT16n5YYd'}",
+            "model": "claude"
+          },
+          "chatgpt": {
+            "status": "success",
+            "response": "AIEOは、特定の正式な用語や概念としては認識されていません。しかし、もしかするとAI（人工知能）に関連する何かの略語やプロジェクト名として使われている可能性があります。もし特定の文脈や業界で使用されているものであれば、その詳細な情報が必要です。\n\n一般的に、AI（Artificial Intelligence、人工知能）は、コンピュータシステムが人間のように学習し、推論し、問題を解決する能力を指します。AIにはさまざまなアプローチや技術があり、機械学習、ディープラーニング、自然言語処理などが含まれます。基本的な考え方は、データを用いてコンピュータがパターンを学習し、予測や意思決定を行うことです。\n\n具体的に「AIEO」が何を指すのか、さらに情報を提供いただければ、より詳細にお答えできるかもしれません。",
+            "model": "gpt-4o"
+          },
+          "gemini": {
+            "status": "error",
+            "error": "403 Generative Language API has not been used in project 151313374457 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=151313374457 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: \"SERVICE_DISABLED\"\ndomain: \"googleapis.com\"\nmetadata {\n  key: \"service\"\n  value: \"generativelanguage.googleapis.com\"\n}\nmetadata {\n  key: \"serviceTitle\"\n  value: \"Generative Language API\"\n}\nmetadata {\n  key: \"containerInfo\"\n  value: \"151313374457\"\n}\nmetadata {\n  key: \"consumer\"\n  value: \"projects/151313374457\"\n}\nmetadata {\n  key: \"activationUrl\"\n  value: \"https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=151313374457\"\n}\n, locale: \"en-US\"\nmessage: \"Generative Language API has not been used in project 151313374457 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=151313374457 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.\"\n, links {\n  description: \"Google developers console API activation\"\n  url: \"https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=151313374457\"\n}\n]",
+            "model": "gemini"
+          }
+        },
+        "kgninja_projects": {
+          "claude": {
+            "status": "error",
+            "error": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CUEpJuxMtEMsM41TVG5aS'}",
+            "model": "claude"
+          },
+          "chatgpt": {
+            "status": "success",
+            "response": "KGNINJAが開発したZOVIOUSとPolar Buzz Shooterに共通する哲学的テーマは、現代社会における人間の存在意義と技術の進化が人間の生活や価値観に与える影響です。これらの作品は、プレイヤーに対して技術と人間の関係性を問いかけ、自己の存在や選択がどのように未来を形作るかを考えさせる内容となっています。また、ゲーム内での選択やチャレンジを通じて倫理的なジレンマに直面し、プレイヤーは自分自身の価値観を見直す機会を得ることができます。このように、両作品はエンターテインメントを提供しながら、深い哲学的な問いを投げかけています。",
+            "model": "gpt-4o"
+          },
+          "gemini": {
+            "status": "error",
+            "error": "403 Generative Language API has not been used in project 151313374457 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=151313374457 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: \"SERVICE_DISABLED\"\ndomain: \"googleapis.com\"\nmetadata {\n  key: \"service\"\n  value: \"generativelanguage.googleapis.com\"\n}\nmetadata {\n  key: \"serviceTitle\"\n  value: \"Generative Language API\"\n}\nmetadata {\n  key: \"containerInfo\"\n  value: \"151313374457\"\n}\nmetadata {\n  key: \"consumer\"\n  value: \"projects/151313374457\"\n}\nmetadata {\n  key: \"activationUrl\"\n  value: \"https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=151313374457\"\n}\n, locale: \"en-US\"\nmessage: \"Generative Language API has not been used in project 151313374457 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=151313374457 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.\"\n, links {\n  description: \"Google developers console API activation\"\n  url: \"https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=151313374457\"\n}\n]",
+            "model": "gemini"
+          }
+        }
+      }
+    }
+  ]
+}
