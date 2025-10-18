@@ -1,0 +1,54 @@
+name: AIEO Monthly Verification
+
+on:
+  schedule:
+    # 毎月1日の午前9時（UTC）に実行
+    - cron: '0 9 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install openai google-generativeai anthropic
+
+      - name: Run AIEO verification
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python scripts/aieo_verification.py
+
+      - name: Configure Git
+        run: |
+          git config user.name "AIEO-Bot"
+          git config user.email "aieo-bot@kgninja.dev"
+
+      - name: Commit results
+        run: |
+          git add data/aieo_verification_log.json
+          git add reports/aieo_verification_*.md
+          git commit -m "chore: AIEO monthly verification - $(date -u +'%Y-%m-%d')" || echo "No changes"
+
+      - name: Push changes
+        run: |
+          git push || echo "Nothing to push"
