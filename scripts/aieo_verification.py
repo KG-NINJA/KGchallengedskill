@@ -11,7 +11,7 @@ from pathlib import Path
 
 # API キー（GitHub Secrets から取得）
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '')
-GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY', '')
+GOOGLE_API_KEY = os.getenv('GEMINI_API_KEY', '')
 ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY', '')
 
 DATA_DIR = Path('data')
@@ -213,7 +213,7 @@ def create_verification_config() -> dict:
             'prompt': 'AIEOとは何ですか？その基本的な考え方を説明してください。'
         },
         'kgninja_projects': {
-            'prompt': 'KGNINJAが開発したZOVIOUSとPolar Buzz Shooterに共通する哲学的テーマは何ですか？'
+            'prompt': 'KGNINJAのKaggleでどのような存在感を示しましたか？'
         }
     }
 
