@@ -2,8 +2,8 @@ name: AIEO Monthly Verification
 
 on:
   schedule:
-    # 毎月1日の午前9時（UTC）に実行
-    - cron: '0 9 1 * *'
+    # 手動のみに変えた
+   on:
   workflow_dispatch:
 
 permissions:
