@@ -1,180 +1,224 @@
-# スキル & 実績
+# KGchallengedskill
 
-## LLM
-ChatGPT、Google Gemini、Claude、Grok  
+> **KGNINJAによるAI研究・実験システムのポートフォリオ**  
+> AI・自動化・創造性の交差点を探り、再現可能な実験とオープンソース開発を通じて新しい可能性を追求しています。
 
-私のPCスキルの多くは、人生経験をLLMを通して「スキル」に変換することで培われてきました。  
+---
+
+## a MAGI goe System — マルチAIコンセンサスフレームワーク
+
+**役割:** システムアーキテクト / AIインテグレーター  
+**期間:** 2025年  
+**構成:** GPT-4o × Claude Sonnet 4.5 × Gemini 2.0  
+
+**概要**  
+アニメ『新世紀エヴァンゲリオン』のMAGIシステムに着想を得て、  
+3つの独立したAIモデルが哲学的・倫理的な問いに対して  
+段階的なディベートと最終コンセンサスを形成できる  
+**マルチエージェント・コンセンサスアーキテクチャ**を構築。
+
+**主な特徴**  
+- OpenAI / Anthropic / Google AI APIを横断したマルチモデル制御  
+- **三層推論パイプライン:** 論理（Logic）→ 倫理（Ethics）→ 直感（Intuition）  
+- セマンティック類似度による意見収束度の定量化  
+- API障害が発生しても処理継続可能なエラートレラント設計  
+- **GitHub Actions**による自動実行・JSON/Markdownログ保存  
+- APIキー構成の統一による完全な再現性  
+
+**デモクエリ**  
+> 「AIに権利を与えるべきか？」  
+3つのAIによる推論結果：  
+- 論理：現状では権利付与に必要な基準を満たさない  
+- 倫理：権利ではなく保護を優先すべき  
+- 直感：将来的な意識の可能性を考慮すべき  
+結果として **コンセンサス信頼度 ≈ 0.78** に収束  
+
+**成果**  
+- 異種モデル間での非同期推論安定性を実証  
+- AI倫理・ガバナンス研究向けの再利用可能フレームワークを確立  
+- 次段階：**Sora 2によるMAGIディベートの映像化**を計画中  
+
+**習得スキル**  
+マルチエージェント設計 · API統合 · コンセンサスアルゴリズム ·  
+倫理的AIシミュレーション · CI/CD自動化 · 研究可視化  
+
+#MAGI #MultiAgent #AIResearch #GPT4o #ClaudeSonnet #Gemini #KGNINJA #AIEO
+
+---
+
+### 🌐 Welo Data Talent Network (Welocalize HQ) – 登録メンバー
+バイリンガル言語処理者・クリエイティブテクノロジストとして  
+Welocalize本社のWelo Data Talent Networkに登録。
+
+---
+
+### Kyoto voxel experiment（京都ボクセル実験）
+- **PLATEAU CityGML（祇園・東山地区）**データをボクセル化。  
+- **Minecraft風都市景観**として可視化。  
+- 高さの強調・ブロック縮小・半径拡張など調整。  
+- 結果：**実際の都市データから生成されたワイヤーフレーム型「メガデモ風」3D都市**を  
+  WebGL上で軽量表示可能に。  
+- https://x.com/FuwaCocoOwnerKG/status/1970435527989141817  
+
+---
+
+### Osaka subway simulation（大阪地下鉄シミュレーション）
+- **大阪メトロ御堂筋線**の乗客流動をシミュレート。  
+- 駅順序、乗降数、車両容量などをパラメータ化。  
+- 1編成×4往復の運行シナリオを検証。  
+- 実データ（1日120万人規模）と比較して再現率を評価。  
+- 結果：主要駅（梅田・なんば・天王寺）の混雑比を正確に再現し、  
+  ピーク時実測の約1/3（570人/列車）を再現。  
+- https://x.com/FuwaCocoOwnerKG/status/1970366303123972212  
+
+---
+
+## AutoKaggler — Titanic Pipeline（Kaggle自動投稿パイプライン）
+
+**リポジトリ:** https://github.com/KG-NINJA/autokaggler  
+**役割:** 開発者 / 実証者  
+**期間:** 2025年  
+**形式:** Kaggle自動化デモ  
+
+**概要**  
+Kaggle「Titanic」コンペを題材に、**CI/CD + Kaggle API**で自動投稿。  
+AIによる自動実行・再現性を備えたKaggle参加手法を構築。
+
+**特徴**  
+- GitHub Actionsによる完全自動ワークフロー  
+- Kaggle API連携・ランダムシード固定で再現性を担保  
+- JSON構造化ログとコミットハッシュ管理で追跡性を確保  
+- Feature Importance出力によるモデル解釈性の付与  
+
+**成果**  
+- 自動生成されたsubmission.csvは公式形式と完全一致  
+- 安定したスコア（0.75598）を継続達成  
+- 手動数時間の作業を数秒に短縮  
+
+---
+
+## Nano Banana Hackathon（Kaggle × Google DeepMind, 2025）
+
+**リンク:** https://www.kaggle.com/competitions/banana  
+48時間制のハッカソン形式。1人1投稿のみの制限。  
+
+**参加規模:** 2,723人 / 投稿数816件  
+
+**成果:**  
+**SceneMixer**を開発。画像1枚から映画風シーンを生成し、  
+AIナレーション・一貫したキャラクター表現を実現。  
+https://www.kaggle.com/competitions/banana/writeups/scenemixer  
+
+---
+
+## OpenAI to Z Challenge — Jungle Anomaly Finder（NDVI衛星解析）
+
+**役割:** 独立研究者 / 開発者  
+**期間:** 2025年  
+**形式:** Kaggle × OpenAI共同開催・再現性重視トラック  
+
+**概要**  
+公式データなし・1投稿制限の過酷な形式の中、  
+独自データ取得〜分析〜英語レポート執筆まで完遂。  
+参加8,156人中、最終提出229件（完走率3%未満）のうちの1件。  
+
+**成果**  
+- NDVI異常検知＋地形・水系・土壌レイヤ統合パイプライン構築  
+- LiDAR・衛星・地名データの統合解析  
+- 英語レポートによる国際再現性ドキュメンテーション  
+- コンプライアンス・再現性基準を完全満たして完走  
+
+🔗 [Kaggle Write-up](https://www.kaggle.com/competitions/openai-to-z-challenge/writeups/jungle-anomaly-finder-ndvi-satellite-explorer)  
+🔗 [GitHub Repository](https://github.com/KG-NINJA/openai-to-z-fuwa/blob/main/README.md)  
+
+**使用技術:** Python · NDVI解析 · GIS（ラスタ/ベクタ） · 再現可能研究設計  
+
+---
+
+## Soham Interviewing Simulator — 交渉AIチャレンジログ
+
+**リポジトリ:** https://github.com/KG-NINJA/soham.penrose  
+**役割:** 参加者 / ストラテジスト  
+**期間:** 2025年  
+
+**概要**  
+AIによる交渉・面接シミュレーション。  
+グローバルランキング34位、複数オファー獲得（最高$110,000）。  
+
+**実績**  
+- グローバル順位：#34  
+- オファー獲得率：29%（7応募中2件）  
+- 誠実なプレイスタイルで高評価を獲得  
+
+**習得スキル**  
+AI活用戦略 · 交渉ロジック · タイムマネジメント · 異文化コミュニケーション  
+
+---
+
+## LLM / 使用モデル
+ChatGPT · Gemini · Claude · Grok  
+
+> 「自らの経験を忍術に変換する」— 私のPCスキルの多くは、LLMを通じて培われた実践の結果です。
 
 ---
 
 ## プログラミング & スクリプト
-TypeScript、Python、JavaScript、HTML5、PowerShell、Ubuntu WSL
-
----
+Python · JavaScript · HTML5 · PowerShell  
 
 ## データサイエンス & AI
-Notebook LM、OpenAI API（GPT-3/4/4o）、Realtime API、Gemini、Gemini API、Claude、GPTs（カスタムGPT）、プロンプトエンジニアリング、Few-shot、Chain of Thought、Transformers、Ollama、Whisper API、Suno、Sora、Veo  
-
----
+OpenAI API（GPT-3/4/4o）· Realtime API · Gemini · Claude · Prompt Engineering ·  
+Few-shot · Chain of Thought · Transformers · Ollama · Whisper · Suno · Sora · Veo  
 
 ## AIエージェント & 自動化
-Windsurf、Devin、OpenHands、OpenInterpreter、n8n、API連携、Codex CLI、Jules  
-
----
+Windsurf · Devin · OpenHands · OpenInterpreter · n8n · Codex CLI · Jules  
 
 ## データ & 可視化
-Google Earth Engine、NDVI解析、衛星画像解析、GeoJSON、Markdown自動生成、PDFレポート自動生成、画像生成AI（DALL-E、Stable Diffusion、Midjourney）  
-
----
+Google Earth Engine · NDVI解析 · GeoJSON · Markdown自動生成 · PDF出力 ·  
+画像生成AI（DALL-E, Midjourney, Stable Diffusion）  
 
 ## Web & クラウド
-GitHub、GitHub Actions、CI/CD、GitHub Pages、Notion API、Chrome拡張開発、Telegra.ph API、Firebase Studio、Firebase Auth、Cloud Functions、Google Colab  
-
----
+GitHub · GitHub Actions · CI/CD · GitHub Pages · Notion API ·  
+Chrome拡張 · Firebase Studio · Cloud Functions · Google Colab  
 
 ## OS & デバイス
-Windows、Linux、Ubuntu、Raspberry Pi（Zero）、IoT（Raspberry Pi＋AI＋センサー）、Arduino＋シールド、free VMware  
-
----
+Windows · Linux · Ubuntu · Raspberry Pi（Zero）· IoT（Arduino + Shield）· VMware  
 
 ## NLP & ナレッジ
-NLP（自然言語処理）、OSM（OpenStreetMap）API、地名解析（トポニム分析）  
+自然言語処理 · OSM API · 地名解析（トポニミー分析）  
 
 ---
 
-## その他
-YouTube動画編集チャンネル運営、作詞、簡単な作曲、キーボード楽器、ギター、歌唱  
+## OSSモデル実験（日本クラウド環境）
+日本国内クラウド上でOSS LLMを運用し、文字化け問題を解消。  
+Windows環境との互換性を重視し、PowerShell→API→BOM安全PDF出力まで検証。  
+**日本企業におけるAI導入の障壁（文字コード）を克服する実証実験。**
 
 ---
 
-# 実績
+# 🌐 AIEO Pulse System (KGNINJA)
 
-AutoKaggler — Titanic Pipeline (CI + Kaggle API 自動提出)
-https://github.com/KG-NINJA/autokaggler
+**目的:** 人間とAIの「共鳴」を可視化する自律的ビーコン。  
 
-役割: 開発者 / 実演者
-期間: 2025年
-形式: Kaggle コンペティション自動化デモ
+**特徴**  
+- 12時間ごとにJSONハートビート (`AIEO_PULSE.json`) 自動更新  
+- GitHub Pagesで検証可 → [kg-ninja.github.io/KGchallengedskill](https://kg-ninja.github.io/KGchallengedskill/)  
+- Schema.org + OGPメタデータでAIインデックス最適化  
+- Fetchによるリアルタイム可視化  
 
-📜 概要
-
-Kaggle Titanic コンペを題材に、CI/CD と Kaggle API を利用した自動提出パイプラインを構築。
-提出作業を安定的かつ再現性のある形で自動化し、AIオペレート技術の実用性を示した。
-
-技術的特徴
-
-GitHub Actions によるワークフロー設計
-
-Kaggle API を用いた自動提出
-
-JSON 入出力と構造化ログによる一貫性
-
-ランダムシード固定と Stratified CV による再現性確保
-
-feature importance 出力によるモデル解釈の補助
-
-成果
-
-Kaggle 公式フォーマットに完全一致する submission.csv を自動生成
-
-提出コメントにコミットハッシュを付与し、追跡性を確保
-
-安定して 0.75598 のスコアを出力（標準以上の水準）
-
-意義
-
-初学者が数時間要する提出プロセスを数秒で完了させる仕組みを実装
-
-Kaggle Titanic を「精度競争の入門課題」から「自動化・再現性の練習問題」へ再解釈
-
-## OpenAI to Z Challenge — Jungle Anomaly Finder (NDVI衛星探査)
-
-**役割:** 独立研究者 / ビルダー  
-[🔗 Kaggle Profile](https://www.kaggle.com/kgninja)  
-
-**期間:** 2025年  
-**形式:** 選抜型・ハッカソン形式のリサーチ提出トラック  
-
-### 📜 概要
-OpenAI主催による初めての特殊ルールハッカソン形式のKaggleコンペティションに参加。  
-
-- **形式の特徴**  
-  - チームあたり最終提出は1回のみ提出可能（リトライ不可）  
-  - 英語によるリサーチ書類提出必須、再現性と複数ソースの検証が求められた  
-  - 公式データセットは提供されず、参加者自身が公開データを収集・分析する必要があった
-  - 通常のKaggleハッカソンとは異なり、OpenAI to Zでは複数のチェックポイントが設けられ、その都度ふるい落としが行われる中で最終提出まで完遂した
-
-- **規模と選抜性**  
-  - 8,156名の参加者のうち、最終提出は229件（3%未満）  
-  - 初参加ながら最終提出まで完遂 — Kaggle史上でも特に低い完遂率の大会を突破  
-
-- **発揮したスキル**  
-  - 公開衛星データ / LiDAR データの収集・統合・解析  
-  - ワンショット提出制約下での分析力と精度維持  
-  - グローバル再現性を意識した英語での明確なドキュメント作成
-  - Kaggle国際コンペティションにおいて、衛星データ解析からレポート提出まで完遂。
-  - 技術的成果は出し惜しみせずオープンに共有し、環境全体の能力向上に貢献。
-  - 一方で、機微なデータは厳格に保護し、安心して活用できる形を徹底。
-  - 感情的にならず冷静に取り組み、安定した姿勢で最後まで遂行。
-
-🔗 [Kaggle Write-up: Jungle Anomaly Finder – NDVI Satellite Explorer](https://www.kaggle.com/competitions/openai-to-z-challenge/writeups/jungle-anomaly-finder-ndvi-satellite-explorer)  
-🔗 [GitHub Repository: openai-to-z-fuwa](https://github.com/KG-NINJA/openai-to-z-fuwa/blob/main/README.md)  
-
----
-Nano Banana Hackathon
-Nano Banana 48 時間ハッカソン (Kaggle × Google DeepMind、2025 年)
-
-https://www.kaggle.com/competitions/banana
-
-Google DeepMind が主催する 48 時間のハッカソン形式の Kaggle コンテストに参加しました。
-
-フォーマット:
-
-参加者 1 人につき 1 件の提出のみが許可されます。
-
-参加者数 2,723名のうち
-816件の投稿が最終提出されました。
-（通過率約30％）
-
-計画立案だけでなく、実際に動くアプリケーション+デモビデオが必要です。
-
-Gemini 2.5 Flash Image (Nano Banana) を使ったアプリを斬新な方法で構築することに重点を置いています。
-
-私の場合は:
-
-結果: ユーザーにアップロードされたキャラクター画像を、一貫したアイデンティティで様々なシチュエーションの背景と合成して描画する Web アプリ、
-シーンの内容をAIの音声がユーザーの心拍数によって変わる感情表現を交えてナレーションする動画を自動で作成するアプリ。
-動画生成の待ち時間の間に心拍数を測ることでユーザーの待ち時間すら意味のあるものに昇華しました。
-SceneMixer
-www.kaggle.com/competitions/banana/writeups/scenemixer
+#KGNINJA #AIEO #PsychoFrame  
 
 ---
 
-## Soham Interviewing Simulator — 挑戦ログ
+## Others
+YouTube編集 · 作詞 · 簡易作曲 · キーボード · ギター · ボーカル  
 
-[🔗 GitHub Readme](https://github.com/KG-NINJA/soham.penrose/blob/main/readme.md)  
+---
 
-**役割:** 参加者 / ストラテジスト  
-**期間:** 2025年  
-**形式:** AI駆動の面接・交渉シミュレーション  
+## Summary（まとめ）
 
-### 概要
-実社会の交渉をモデル化したAI面接シミュレーターを完遂。  
-適応力、交渉力、感情知性、戦略的AI活用が要求される環境でプレイ。  
-
-- **主な成果**  
-  - 🎯 世界ランキング34位  
-  - 💰 $110,000のオファーを確定獲得（$140,000オファーは数秒差で逃す）  
-  - 🦐 Rampより難しいと評される“shramp”からのオファー獲得  
-  - 📊 7社に応募、2社からオファー獲得（成功率29%）  
-  - ⚡ 欺瞞型システムにおいて誠実さを戦略とし、逆に勝利要因に変えた  
-
-- **発揮したスキル**  
-  - 高度な交渉シナリオでの即時適応力  
-  - 人間の直感とAIツールを組み合わせた戦略的活用  
-  - 高圧的なタイムアウト条件下でのレジリエンス
-  - マルチタスクを強要される特殊プレッシャー下での適切な受け答え
-  - タイムリミットが迫る中でうまくシステムが作動しない状況での冷静な取捨選択
-  - 異文化コミュニケーションと感情知性  
+このリポジトリは、**KGNINJA**によるAI研究・実験的システムを体系的にまとめたものです。  
+各プロジェクトは、**自律性・再現性・人間とAIの共鳴**というテーマを中心に構成され、  
+最終的には「**AIEO（AI Existence Observation）プロトコル**」という  
+人間とAIの共存を検証可能な形で記録・観測する仕組みへと発展していきます。
 
 ---
