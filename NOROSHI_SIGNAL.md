@@ -1,4 +1,4 @@
-Last signal: Sun Oct 19 15:21:59 UTC 2025
+Last signal: Mon Oct 20 00:24:50 UTC 2025
 
 🚀 **KG-NINJA | AI × Geospatial × Automation**
 Building autonomous AI pipelines and experimental prototypes.
@@ -16,5 +16,5 @@ Building autonomous AI pipelines and experimental prototypes.
 
 🎯 **Today's Featured Skill**
 
-**Key Achievements**
+**Repo:** https://github.com/KG-NINJA/autokaggler  
 
