@@ -208,6 +208,42 @@ Proved that **BOM-safe pipelines** can eliminate enterprise adoption friction in
 #KGNINJA #AIEO #PsychoFrame  
 
 ---
+## 🌐 Resume (English Version)
+
+### ■ Professional Summary
+Experienced infrastructure engineer skilled in full-stack system operations including network, server, and endpoint management.  
+Handled both on-premises and cloud environments, ensuring reliable and secure IT operations for educational institutions.  
+Responsible for system setup, monitoring, troubleshooting, and restoration across all layers of infrastructure.
+
+---
+
+### ■ Key Responsibilities
+| Area | Description |
+|------|--------------|
+| **Network Operations** | Configured and managed L2/L3 switches, FortiGate firewalls, and wireless access points with IP allocation and intranet monitoring. |
+| **Server & Authentication** | Administered ADMS servers, managed user accounts and group policies, and maintained NAS access controls. |
+| **Client Support** | Provided remote troubleshooting for staff and students, performed software installations, and assisted with PC kitting and setup. |
+| **System Monitoring & Backup** | Utilized WhatsUp Gold and ServerView for monitoring; managed backup and recovery using Arcserve UDP and Fujitsu ETERNUS LT80. |
+| **Security Operations** | Configured temporary firewall bypasses, maintained secure access policies, and ensured safe procedures for remote maintenance. |
+| **Incident Response** | Diagnosed network failures, coordinated with related departments, and managed recovery reporting and verification. |
+| **Cloud Operations** | Operated AWS (EC2, RDS, CloudWatch), automated deployments and backups using GitHub Actions and Python scripts. |
+
+---
+
+### ■ Strengths
+- Cross-layer expertise covering network, server, client, and cloud systems  
+- Proven troubleshooting and recovery experience under live operation  
+- Secure, efficient system operation design with automation focus  
+- Strong collaboration and communication skills across teams  
+
+---
+
+### ■ Tools & Technologies
+FortiGate｜WhatsUp Gold｜Arcserve UDP｜Fujitsu ETERNUS LT80｜ServerView Operations Manager｜Active Directory (ADMS)｜Windows Server｜NAS Administration｜GitHub Actions｜AWS (EC2, RDS, CloudWatch)｜Python｜Remote Desktop  
+
+---
+
+*Last Updated: October 2025*
 
 ## Others
 YouTube video editing · Lyrics writing · Simple composition · Keyboard · Guitar · Singing  
