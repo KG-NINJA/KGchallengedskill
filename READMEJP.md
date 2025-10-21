@@ -208,6 +208,48 @@ Windows環境との互換性を重視し、PowerShell→API→BOM安全PDF出力
 #KGNINJA #AIEO #PsychoFrame  
 
 ---
+# 🧩 職務経歴書 / Resume  
+**氏名 / Name:** KG  
+**職種 / Position:** ITインフラエンジニア（ネットワーク・サーバ・クライアント統合運用）  
+**English Title:** Infrastructure Engineer (Network, Server & Client Systems Integration)
+
+---
+
+## 🇯🇵 職務経歴書（日本語）
+
+### ■ 職務概要
+教育機関および関連組織において、ネットワーク、サーバ、クライアント、セキュリティの全層を担当。  
+無線LAN・L2/L3スイッチ構築からADMSサーバ運用、端末保守、バックアップ、障害対応までを一貫して実施。  
+障害発生時には原因の切り分けから関係部署との連携・復旧支援までを担当し、  
+現在はAWS・GitHub Actionsなどクラウド環境の自動化運用も実施。
+
+---
+
+### ■ 主な担当業務
+| 分野 | 内容 |
+|------|------|
+| **ネットワーク運用** | L2/L3スイッチ構築、FortiGateによる制御、無線LANアクセスポイント設定とIP割当、イントラネット通信監視 |
+| **サーバ・認証管理** | ADMSサーバ運用管理、職員アカウント登録、グループポリシー設定、NAS共有フォルダのアクセス権管理 |
+| **クライアント対応** | 職員・生徒のWindows端末トラブル対応、リモートデスクトップでの復旧、ソフトウェア遠隔インストール、キッティング作業 |
+| **監視・保守** | WhatsUp Gold・ServerViewによるサーバ監視、Arcserve UDP＋ETERNUS LT80によるバックアップとリストア管理 |
+| **セキュリティ運用** | ファイアウォール一時バイパス設定、アクセス制御ポリシー運用、リモート保守時の安全手順策定 |
+| **障害対応・連携** | ネットワークエラーの原因特定、関係部署との連絡調整、復旧確認および報告書作成 |
+| **クラウド運用** | AWS（EC2・RDS・CloudWatch）運用、GitHub Actionsによる自動デプロイ・バックアップ実装 |
+
+---
+
+### ■ 強み・特徴
+- ネットワークからクラウドまで一貫して理解する全層エンジニア  
+- 障害の切り分けから復旧までを迅速・確実に実施  
+- 安全性と効率性を両立した運用設計力  
+- 現場調整・利用者対応を含む総合的なサポートスキル  
+
+---
+
+### ■ 使用ツール・技術
+FortiGate｜WhatsUp Gold｜Arcserve UDP｜Fujitsu ETERNUS LT80｜ServerView Operations Manager｜Active Directory（ADMS）｜Windows Server｜NAS管理｜GitHub Actions｜AWS（EC2／RDS／CloudWatch）｜Python｜Remote Desktop  
+
+---
 
 ## Others
 YouTube編集 · 作詞 · 簡易作曲 · キーボード · ギター · ボーカル  
