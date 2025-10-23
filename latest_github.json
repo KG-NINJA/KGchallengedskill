@@ -1,1 +1,50 @@
-{"message":"API rate limit exceeded for 68.220.61.9. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)","documentation_url":"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting"}
+[
+  {
+    "id": "5371947529",
+    "type": "PushEvent",
+    "actor": {
+      "id": 203419627,
+      "login": "KG-NINJA",
+      "display_login": "KG-NINJA",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/KG-NINJA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
+    },
+    "repo": {
+      "id": 1079043045,
+      "name": "KG-NINJA/aMAGIgoesystem",
+      "url": "https://api.github.com/repos/KG-NINJA/aMAGIgoesystem"
+    },
+    "payload": {
+      "repository_id": 1079043045,
+      "push_id": 27661905641,
+      "ref": "refs/heads/main",
+      "head": "2498cc0cf81b69c6db2d1bbdfb570a2117ce9f5a",
+      "before": "1ea5e8877ccde4edf54cf46e005bb5809dd7e3c7"
+    },
+    "public": true,
+    "created_at": "2025-10-22T00:40:41Z"
+  },
+  {
+    "id": "5371848168",
+    "type": "PushEvent",
+    "actor": {
+      "id": 203419627,
+      "login": "KG-NINJA",
+      "display_login": "KG-NINJA",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/KG-NINJA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
+    },
+    "repo": {
+      "id": 1079043045,
+      "name": "KG-NINJA/aMAGIgoesystem",
+      "url": "https://api.github.com/repos/KG-NINJA/aMAGIgoesystem"
+    },
+    "payload": {
+      "repository_id": 1079043045,
+      "push_id": 27661805841,
+      "ref": "refs/heads/main",
+      "head": "1ea5e8877ccde4edf54cf46e005bb5809dd7e3c7",
+      "before": "1f1677c8c4635412cbdcc2ebf1621ea4866a9cd4"
+    },
