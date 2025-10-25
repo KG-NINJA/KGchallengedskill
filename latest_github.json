@@ -1,6 +1,6 @@
 [
   {
-    "id": "5371947529",
+    "id": "5459142333",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -11,22 +11,22 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1079043045,
-      "name": "KG-NINJA/aMAGIgoesystem",
-      "url": "https://api.github.com/repos/KG-NINJA/aMAGIgoesystem"
+      "id": 1074174738,
+      "name": "KG-NINJA/Komaru-bot",
+      "url": "https://api.github.com/repos/KG-NINJA/Komaru-bot"
     },
     "payload": {
-      "repository_id": 1079043045,
-      "push_id": 27661905641,
+      "repository_id": 1074174738,
+      "push_id": 27749688206,
       "ref": "refs/heads/main",
-      "head": "2498cc0cf81b69c6db2d1bbdfb570a2117ce9f5a",
-      "before": "1ea5e8877ccde4edf54cf46e005bb5809dd7e3c7"
+      "head": "f92e37a7998176b87e0ccfcc3df9ce42e230b3ba",
+      "before": "05a833bbf426858ad2df278aea63f4ffadb10d3e"
     },
     "public": true,
-    "created_at": "2025-10-22T00:40:41Z"
+    "created_at": "2025-10-25T09:19:56Z"
   },
   {
-    "id": "5371848168",
+    "id": "5459121504",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -37,14 +37,14 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1079043045,
-      "name": "KG-NINJA/aMAGIgoesystem",
-      "url": "https://api.github.com/repos/KG-NINJA/aMAGIgoesystem"
+      "id": 1074174738,
+      "name": "KG-NINJA/Komaru-bot",
+      "url": "https://api.github.com/repos/KG-NINJA/Komaru-bot"
     },
     "payload": {
-      "repository_id": 1079043045,
-      "push_id": 27661805841,
+      "repository_id": 1074174738,
+      "push_id": 27749667093,
       "ref": "refs/heads/main",
-      "head": "1ea5e8877ccde4edf54cf46e005bb5809dd7e3c7",
-      "before": "1f1677c8c4635412cbdcc2ebf1621ea4866a9cd4"
+      "head": "05a833bbf426858ad2df278aea63f4ffadb10d3e",
+      "before": "609e605ff119bbd37c189e10bba6d0c67801675c"
     },
