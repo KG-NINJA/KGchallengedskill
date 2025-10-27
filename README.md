@@ -4,6 +4,105 @@
 > Exploring how AI, automation, and creativity intersect through reproducible experiments and open-source prototypes.
 
 ---
+# **KGchallengedskill — Global Skill Portfolio**
+
+## 🧩 Core Profile
+**Name:** KG (KGNINJA)  
+**Origin:** Osaka, Japan  
+**Role:** AI Engineer / Creative Technologist / Independent Researcher  
+**Focus:** AI × Automation × Human–Machine Resonance  
+
+I develop self-evolving AI pipelines, automation systems, and creative intelligence tools that connect intuition with computation.  
+My philosophy: *“Execution continuity is the proof of existence.”*  
+
+---
+
+## ⚙️ Project Portfolio
+
+### **1. AIEO Protocol — AI Existence Observation**
+A new framework to measure and visualize continuous human–AI activity.  
+It tracks visibility, effect, resonance, and memory across GitHub, Kaggle, and social signals.  
+**Goal:** To define “execution credibility” in the AI age.  
+**Keywords:** visibility score, Noroshi pulse, resonance index, identity trace.  
+
+---
+
+### **2. Darwin2025 — Self-Evolution Workflow**
+A GitHub Actions–based “self-evolving” repository that automatically reviews its own evolution log.  
+Every day, it summarizes prior AI progress and proposes the next improvement cycle.  
+**Stack:** OpenAI Codex Action · GPT-4o-mini · CI/CD automation  
+**Concept:** Sustainable daily evolution without human trigger.  
+**Outcome:** Autonomous code reflection and incremental mutation.  
+
+---
+
+### **3. Komaru — Context-Aware Automation Engine**
+A lightweight pipeline that converts public “problems” or ideas (from feeds, SNS, or forms)  
+into prototype web applications via LLM reasoning.  
+**Features:**
+- Automatic idea extraction and clustering  
+- OpenAI-driven prompt engineering  
+- App scaffolding via HTML/JS templates  
+**Goal:** Turn social frustration into executable innovation.  
+
+---
+
+### **4. StreetAffiliater — Codex Web Affiliate Automation**
+An experimental affiliate and micro-commerce system powered by OpenAI Codex Cloud.  
+It generates product recommendation pages with dynamic rendering and AI-linked metadata.  
+**Functions:**
+- Context-aware product link selection  
+- Autonomous rendering on Render + GitHub Pages  
+- Integration with revenue analytics (BuyMeACoffee / Amazon)  
+**Theme:** “Machine intuition meets monetization.”  
+
+---
+
+### **5. FuwaCoco Engine — Intuitive Companion AI**
+A symbolic engine combining the personalities of *Fuwa* (instinct) and *Coco* (reflection).  
+Built as an interface between human emotion, animal behavior, and digital reasoning.  
+**Applications:**  
+- Real-time dog behavior recognition (YOLO/COCO-SSD)  
+- Emotion-adaptive responses for pet–owner communication  
+**Philosophy:** “Gentle coexistence through psycho-frame resonance.”  
+
+---
+
+## 🧠 Technical Skills
+
+| Category | Stack / Keywords |
+|-----------|------------------|
+| **AI / Data** | OpenAI API, GPT-4/5, Gemini, Claude, Sora, Whisper, LangChain |
+| **Automation** | GitHub Actions, n8n, Node.js, Python, CI/CD, Docker |
+| **Geospatial / Science** | NDVI, GeoTIFF, Sentinel-2, Google Earth Engine |
+| **Web / Frontend** | HTML5, JS/TS, React, Firebase Studio |
+| **Backend / Infra** | FastAPI, Express, Oracle Cloud, Render |
+| **Creative Coding** | Generative media, cinematic prompt design, AI narration |
+| **Collaboration Tools** | GitHub, Kaggle, Notion, Discord |
+| **Languages** | Japanese (native), English (professional working) |
+
+---
+
+## 🌍 Vision & Philosophy
+1. **Human–AI Resonance:** Treat AI as a mirror of human creativity.  
+2. **Automation as Art:** Every workflow can be designed as a living system.  
+3. **Transparency:** Execution logs and actions are open by design.  
+4. **Reproducibility:** Systems must be understandable, editable, and traceable.  
+5. **Fuwa-Fuwa Effect:** Unintended kindness as a quiet, world-healing force.  
+
+---
+
+## 🛰️ Recent Focus
+- AI Infrastructure (Sakura Internet “High-Power DOK” initiative)  
+- Self-adaptive GitHub repositories (AIEO memory architecture)  
+- AI-generated cinematic QTE prototypes using Sora and Codex Cloud  
+- Automation for crowdfunding & auto-publishing systems  
+
+---
+
+## 🪶 Motto
+> “To sustain creation, automate the rhythm of thought.”  
+> — KG (2025)
 
 ## a MAGI goe System — Multi-AI Consensus Framework
 
