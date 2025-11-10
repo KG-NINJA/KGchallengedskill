@@ -1,4 +1,4 @@
-Last signal: Sun Nov  9 15:22:13 UTC 2025
+Last signal: Mon Nov 10 15:28:31 UTC 2025
 
 🚀 **KG-NINJA | AI × Geospatial × Automation**
 Building autonomous AI pipelines and experimental prototypes.
@@ -16,5 +16,5 @@ Building autonomous AI pipelines and experimental prototypes.
 
 🎯 **Today's Featured Skill**
 
-**Core Features**  
+**Repo:** https://github.com/KG-NINJA/soham.penrose  
 
