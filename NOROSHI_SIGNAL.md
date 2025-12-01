@@ -1,4 +1,4 @@
-Last signal: Sun Nov 30 15:23:56 UTC 2025
+Last signal: Mon Dec  1 15:29:37 UTC 2025
 
 🚀 **KG-NINJA | AI × Geospatial × Automation**
 Building autonomous AI pipelines and experimental prototypes.
@@ -16,5 +16,5 @@ Building autonomous AI pipelines and experimental prototypes.
 
 🎯 **Today's Featured Skill**
 
-**Framework:** GPT-4o × Claude Sonnet 4.5 × Gemini 2.0  
+**Overview**  
 
