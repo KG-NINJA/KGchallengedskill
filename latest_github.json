@@ -1,6 +1,32 @@
 [
   {
-    "id": "5114140081",
+    "id": "6499766193",
+    "type": "PushEvent",
+    "actor": {
+      "id": 203419627,
+      "login": "KG-NINJA",
+      "display_login": "KG-NINJA",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/KG-NINJA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
+    },
+    "repo": {
+      "id": 1105753354,
+      "name": "KG-NINJA/Osakatenki2",
+      "url": "https://api.github.com/repos/KG-NINJA/Osakatenki2"
+    },
+    "payload": {
+      "repository_id": 1105753354,
+      "push_id": 28793502938,
+      "ref": "refs/heads/main",
+      "head": "27a6316733bf9aa771c603f6250c432273544c35",
+      "before": "b6c21b9acc502b3dd664ab346ff4620efcb1aa11"
+    },
+    "public": true,
+    "created_at": "2025-12-05T14:36:41Z"
+  },
+  {
+    "id": "5120942963",
     "type": "PullRequestEvent",
     "actor": {
       "id": 203419627,
@@ -11,40 +37,14 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1109231845,
-      "name": "KG-NINJA/YOLOdemo",
-      "url": "https://api.github.com/repos/KG-NINJA/YOLOdemo"
+      "id": 1105753354,
+      "name": "KG-NINJA/Osakatenki2",
+      "url": "https://api.github.com/repos/KG-NINJA/Osakatenki2"
     },
     "payload": {
-      "action": "labeled",
-      "number": 9,
+      "action": "merged",
+      "number": 3,
       "pull_request": {
-        "url": "https://api.github.com/repos/KG-NINJA/YOLOdemo/pulls/9",
-        "id": 3074404332,
-        "number": 9,
-        "head": {
-          "ref": "codex/download-and-apply-yolo-model-for-cpu-vi4nob",
-          "sha": "72696bbde25f3a2a44bc980308b19c617589c820",
-          "repo": {
-            "id": 1109231845,
-            "url": "https://api.github.com/repos/KG-NINJA/YOLOdemo",
-            "name": "YOLOdemo"
-          }
-        },
-        "base": {
-          "ref": "main",
-          "sha": "0d5d29581a2a6f6c6de8ff37ca1719b08253856b",
-          "repo": {
-            "id": 1109231845,
-            "url": "https://api.github.com/repos/KG-NINJA/YOLOdemo",
-            "name": "YOLOdemo"
-          }
-        }
-      },
-      "label": {
-        "id": 9763289414,
-        "node_id": "LA_kwDOQh2I5c8AAAACRe_5Rg",
-        "url": "https://api.github.com/repos/KG-NINJA/YOLOdemo/labels/codex",
-        "name": "codex",
-        "color": "ededed",
-        "default": false,
+        "url": "https://api.github.com/repos/KG-NINJA/Osakatenki2/pulls/3",
+        "id": 3075427852,
+        "number": 3,
