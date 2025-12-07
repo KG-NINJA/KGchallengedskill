@@ -1,6 +1,6 @@
 [
   {
-    "id": "6499766193",
+    "id": "6530283774",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -11,23 +11,23 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1105753354,
-      "name": "KG-NINJA/Osakatenki2",
-      "url": "https://api.github.com/repos/KG-NINJA/Osakatenki2"
+      "id": 1111480394,
+      "name": "KG-NINJA/hyakuretuken",
+      "url": "https://api.github.com/repos/KG-NINJA/hyakuretuken"
     },
     "payload": {
-      "repository_id": 1105753354,
-      "push_id": 28793502938,
+      "repository_id": 1111480394,
+      "push_id": 28823977471,
       "ref": "refs/heads/main",
-      "head": "27a6316733bf9aa771c603f6250c432273544c35",
-      "before": "b6c21b9acc502b3dd664ab346ff4620efcb1aa11"
+      "head": "ccda635e5cb3e63144aee00c64a9ed8f4d61f2a3",
+      "before": "2db3d5077785015f9c0b4936f0bf57d5f9eee173"
     },
     "public": true,
-    "created_at": "2025-12-05T14:36:41Z"
+    "created_at": "2025-12-07T07:21:44Z"
   },
   {
-    "id": "5120942963",
-    "type": "PullRequestEvent",
+    "id": "6529864353",
+    "type": "PushEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -37,14 +37,14 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1105753354,
-      "name": "KG-NINJA/Osakatenki2",
-      "url": "https://api.github.com/repos/KG-NINJA/Osakatenki2"
+      "id": 1111480394,
+      "name": "KG-NINJA/hyakuretuken",
+      "url": "https://api.github.com/repos/KG-NINJA/hyakuretuken"
     },
     "payload": {
-      "action": "merged",
-      "number": 3,
-      "pull_request": {
-        "url": "https://api.github.com/repos/KG-NINJA/Osakatenki2/pulls/3",
-        "id": 3075427852,
-        "number": 3,
+      "repository_id": 1111480394,
+      "push_id": 28823557347,
+      "ref": "refs/heads/main",
+      "head": "2db3d5077785015f9c0b4936f0bf57d5f9eee173",
+      "before": "bc1085cb44c992b5a319403def0057637376c946"
+    },
