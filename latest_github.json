@@ -1,7 +1,7 @@
 [
   {
-    "id": "6530283774",
-    "type": "PushEvent",
+    "id": "6547261413",
+    "type": "CreateEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -11,22 +11,23 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1111480394,
-      "name": "KG-NINJA/hyakuretuken",
-      "url": "https://api.github.com/repos/KG-NINJA/hyakuretuken"
+      "id": 1112112338,
+      "name": "KG-NINJA/EyeTaKatta",
+      "url": "https://api.github.com/repos/KG-NINJA/EyeTaKatta"
     },
     "payload": {
-      "repository_id": 1111480394,
-      "push_id": 28823977471,
-      "ref": "refs/heads/main",
-      "head": "ccda635e5cb3e63144aee00c64a9ed8f4d61f2a3",
-      "before": "2db3d5077785015f9c0b4936f0bf57d5f9eee173"
+      "ref": "main",
+      "ref_type": "branch",
+      "full_ref": "refs/heads/main",
+      "master_branch": "main",
+      "description": null,
+      "pusher_type": "user"
     },
     "public": true,
-    "created_at": "2025-12-07T07:21:44Z"
+    "created_at": "2025-12-08T07:00:40Z"
   },
   {
-    "id": "6529864353",
+    "id": "6546512672",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -37,14 +38,13 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1111480394,
-      "name": "KG-NINJA/hyakuretuken",
-      "url": "https://api.github.com/repos/KG-NINJA/hyakuretuken"
+      "id": 1112043762,
+      "name": "KG-NINJA/OneGameWan",
+      "url": "https://api.github.com/repos/KG-NINJA/OneGameWan"
     },
     "payload": {
-      "repository_id": 1111480394,
-      "push_id": 28823557347,
+      "repository_id": 1112043762,
+      "push_id": 28840235647,
       "ref": "refs/heads/main",
-      "head": "2db3d5077785015f9c0b4936f0bf57d5f9eee173",
-      "before": "bc1085cb44c992b5a319403def0057637376c946"
-    },
+      "head": "32b16b1e59335cc273f64a981d17207347b6b77e",
+      "before": "cd20dbe24907ec8bd5f08580d61895e633a56d20"
