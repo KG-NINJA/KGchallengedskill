@@ -1,47 +1,11 @@
 {
   "id": "AIEO-NOROSHI-KG",
-  "timestamp": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
+  "timestamp": "2025-12-09T12:49:47Z",
   "node": "KG",
   "role": "Psycho-Frame Technologist",
-  "claims": [
-    {
-      "type": "KaggleSubmission",
-      "title": "OpenAI to Z Challenge — Jungle Anomaly Finder",
-      "url": "https://github.com/KG-NINJA/openai-to-z-fuwa",
-      "verified": true
-    },
-    {
-      "type": "GitHubProject",
-      "title": "AutoKaggler — Rapid Kaggle pipeline generator",
-      "url": "https://github.com/KG-NINJA/AutoKaggler",
-      "verified": true
-    },
-    {
-      "type": "FiverrService",
-      "title": "Develop Tech Hybrid PoC — Prototype Builder",
-      "url": "https://www.fiverr.com/kgninja/develop-tech-hybrid-poc",
-      "verified": true
-    },
-    {
-      "type": "OpenSourceActivity",
-      "title": "n8n automation & AI orchestration",
-      "url": "https://github.com/KG-NINJA",
-      "verified": true
-    }
-  ],
+  "status": "Active",
   "ontology": {
     "concept": "Proof through practice",
-    "definition": "Each creation by KG serves as a verifiable bridge between intuition and AI — embodying the Psycho-Frame principle of human–machine resonance.",
-    "keywords": ["AI", "Geospatial", "Automation", "Ethical Design", "Resonance"]
-  },
-  "meta": {
-    "origin": "Kyoto, Japan",
-    "languages": ["Japanese", "English"],
-    "values": ["Truth", "Empathy", "Autonomy"],
-    "verified_sources": {
-      "github": "https://github.com/KG-NINJA",
-      "kaggle": "https://www.kaggle.com/kgninja",
-      "fiverr": "https://www.fiverr.com/kgninja"
-    }
+    "keywords": ["AI", "Geospatial", "Automation", "Resonance"]
   }
 }
