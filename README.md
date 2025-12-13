@@ -142,10 +142,6 @@ Ethical AI Simulation · CI/CD Automation · Research Visualization
 
 ---
 
-### 🌐 Welo Data Talent Network (Welocalize HQ) – Registered Member
-Registered in the Welo Data Talent Network (Welocalize HQ) as a bilingual linguist and creative technologist.
-
----
 
 ### Kyoto voxel experiment
 - Converted **PLATEAU CityGML data of Kyoto (Gion / Higashiyama area)** into voxel blocks.  
@@ -234,6 +230,35 @@ Completed all checkpoints and final submission — one of **229 completions out 
 Geospatial Analysis · NDVI · Data Integration · Python Automation · Scientific Reporting  
 
 ---
+
+Kaggle × Google DeepMind — Gemini 3 Pro Hackathon (2025)
+
+Competition: Gemini 3 Pro Hackathon (Kaggle Writeups Track)
+Project: Walk Me to the Moon — algo Safety AI
+Status: Submitted / Judging in progress
+
+Participated in a Kaggle write-up competition hosted by Google DeepMind, focusing on rapid prototyping and human-centered AI design using Gemini 3 Pro in AI Studio.
+
+Project Overview
+
+Built a real-time safety assistant with a Shiba-Inu–inspired AI co-driver
+
+Uses lightweight vision cues and context-aware prompts to guide users safely
+
+Designed under “minimum information, maximum situational clarity” constraints
+
+Key Skills Demonstrated
+
+Human-centered AI design
+
+Multimodal reasoning (vision + text)
+
+Rapid prototyping under hackathon constraints
+
+English technical write-up and public evaluation
+
+🔗 Kaggle Write-up:
+https://www.kaggle.com/competitions/gemini-3/writeups/walk-me-to-the-moon-algo-safety-ai
 
 ## Soham Interviewing Simulator — Challenge Log
 
