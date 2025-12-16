@@ -1,6 +1,6 @@
 [
   {
-    "id": "6717235423",
+    "id": "6765987490",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -11,22 +11,22 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1059204215,
-      "name": "KG-NINJA/autokaggler",
-      "url": "https://api.github.com/repos/KG-NINJA/autokaggler"
+      "id": 1117407346,
+      "name": "KG-NINJA/temirun",
+      "url": "https://api.github.com/repos/KG-NINJA/temirun"
     },
     "payload": {
-      "repository_id": 1059204215,
-      "push_id": 29011042816,
+      "repository_id": 1117407346,
+      "push_id": 29059841642,
       "ref": "refs/heads/main",
-      "head": "abee39e749b8afb8393ff41544933aa8af10ae94",
-      "before": "2afddab1153b318b1f82ae665c5b768cb87b3c16"
+      "head": "32bbc41bd8e4b08cdc416b1caa22612ab048f16b",
+      "before": "15ae27e985aa4766aff54ab8f5f5c8b52d32d6b4"
     },
     "public": true,
-    "created_at": "2025-12-14T13:14:37Z"
+    "created_at": "2025-12-16T09:18:48Z"
   },
   {
-    "id": "6715872832",
+    "id": "6765968672",
     "type": "CreateEvent",
     "actor": {
       "id": 203419627,
@@ -37,14 +37,14 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1116185714,
-      "name": "KG-NINJA/RealtimeEdgeCam",
-      "url": "https://api.github.com/repos/KG-NINJA/RealtimeEdgeCam"
+      "id": 1117407346,
+      "name": "KG-NINJA/temirun",
+      "url": "https://api.github.com/repos/KG-NINJA/temirun"
     },
     "payload": {
       "ref": "main",
       "ref_type": "branch",
       "full_ref": "refs/heads/main",
       "master_branch": "main",
-      "description": null,
+      "description": "COCO-SSDとTensorFlow.jsを応用しウェブカメラだけでテルミン風の電子楽器を構築",
       "pusher_type": "user"
