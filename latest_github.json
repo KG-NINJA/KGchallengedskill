@@ -1,33 +1,6 @@
 [
   {
-    "id": "6797372131",
-    "type": "CreateEvent",
-    "actor": {
-      "id": 203419627,
-      "login": "KG-NINJA",
-      "display_login": "KG-NINJA",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/KG-NINJA",
-      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
-    },
-    "repo": {
-      "id": 1118108183,
-      "name": "KG-NINJA/wifi-bio-detector",
-      "url": "https://api.github.com/repos/KG-NINJA/wifi-bio-detector"
-    },
-    "payload": {
-      "ref": "main",
-      "ref_type": "branch",
-      "full_ref": "refs/heads/main",
-      "master_branch": "main",
-      "description": "Wi-Fi jitter as terminal art. Motion detection is 50% guesswork.",
-      "pusher_type": "user"
-    },
-    "public": true,
-    "created_at": "2025-12-17T09:20:52Z"
-  },
-  {
-    "id": "6793351392",
+    "id": "6828381460",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -38,13 +11,40 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1117407346,
-      "name": "KG-NINJA/temirun",
-      "url": "https://api.github.com/repos/KG-NINJA/temirun"
+      "id": 1118668425,
+      "name": "KG-NINJA/WiFifuinki",
+      "url": "https://api.github.com/repos/KG-NINJA/WiFifuinki"
     },
     "payload": {
-      "repository_id": 1117407346,
-      "push_id": 29087225048,
+      "repository_id": 1118668425,
+      "push_id": 29122286200,
       "ref": "refs/heads/main",
-      "head": "07388230c16ee7b56e03948329b3469242e8c2f9",
-      "before": "32bbc41bd8e4b08cdc416b1caa22612ab048f16b"
+      "head": "0e9d4301ac5475dbc51ef294fe6213ef6507d249",
+      "before": "4e57ae5b829748afa3cc7e9ba7a1f1713c29972c"
+    },
+    "public": true,
+    "created_at": "2025-12-18T09:29:38Z"
+  },
+  {
+    "id": "6823558771",
+    "type": "PushEvent",
+    "actor": {
+      "id": 203419627,
+      "login": "KG-NINJA",
+      "display_login": "KG-NINJA",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/KG-NINJA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
+    },
+    "repo": {
+      "id": 1118668425,
+      "name": "KG-NINJA/WiFifuinki",
+      "url": "https://api.github.com/repos/KG-NINJA/WiFifuinki"
+    },
+    "payload": {
+      "repository_id": 1118668425,
+      "push_id": 29117458747,
+      "ref": "refs/heads/main",
+      "head": "4e57ae5b829748afa3cc7e9ba7a1f1713c29972c",
+      "before": "689d3fc4fa57a462382360ea7de4420d267f11ce"
+    },
