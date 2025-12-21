@@ -1,7 +1,7 @@
 name: AIEO Wave Resonance Tracker
 
 on:
-　workflow_dispatch:        # ← 手動実行を有効化
+  workflow_dispatch:        # ← 手動実行
   workflow_run:
     workflows: ["AIEO Effect Analyzer"]
     types: [completed]
@@ -31,3 +31,4 @@ jobs:
           git add aieo_effect_chart.png aieo_effect_log.csv
           git commit -m "🎵 Updated AIEO Resonance Effect" || echo "No changes"
           git push
+
