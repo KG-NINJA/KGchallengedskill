@@ -1,6 +1,6 @@
 [
   {
-    "id": "6828381460",
+    "id": "6896209375",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -11,22 +11,22 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1118668425,
-      "name": "KG-NINJA/WiFifuinki",
-      "url": "https://api.github.com/repos/KG-NINJA/WiFifuinki"
+      "id": 1120462343,
+      "name": "KG-NINJA/yokatta_SKILL.md",
+      "url": "https://api.github.com/repos/KG-NINJA/yokatta_SKILL.md"
     },
     "payload": {
-      "repository_id": 1118668425,
-      "push_id": 29122286200,
+      "repository_id": 1120462343,
+      "push_id": 29190189622,
       "ref": "refs/heads/main",
-      "head": "0e9d4301ac5475dbc51ef294fe6213ef6507d249",
-      "before": "4e57ae5b829748afa3cc7e9ba7a1f1713c29972c"
+      "head": "485a85c44a63bd82fd186d809cdbc1567cdd32d1",
+      "before": "f7cc04f2d492a3156202502b629c49085c2f5a1f"
     },
     "public": true,
-    "created_at": "2025-12-18T09:29:38Z"
+    "created_at": "2025-12-21T09:14:07Z"
   },
   {
-    "id": "6823558771",
+    "id": "6896194626",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -37,14 +37,14 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1118668425,
-      "name": "KG-NINJA/WiFifuinki",
-      "url": "https://api.github.com/repos/KG-NINJA/WiFifuinki"
+      "id": 1120462343,
+      "name": "KG-NINJA/yokatta_SKILL.md",
+      "url": "https://api.github.com/repos/KG-NINJA/yokatta_SKILL.md"
     },
     "payload": {
-      "repository_id": 1118668425,
-      "push_id": 29117458747,
+      "repository_id": 1120462343,
+      "push_id": 29190174789,
       "ref": "refs/heads/main",
-      "head": "4e57ae5b829748afa3cc7e9ba7a1f1713c29972c",
-      "before": "689d3fc4fa57a462382360ea7de4420d267f11ce"
+      "head": "f7cc04f2d492a3156202502b629c49085c2f5a1f",
+      "before": "a586591b1fcfe90292d476f82bce210b0479cf8d"
     },
