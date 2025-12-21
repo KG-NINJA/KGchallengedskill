@@ -1,6 +1,7 @@
 name: AIEO Wave Resonance Tracker
 
 on:
+　workflow_dispatch:        # ← 手動実行を有効化
   workflow_run:
     workflows: ["AIEO Effect Analyzer"]
     types: [completed]
