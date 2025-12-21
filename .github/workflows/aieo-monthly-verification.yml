@@ -1,54 +1,32 @@
-name: AIEO Monthly Verification
+name: AIEO Wave Resonance Tracker
 
 on:
-  schedule:
-    # 手動のみに変えた
-   on:
-  workflow_dispatch:
+  workflow_run:
+    workflows: ["AIEO Effect Analyzer"]
+    types: [completed]
 
-permissions:
-  contents: write
-  pages: write
+concurrency:
+  group: aieo_pipeline
+  cancel-in-progress: true
 
 jobs:
-  verify:
+  resonate:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
 
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install openai google-generativeai anthropic
+        run: pip install pandas matplotlib
 
-      - name: Run AIEO verification
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          GOOGLE_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: |
-          python scripts/aieo_verification.py
+      - name: Run Resonance Tracker
+        run: python scripts/aieo_composite.py
 
-      - name: Configure Git
+      - name: Commit & Push resonance results
         run: |
-          git config user.name "AIEO-Bot"
-          git config user.email "aieo-bot@kgninja.dev"
-
-      - name: Commit results
-        run: |
-          git add data/aieo_verification_log.json
-          git add reports/aieo_verification_*.md
-          git commit -m "chore: AIEO monthly verification - $(date -u +'%Y-%m-%d')" || echo "No changes"
-
-      - name: Push changes
-        run: |
-          git push || echo "Nothing to push"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add aieo_effect_chart.png aieo_effect_log.csv
+          git commit -m "🎵 Updated AIEO Resonance Effect" || echo "No changes"
+          git push
