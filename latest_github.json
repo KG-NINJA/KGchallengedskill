@@ -1,6 +1,6 @@
 [
   {
-    "id": "7218231156",
+    "id": "7314057118",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -11,23 +11,23 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1116185714,
-      "name": "KG-NINJA/RealtimeEdgeCam",
-      "url": "https://api.github.com/repos/KG-NINJA/RealtimeEdgeCam"
+      "id": 1035509113,
+      "name": "KG-NINJA/GPT4uso",
+      "url": "https://api.github.com/repos/KG-NINJA/GPT4uso"
     },
     "payload": {
-      "repository_id": 1116185714,
-      "push_id": 29513116540,
+      "repository_id": 1035509113,
+      "push_id": 29609036395,
       "ref": "refs/heads/main",
-      "head": "72ca7dbaad79d6fa232f3f83bca883d7f4e718f9",
-      "before": "bc8d892beb929536c7df3c45a90bab159acd5718"
+      "head": "6ce88e82695cf41ae0035564420c5d182bf05953",
+      "before": "a05ef202e1c6e015e7adca563a8e15f8edb4475e"
     },
     "public": true,
-    "created_at": "2026-01-06T05:33:33Z"
+    "created_at": "2026-01-09T05:42:55Z"
   },
   {
-    "id": "7215318132",
-    "type": "PushEvent",
+    "id": "7314014976",
+    "type": "CreateEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -37,14 +37,14 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1116185714,
-      "name": "KG-NINJA/RealtimeEdgeCam",
-      "url": "https://api.github.com/repos/KG-NINJA/RealtimeEdgeCam"
+      "id": 1035509113,
+      "name": "KG-NINJA/GPT4uso",
+      "url": "https://api.github.com/repos/KG-NINJA/GPT4uso"
     },
     "payload": {
-      "repository_id": 1116185714,
-      "push_id": 29510201111,
-      "ref": "refs/heads/main",
-      "head": "bc8d892beb929536c7df3c45a90bab159acd5718",
-      "before": "344f43aef0600d1fb0cb7d6c590543ca10059339"
-    },
+      "ref": "emotional-ai-update-551947969783854035",
+      "ref_type": "branch",
+      "full_ref": "refs/heads/emotional-ai-update-551947969783854035",
+      "master_branch": "main",
+      "description": "4o風人工無能",
+      "pusher_type": "user"
