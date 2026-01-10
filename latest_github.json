@@ -1,5 +1,31 @@
 [
   {
+    "id": "7341654085",
+    "type": "PushEvent",
+    "actor": {
+      "id": 203419627,
+      "login": "KG-NINJA",
+      "display_login": "KG-NINJA",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/KG-NINJA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
+    },
+    "repo": {
+      "id": 1035509113,
+      "name": "KG-NINJA/GPT4uso",
+      "url": "https://api.github.com/repos/KG-NINJA/GPT4uso"
+    },
+    "payload": {
+      "repository_id": 1035509113,
+      "push_id": 29636659721,
+      "ref": "refs/heads/emotional-ai-update-551947969783854035",
+      "head": "3aefde176ef0864a479fb7c410f31351c2cfc8ff",
+      "before": "5dcf32018fb2d3417c638f9d2cf495162edce0f8"
+    },
+    "public": true,
+    "created_at": "2026-01-10T03:08:33Z"
+  },
+  {
     "id": "7314057118",
     "type": "PushEvent",
     "actor": {
@@ -22,29 +48,3 @@
       "head": "6ce88e82695cf41ae0035564420c5d182bf05953",
       "before": "a05ef202e1c6e015e7adca563a8e15f8edb4475e"
     },
-    "public": true,
-    "created_at": "2026-01-09T05:42:55Z"
-  },
-  {
-    "id": "7314014976",
-    "type": "CreateEvent",
-    "actor": {
-      "id": 203419627,
-      "login": "KG-NINJA",
-      "display_login": "KG-NINJA",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/KG-NINJA",
-      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
-    },
-    "repo": {
-      "id": 1035509113,
-      "name": "KG-NINJA/GPT4uso",
-      "url": "https://api.github.com/repos/KG-NINJA/GPT4uso"
-    },
-    "payload": {
-      "ref": "emotional-ai-update-551947969783854035",
-      "ref_type": "branch",
-      "full_ref": "refs/heads/emotional-ai-update-551947969783854035",
-      "master_branch": "main",
-      "description": "4o風人工無能",
-      "pusher_type": "user"
