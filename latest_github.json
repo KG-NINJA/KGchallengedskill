@@ -1,6 +1,6 @@
 [
   {
-    "id": "7415352668",
+    "id": "7425513151",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -11,22 +11,22 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1133250995,
-      "name": "KG-NINJA/AI-or-Not",
-      "url": "https://api.github.com/repos/KG-NINJA/AI-or-Not"
+      "id": 1133465042,
+      "name": "KG-NINJA/Noroshi-mk2",
+      "url": "https://api.github.com/repos/KG-NINJA/Noroshi-mk2"
     },
     "payload": {
-      "repository_id": 1133250995,
-      "push_id": 29710447106,
+      "repository_id": 1133465042,
+      "push_id": 29720629856,
       "ref": "refs/heads/main",
-      "head": "2454ac17ad24b6287a216ccb520d9c62bab14e5b",
-      "before": "76a8f01d09b8ada4e2aa84cd32ad17b9dd088535"
+      "head": "a0dfcf9ef5a971d1a35930b6b940e1b830b4ec75",
+      "before": "72fdf934dcf3dd387d6e0e71ec32c3fcf1413497"
     },
     "public": true,
-    "created_at": "2026-01-13T05:23:40Z"
+    "created_at": "2026-01-13T11:51:27Z"
   },
   {
-    "id": "7415252939",
+    "id": "7425463385",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -37,14 +37,14 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1133250995,
-      "name": "KG-NINJA/AI-or-Not",
-      "url": "https://api.github.com/repos/KG-NINJA/AI-or-Not"
+      "id": 1133465042,
+      "name": "KG-NINJA/Noroshi-mk2",
+      "url": "https://api.github.com/repos/KG-NINJA/Noroshi-mk2"
     },
     "payload": {
-      "repository_id": 1133250995,
-      "push_id": 29710347149,
+      "repository_id": 1133465042,
+      "push_id": 29720580250,
       "ref": "refs/heads/main",
-      "head": "76a8f01d09b8ada4e2aa84cd32ad17b9dd088535",
-      "before": "467ef60152c7bfe2f77c38b0e201d6f62d709f74"
+      "head": "72fdf934dcf3dd387d6e0e71ec32c3fcf1413497",
+      "before": "f4bda77a498d44f9e3e97c290afe671062250bce"
     },
