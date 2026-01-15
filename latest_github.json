@@ -1,5 +1,32 @@
 [
   {
+    "id": "7484504539",
+    "type": "CreateEvent",
+    "actor": {
+      "id": 203419627,
+      "login": "KG-NINJA",
+      "display_login": "KG-NINJA",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/KG-NINJA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
+    },
+    "repo": {
+      "id": 1134643619,
+      "name": "KG-NINJA/Codex-RTS-View",
+      "url": "https://api.github.com/repos/KG-NINJA/Codex-RTS-View"
+    },
+    "payload": {
+      "ref": "main",
+      "ref_type": "branch",
+      "full_ref": "refs/heads/main",
+      "master_branch": "main",
+      "description": "CodexとやらをRTS風で見てみるとしようぞ",
+      "pusher_type": "user"
+    },
+    "public": true,
+    "created_at": "2026-01-15T02:04:58Z"
+  },
+  {
     "id": "7425513151",
     "type": "PushEvent",
     "actor": {
@@ -21,30 +48,3 @@
       "ref": "refs/heads/main",
       "head": "a0dfcf9ef5a971d1a35930b6b940e1b830b4ec75",
       "before": "72fdf934dcf3dd387d6e0e71ec32c3fcf1413497"
-    },
-    "public": true,
-    "created_at": "2026-01-13T11:51:27Z"
-  },
-  {
-    "id": "7425463385",
-    "type": "PushEvent",
-    "actor": {
-      "id": 203419627,
-      "login": "KG-NINJA",
-      "display_login": "KG-NINJA",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/KG-NINJA",
-      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
-    },
-    "repo": {
-      "id": 1133465042,
-      "name": "KG-NINJA/Noroshi-mk2",
-      "url": "https://api.github.com/repos/KG-NINJA/Noroshi-mk2"
-    },
-    "payload": {
-      "repository_id": 1133465042,
-      "push_id": 29720580250,
-      "ref": "refs/heads/main",
-      "head": "72fdf934dcf3dd387d6e0e71ec32c3fcf1413497",
-      "before": "f4bda77a498d44f9e3e97c290afe671062250bce"
-    },
