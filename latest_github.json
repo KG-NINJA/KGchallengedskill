@@ -1,7 +1,7 @@
 [
   {
-    "id": "8411157467",
-    "type": "DeleteEvent",
+    "id": "8442575267",
+    "type": "PushEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -16,16 +16,17 @@
       "url": "https://api.github.com/repos/KG-NINJA/Turi"
     },
     "payload": {
-      "ref": "codex/implement-timing-mechanics-for-fishing-game",
-      "ref_type": "branch",
-      "full_ref": "refs/heads/codex/implement-timing-mechanics-for-fishing-game",
-      "pusher_type": "user"
+      "repository_id": 1156782071,
+      "push_id": 30737513345,
+      "ref": "refs/heads/main",
+      "head": "87b06d79261c5e134fd1d058928e346bf86fb5eb",
+      "before": "1e0a495189ba86510e30bcd7338d8749d546c2c3"
     },
     "public": true,
-    "created_at": "2026-02-13T07:52:32Z"
+    "created_at": "2026-02-14T06:50:39Z"
   },
   {
-    "id": "6550218681",
+    "id": "6578491933",
     "type": "PullRequestEvent",
     "actor": {
       "id": 203419627,
@@ -42,9 +43,8 @@
     },
     "payload": {
       "action": "merged",
-      "number": 1,
+      "number": 2,
       "pull_request": {
-        "url": "https://api.github.com/repos/KG-NINJA/Turi/pulls/1",
-        "id": 3279753675,
-        "number": 1,
-        "head": {
+        "url": "https://api.github.com/repos/KG-NINJA/Turi/pulls/2",
+        "id": 3283926915,
+        "number": 2,
