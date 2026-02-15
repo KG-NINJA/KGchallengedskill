@@ -1,32 +1,6 @@
 [
   {
-    "id": "8442575267",
-    "type": "PushEvent",
-    "actor": {
-      "id": 203419627,
-      "login": "KG-NINJA",
-      "display_login": "KG-NINJA",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/KG-NINJA",
-      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
-    },
-    "repo": {
-      "id": 1156782071,
-      "name": "KG-NINJA/Turi",
-      "url": "https://api.github.com/repos/KG-NINJA/Turi"
-    },
-    "payload": {
-      "repository_id": 1156782071,
-      "push_id": 30737513345,
-      "ref": "refs/heads/main",
-      "head": "87b06d79261c5e134fd1d058928e346bf86fb5eb",
-      "before": "1e0a495189ba86510e30bcd7338d8749d546c2c3"
-    },
-    "public": true,
-    "created_at": "2026-02-14T06:50:39Z"
-  },
-  {
-    "id": "6578491933",
+    "id": "6589353124",
     "type": "PullRequestEvent",
     "actor": {
       "id": 203419627,
@@ -37,14 +11,40 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1156782071,
-      "name": "KG-NINJA/Turi",
-      "url": "https://api.github.com/repos/KG-NINJA/Turi"
+      "id": 1141242692,
+      "name": "KG-NINJA/AI-news",
+      "url": "https://api.github.com/repos/KG-NINJA/AI-news"
     },
     "payload": {
-      "action": "merged",
-      "number": 2,
+      "action": "opened",
+      "number": 3,
       "pull_request": {
-        "url": "https://api.github.com/repos/KG-NINJA/Turi/pulls/2",
-        "id": 3283926915,
-        "number": 2,
+        "url": "https://api.github.com/repos/KG-NINJA/AI-news/pulls/3",
+        "id": 3286076114,
+        "number": 3,
+        "head": {
+          "ref": "perf/optimize-html-generation-1864964272305517713",
+          "sha": "c74c9bdd302aebac35e56b1696106e6b43ce8837",
+          "repo": {
+            "id": 1141242692,
+            "url": "https://api.github.com/repos/KG-NINJA/AI-news",
+            "name": "AI-news"
+          }
+        },
+        "base": {
+          "ref": "ai-news-collector-932428568589827516",
+          "sha": "d168a9d129639c90ff90ee3a5820986f2e9112c7",
+          "repo": {
+            "id": 1141242692,
+            "url": "https://api.github.com/repos/KG-NINJA/AI-news",
+            "name": "AI-news"
+          }
+        }
+      }
+    },
+    "public": true,
+    "created_at": "2026-02-15T05:11:04Z"
+  },
+  {
+    "id": "8460240783",
+    "type": "CreateEvent",
