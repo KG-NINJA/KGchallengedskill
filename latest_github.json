@@ -1,7 +1,7 @@
 [
   {
-    "id": "6589353124",
-    "type": "PullRequestEvent",
+    "id": "8592100890",
+    "type": "CreateEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -11,40 +11,40 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1141242692,
-      "name": "KG-NINJA/AI-news",
-      "url": "https://api.github.com/repos/KG-NINJA/AI-news"
+      "id": 1161561708,
+      "name": "KG-NINJA/MusicMoose",
+      "url": "https://api.github.com/repos/KG-NINJA/MusicMoose"
     },
     "payload": {
-      "action": "opened",
-      "number": 3,
-      "pull_request": {
-        "url": "https://api.github.com/repos/KG-NINJA/AI-news/pulls/3",
-        "id": 3286076114,
-        "number": 3,
-        "head": {
-          "ref": "perf/optimize-html-generation-1864964272305517713",
-          "sha": "c74c9bdd302aebac35e56b1696106e6b43ce8837",
-          "repo": {
-            "id": 1141242692,
-            "url": "https://api.github.com/repos/KG-NINJA/AI-news",
-            "name": "AI-news"
-          }
-        },
-        "base": {
-          "ref": "ai-news-collector-932428568589827516",
-          "sha": "d168a9d129639c90ff90ee3a5820986f2e9112c7",
-          "repo": {
-            "id": 1141242692,
-            "url": "https://api.github.com/repos/KG-NINJA/AI-news",
-            "name": "AI-news"
-          }
-        }
-      }
+      "ref": "main",
+      "ref_type": "branch",
+      "full_ref": "refs/heads/main",
+      "master_branch": "main",
+      "description": null,
+      "pusher_type": "user"
     },
     "public": true,
-    "created_at": "2026-02-15T05:11:04Z"
+    "created_at": "2026-02-19T08:54:36Z"
   },
   {
-    "id": "8460240783",
-    "type": "CreateEvent",
+    "id": "8587855349",
+    "type": "PushEvent",
+    "actor": {
+      "id": 203419627,
+      "login": "KG-NINJA",
+      "display_login": "KG-NINJA",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/KG-NINJA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
+    },
+    "repo": {
+      "id": 1161367970,
+      "name": "KG-NINJA/eureka",
+      "url": "https://api.github.com/repos/KG-NINJA/eureka"
+    },
+    "payload": {
+      "repository_id": 1161367970,
+      "push_id": 30882813938,
+      "ref": "refs/heads/main",
+      "head": "9967c368a0c5ce9939c8248478c2a4bc57a02229",
+      "before": "bea11eddcf4d57af517433ae129c1eeff76b89a8"
