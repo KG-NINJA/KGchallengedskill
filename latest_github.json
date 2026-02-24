@@ -1,6 +1,6 @@
 [
   {
-    "id": "8703866678",
+    "id": "8732524903",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -11,23 +11,23 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1164529268,
-      "name": "KG-NINJA/AgentOS-KGNINJA",
-      "url": "https://api.github.com/repos/KG-NINJA/AgentOS-KGNINJA"
+      "id": 1165261103,
+      "name": "KG-NINJA/Instant-Voice-to-MD",
+      "url": "https://api.github.com/repos/KG-NINJA/Instant-Voice-to-MD"
     },
     "payload": {
-      "repository_id": 1164529268,
-      "push_id": 30998561695,
+      "repository_id": 1165261103,
+      "push_id": 31027183285,
       "ref": "refs/heads/main",
-      "head": "0e375f70a0a19dbb3ab36ac05b4788591dd3fd15",
-      "before": "27c78e44d42d0e80354bcbe29263afa7c717ed97"
+      "head": "692f45ddf152a0f6ebc783ec2a67e5b0cebb0804",
+      "before": "27f5b7b3a16b6c4b6995cb05c375579e20693c32"
     },
     "public": true,
-    "created_at": "2026-02-23T09:01:05Z"
+    "created_at": "2026-02-24T01:40:58Z"
   },
   {
-    "id": "8703553706",
-    "type": "PushEvent",
+    "id": "8732495218",
+    "type": "CreateEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -37,14 +37,14 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1164529268,
-      "name": "KG-NINJA/AgentOS-KGNINJA",
-      "url": "https://api.github.com/repos/KG-NINJA/AgentOS-KGNINJA"
+      "id": 1165261103,
+      "name": "KG-NINJA/Instant-Voice-to-MD",
+      "url": "https://api.github.com/repos/KG-NINJA/Instant-Voice-to-MD"
     },
     "payload": {
-      "repository_id": 1164529268,
-      "push_id": 30998248377,
-      "ref": "refs/heads/main",
-      "head": "27c78e44d42d0e80354bcbe29263afa7c717ed97",
-      "before": "2e2d38232031e990e326f6d76ed0d7547e44bb15"
-    },
+      "ref": "main",
+      "ref_type": "branch",
+      "full_ref": "refs/heads/main",
+      "master_branch": "main",
+      "description": "トランシーバーのようにボタンを押している間の音声議事録をＭＤファイルとしてダウンロードできます。データはサーバー上には記録されません。",
+      "pusher_type": "user"
