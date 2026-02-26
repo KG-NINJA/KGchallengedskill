@@ -1,6 +1,6 @@
 [
   {
-    "id": "8732524903",
+    "id": "8813057304",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -11,23 +11,23 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1165261103,
-      "name": "KG-NINJA/Instant-Voice-to-MD",
-      "url": "https://api.github.com/repos/KG-NINJA/Instant-Voice-to-MD"
+      "id": 1167078445,
+      "name": "KG-NINJA/midikey-approval-controller",
+      "url": "https://api.github.com/repos/KG-NINJA/midikey-approval-controller"
     },
     "payload": {
-      "repository_id": 1165261103,
-      "push_id": 31027183285,
+      "repository_id": 1167078445,
+      "push_id": 31107562238,
       "ref": "refs/heads/main",
-      "head": "692f45ddf152a0f6ebc783ec2a67e5b0cebb0804",
-      "before": "27f5b7b3a16b6c4b6995cb05c375579e20693c32"
+      "head": "09783e720176312dd738d37254e123f06006f3f9",
+      "before": "8ee59e560ea4adc30884e8f3203e3542fce33e2f"
     },
     "public": true,
-    "created_at": "2026-02-24T01:40:58Z"
+    "created_at": "2026-02-26T01:41:28Z"
   },
   {
-    "id": "8732495218",
-    "type": "CreateEvent",
+    "id": "6892438355",
+    "type": "PullRequestEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -37,14 +37,14 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1165261103,
-      "name": "KG-NINJA/Instant-Voice-to-MD",
-      "url": "https://api.github.com/repos/KG-NINJA/Instant-Voice-to-MD"
+      "id": 1167078445,
+      "name": "KG-NINJA/midikey-approval-controller",
+      "url": "https://api.github.com/repos/KG-NINJA/midikey-approval-controller"
     },
     "payload": {
-      "ref": "main",
-      "ref_type": "branch",
-      "full_ref": "refs/heads/main",
-      "master_branch": "main",
-      "description": "トランシーバーのようにボタンを押している間の音声議事録をＭＤファイルとしてダウンロードできます。データはサーバー上には記録されません。",
-      "pusher_type": "user"
+      "action": "merged",
+      "number": 1,
+      "pull_request": {
+        "url": "https://api.github.com/repos/KG-NINJA/midikey-approval-controller/pulls/1",
+        "id": 3328584184,
+        "number": 1,
