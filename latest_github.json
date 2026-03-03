@@ -1,6 +1,6 @@
 [
   {
-    "id": "8938114173",
+    "id": "8976565647",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -17,17 +17,17 @@
     },
     "payload": {
       "repository_id": 1141242692,
-      "push_id": 31232274274,
-      "ref": "refs/heads/codex/add-gemini-based-ai-news-analysis-system-opw0ub",
-      "head": "59f67e17f5cfdbb5751929f8d4d27f1a21239e57",
-      "before": "7c11bd2ee2b5467b838aa66d1312189433947bae"
+      "push_id": 31270601109,
+      "ref": "refs/heads/ai-news-collector-932428568589827516",
+      "head": "6f9a537af9e0656add4a24f1a1cc65f61d359e7f",
+      "before": "cad10cec6dc87a24a3a6cd379a04341546e0d6f8"
     },
     "public": true,
-    "created_at": "2026-03-02T06:49:30Z"
+    "created_at": "2026-03-03T06:28:15Z"
   },
   {
-    "id": "6993541620",
-    "type": "PullRequestEvent",
+    "id": "8976534862",
+    "type": "PushEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -42,9 +42,9 @@
       "url": "https://api.github.com/repos/KG-NINJA/AI-news"
     },
     "payload": {
-      "action": "labeled",
-      "number": 5,
-      "pull_request": {
-        "url": "https://api.github.com/repos/KG-NINJA/AI-news/pulls/5",
-        "id": 3342812654,
-        "number": 5,
+      "repository_id": 1141242692,
+      "push_id": 31270570394,
+      "ref": "refs/heads/ai-news-collector-932428568589827516",
+      "head": "cad10cec6dc87a24a3a6cd379a04341546e0d6f8",
+      "before": "8250b5f6eaefdebfe55f7c87fe1006417ce372fa"
+    },
