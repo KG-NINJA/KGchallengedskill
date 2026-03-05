@@ -1,6 +1,6 @@
 [
   {
-    "id": "8976565647",
+    "id": "9053795555",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -11,22 +11,22 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1141242692,
-      "name": "KG-NINJA/AI-news",
-      "url": "https://api.github.com/repos/KG-NINJA/AI-news"
+      "id": 1173090730,
+      "name": "KG-NINJA/OpenclawTajikarao",
+      "url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao"
     },
     "payload": {
-      "repository_id": 1141242692,
-      "push_id": 31270601109,
-      "ref": "refs/heads/ai-news-collector-932428568589827516",
-      "head": "6f9a537af9e0656add4a24f1a1cc65f61d359e7f",
-      "before": "cad10cec6dc87a24a3a6cd379a04341546e0d6f8"
+      "repository_id": 1173090730,
+      "push_id": 31347637763,
+      "ref": "refs/heads/main",
+      "head": "62c264bf69148fd9da34baea1912556db03f2e63",
+      "before": "5ec7a1661ce1e0cc3580e69b102413282333650b"
     },
     "public": true,
-    "created_at": "2026-03-03T06:28:15Z"
+    "created_at": "2026-03-05T04:52:30Z"
   },
   {
-    "id": "8976534862",
+    "id": "9053687993",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -37,14 +37,14 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1141242692,
-      "name": "KG-NINJA/AI-news",
-      "url": "https://api.github.com/repos/KG-NINJA/AI-news"
+      "id": 1173090730,
+      "name": "KG-NINJA/OpenclawTajikarao",
+      "url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao"
     },
     "payload": {
-      "repository_id": 1141242692,
-      "push_id": 31270570394,
-      "ref": "refs/heads/ai-news-collector-932428568589827516",
-      "head": "cad10cec6dc87a24a3a6cd379a04341546e0d6f8",
-      "before": "8250b5f6eaefdebfe55f7c87fe1006417ce372fa"
+      "repository_id": 1173090730,
+      "push_id": 31347530863,
+      "ref": "refs/heads/main",
+      "head": "5ec7a1661ce1e0cc3580e69b102413282333650b",
+      "before": "7aa2c54af1eea8ef77aa7599b43cd84b1e32c9d9"
     },
