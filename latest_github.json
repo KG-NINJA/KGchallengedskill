@@ -1,33 +1,6 @@
 [
   {
-    "id": "9107244938",
-    "type": "CreateEvent",
-    "actor": {
-      "id": 203419627,
-      "login": "KG-NINJA",
-      "display_login": "KG-NINJA",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/KG-NINJA",
-      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
-    },
-    "repo": {
-      "id": 1174403794,
-      "name": "KG-NINJA/TurnEatman-AutoAgent",
-      "url": "https://api.github.com/repos/KG-NINJA/TurnEatman-AutoAgent"
-    },
-    "payload": {
-      "ref": "main",
-      "ref_type": "branch",
-      "full_ref": "refs/heads/main",
-      "master_branch": "main",
-      "description": null,
-      "pusher_type": "user"
-    },
-    "public": true,
-    "created_at": "2026-03-06T12:01:29Z"
-  },
-  {
-    "id": "9053795555",
+    "id": "9152510183",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -38,13 +11,40 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1173090730,
-      "name": "KG-NINJA/OpenclawTajikarao",
-      "url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao"
+      "id": 1076856202,
+      "name": "KG-NINJA/ZOVIOUS",
+      "url": "https://api.github.com/repos/KG-NINJA/ZOVIOUS"
     },
     "payload": {
-      "repository_id": 1173090730,
-      "push_id": 31347637763,
-      "ref": "refs/heads/main",
-      "head": "62c264bf69148fd9da34baea1912556db03f2e63",
-      "before": "5ec7a1661ce1e0cc3580e69b102413282333650b"
+      "repository_id": 1076856202,
+      "push_id": 31446215043,
+      "ref": "refs/heads/add-qr-code-page-3446996874816866862",
+      "head": "812eb64d5aa6cf2afe4956aabc0ff08c4d80cf43",
+      "before": "2619518053fa5d40d97a6e5edf3f260c1aaa8b5b"
+    },
+    "public": true,
+    "created_at": "2026-03-08T02:53:36Z"
+  },
+  {
+    "id": "7183415228",
+    "type": "IssueCommentEvent",
+    "actor": {
+      "id": 203419627,
+      "login": "KG-NINJA",
+      "display_login": "KG-NINJA",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/KG-NINJA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
+    },
+    "repo": {
+      "id": 1076856202,
+      "name": "KG-NINJA/ZOVIOUS",
+      "url": "https://api.github.com/repos/KG-NINJA/ZOVIOUS"
+    },
+    "payload": {
+      "action": "created",
+      "issue": {
+        "url": "https://api.github.com/repos/KG-NINJA/ZOVIOUS/issues/1",
+        "repository_url": "https://api.github.com/repos/KG-NINJA/ZOVIOUS",
+        "labels_url": "https://api.github.com/repos/KG-NINJA/ZOVIOUS/issues/1/labels{/name}",
+        "comments_url": "https://api.github.com/repos/KG-NINJA/ZOVIOUS/issues/1/comments",
