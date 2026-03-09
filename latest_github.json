@@ -1,6 +1,6 @@
 [
   {
-    "id": "9152510183",
+    "id": "9162742795",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -11,23 +11,23 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1076856202,
-      "name": "KG-NINJA/ZOVIOUS",
-      "url": "https://api.github.com/repos/KG-NINJA/ZOVIOUS"
+      "id": 1175987971,
+      "name": "KG-NINJA/auto-chuun",
+      "url": "https://api.github.com/repos/KG-NINJA/auto-chuun"
     },
     "payload": {
-      "repository_id": 1076856202,
-      "push_id": 31446215043,
-      "ref": "refs/heads/add-qr-code-page-3446996874816866862",
-      "head": "812eb64d5aa6cf2afe4956aabc0ff08c4d80cf43",
-      "before": "2619518053fa5d40d97a6e5edf3f260c1aaa8b5b"
+      "repository_id": 1175987971,
+      "push_id": 31456453501,
+      "ref": "refs/heads/feature/auto-tune-web-8499390209167786996",
+      "head": "053b3e590b33b7ec8d702e01893ea93cbdba0418",
+      "before": "88a25b99facdeee6c2c2c2026579562c16f2141d"
     },
     "public": true,
-    "created_at": "2026-03-08T02:53:36Z"
+    "created_at": "2026-03-08T14:27:10Z"
   },
   {
-    "id": "7183415228",
-    "type": "IssueCommentEvent",
+    "id": "9161587098",
+    "type": "CreateEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -37,14 +37,14 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1076856202,
-      "name": "KG-NINJA/ZOVIOUS",
-      "url": "https://api.github.com/repos/KG-NINJA/ZOVIOUS"
+      "id": 1175987971,
+      "name": "KG-NINJA/auto-chuun",
+      "url": "https://api.github.com/repos/KG-NINJA/auto-chuun"
     },
     "payload": {
-      "action": "created",
-      "issue": {
-        "url": "https://api.github.com/repos/KG-NINJA/ZOVIOUS/issues/1",
-        "repository_url": "https://api.github.com/repos/KG-NINJA/ZOVIOUS",
-        "labels_url": "https://api.github.com/repos/KG-NINJA/ZOVIOUS/issues/1/labels{/name}",
-        "comments_url": "https://api.github.com/repos/KG-NINJA/ZOVIOUS/issues/1/comments",
+      "ref": "feature/auto-tune-web-8499390209167786996",
+      "ref_type": "branch",
+      "full_ref": "refs/heads/feature/auto-tune-web-8499390209167786996",
+      "master_branch": "feature/auto-tune-web-8499390209167786996",
+      "description": null,
+      "pusher_type": "user"
