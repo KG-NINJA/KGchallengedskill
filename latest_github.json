@@ -1,6 +1,6 @@
 [
   {
-    "id": "9949846808",
+    "id": "10023111259",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -11,23 +11,23 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1173090730,
-      "name": "KG-NINJA/OpenclawTajikarao",
-      "url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao"
+      "id": 1079043045,
+      "name": "KG-NINJA/aMAGIgoesystem",
+      "url": "https://api.github.com/repos/KG-NINJA/aMAGIgoesystem"
     },
     "payload": {
-      "repository_id": 1173090730,
-      "push_id": 32243210230,
-      "ref": "refs/heads/main",
-      "head": "886346a5b9f6fad977a140d529c8be773d2c28d7",
-      "before": "c6b3c3b2d9e8f1f83608c3c195f3f6173950a013"
+      "repository_id": 1079043045,
+      "push_id": 32316480308,
+      "ref": "refs/heads/fix/gemini-model-update-8547113951852422735",
+      "head": "dbf89546542899ba4e0995b8dbe6930496da3709",
+      "before": "84f3b57fe7858447445491d337eb69b530a0b0ef"
     },
     "public": true,
-    "created_at": "2026-03-29T13:49:56Z"
+    "created_at": "2026-03-31T09:20:00Z"
   },
   {
-    "id": "7877265370",
-    "type": "IssuesEvent",
+    "id": "7944130041",
+    "type": "PullRequestReviewEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -37,14 +37,14 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1173090730,
-      "name": "KG-NINJA/OpenclawTajikarao",
-      "url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao"
+      "id": 1079043045,
+      "name": "KG-NINJA/aMAGIgoesystem",
+      "url": "https://api.github.com/repos/KG-NINJA/aMAGIgoesystem"
     },
     "payload": {
-      "action": "opened",
-      "issue": {
-        "url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao/issues/5",
-        "repository_url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao",
-        "labels_url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao/issues/5/labels{/name}",
-        "comments_url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao/issues/5/comments",
+      "review": {
+        "id": 4035916419,
+        "node_id": "PRR_kwDOQFDj5c7wjzKD",
+        "user": {
+          "login": "KG-NINJA",
+          "id": 203419627,
