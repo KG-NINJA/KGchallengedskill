@@ -1,33 +1,6 @@
 [
   {
-    "id": "10371137612",
-    "type": "CreateEvent",
-    "actor": {
-      "id": 203419627,
-      "login": "KG-NINJA",
-      "display_login": "KG-NINJA",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/KG-NINJA",
-      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
-    },
-    "repo": {
-      "id": 1173090730,
-      "name": "KG-NINJA/OpenclawTajikarao",
-      "url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao"
-    },
-    "payload": {
-      "ref": "gh-pages",
-      "ref_type": "branch",
-      "full_ref": "refs/heads/gh-pages",
-      "master_branch": "main",
-      "description": null,
-      "pusher_type": "user"
-    },
-    "public": true,
-    "created_at": "2026-04-09T09:39:32Z"
-  },
-  {
-    "id": "10334988036",
+    "id": "10381947798",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -44,7 +17,34 @@
     },
     "payload": {
       "repository_id": 1173090730,
-      "push_id": 32627785218,
+      "push_id": 32674526517,
       "ref": "refs/heads/main",
-      "head": "7043c49d06d48cca81ddea3e0aab79987d74c473",
-      "before": "e4f18a73f4ba9d4f6d8e667eeab9a7b7b39ebf70"
+      "head": "e1137588b31206e6b4a866db14ea89cd817e652f",
+      "before": "f7c86d2eb869b7ce360199b6b5a2058597763597"
+    },
+    "public": true,
+    "created_at": "2026-04-09T14:15:06Z"
+  },
+  {
+    "id": "10380619642",
+    "type": "PushEvent",
+    "actor": {
+      "id": 203419627,
+      "login": "KG-NINJA",
+      "display_login": "KG-NINJA",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/KG-NINJA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
+    },
+    "repo": {
+      "id": 1173090730,
+      "name": "KG-NINJA/OpenclawTajikarao",
+      "url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao"
+    },
+    "payload": {
+      "repository_id": 1173090730,
+      "push_id": 32673199706,
+      "ref": "refs/heads/main",
+      "head": "f7c86d2eb869b7ce360199b6b5a2058597763597",
+      "before": "e170e8c48fcae36018bc059a5c4028c50ba43343"
+    },
