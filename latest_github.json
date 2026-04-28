@@ -1,33 +1,6 @@
 [
   {
-    "id": "11085924275",
-    "type": "CreateEvent",
-    "actor": {
-      "id": 203419627,
-      "login": "KG-NINJA",
-      "display_login": "KG-NINJA",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/KG-NINJA",
-      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
-    },
-    "repo": {
-      "id": 1141242692,
-      "name": "KG-NINJA/AI-news",
-      "url": "https://api.github.com/repos/KG-NINJA/AI-news"
-    },
-    "payload": {
-      "ref": "perf-optimize-timezone-instantiation-6172683083626166882",
-      "ref_type": "branch",
-      "full_ref": "refs/heads/perf-optimize-timezone-instantiation-6172683083626166882",
-      "master_branch": "ai-news-collector-932428568589827516",
-      "description": null,
-      "pusher_type": "user"
-    },
-    "public": true,
-    "created_at": "2026-04-27T07:28:00Z"
-  },
-  {
-    "id": "11057619906",
+    "id": "11102488937",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -38,13 +11,40 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1221508162,
-      "name": "KG-NINJA/OneTimeTouch",
-      "url": "https://api.github.com/repos/KG-NINJA/OneTimeTouch"
+      "id": 1173090730,
+      "name": "KG-NINJA/OpenclawTajikarao",
+      "url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao"
     },
     "payload": {
-      "repository_id": 1221508162,
-      "push_id": 33349315828,
+      "repository_id": 1173090730,
+      "push_id": 33394205641,
       "ref": "refs/heads/main",
-      "head": "d61afdafd16528f177e5aa95e4f63dab83bc3ddf",
-      "before": "8fc9585723dc96976fc353b31f4a83a6399a5bb1"
+      "head": "9e5f4a4c0c949a43532afe9f11ec1695d950944d",
+      "before": "2de355ee0865067789b8b9b4db49da0879a82561"
+    },
+    "public": true,
+    "created_at": "2026-04-27T14:15:07Z"
+  },
+  {
+    "id": "11101036232",
+    "type": "PushEvent",
+    "actor": {
+      "id": 203419627,
+      "login": "KG-NINJA",
+      "display_login": "KG-NINJA",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/KG-NINJA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
+    },
+    "repo": {
+      "id": 1173090730,
+      "name": "KG-NINJA/OpenclawTajikarao",
+      "url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao"
+    },
+    "payload": {
+      "repository_id": 1173090730,
+      "push_id": 33392755391,
+      "ref": "refs/heads/main",
+      "head": "2de355ee0865067789b8b9b4db49da0879a82561",
+      "before": "cc830aad2c77a114fbf2469a333f0da3a596ce49"
+    },
