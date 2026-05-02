@@ -1,4 +1,4 @@
-Last signal: Fri May  1 15:27:42 UTC 2026
+Last signal: Sat May  2 15:21:39 UTC 2026
 
 🚀 **KG-NINJA | AI × Geospatial × Automation**
 Building autonomous AI pipelines and experimental prototypes.
@@ -16,5 +16,5 @@ Building autonomous AI pipelines and experimental prototypes.
 
 🎯 **Today's Featured Skill**
 
-**Competition:** Gemini 3 Pro Hackathon (Kaggle Writeups Track)  
+**Project:** *Walk Me to the Moon — algo Safety AI*  
 
