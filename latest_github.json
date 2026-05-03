@@ -1,7 +1,7 @@
 [
   {
-    "id": "11295214553",
-    "type": "PushEvent",
+    "id": "11342980460",
+    "type": "CreateEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -11,23 +11,24 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1173090730,
-      "name": "KG-NINJA/OpenclawTajikarao",
-      "url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao"
+      "id": 1141242692,
+      "name": "KG-NINJA/AI-news",
+      "url": "https://api.github.com/repos/KG-NINJA/AI-news"
     },
     "payload": {
-      "repository_id": 1173090730,
-      "push_id": 33586609410,
-      "ref": "refs/heads/main",
-      "head": "df00866290fb8bdb30cc4727b538feecaeac76b9",
-      "before": "b2914fb47be8d8ee6d1fe759e9fcb842e82bf4cf"
+      "ref": "optimize-rss-fetch-10257261948393464667",
+      "ref_type": "branch",
+      "full_ref": "refs/heads/optimize-rss-fetch-10257261948393464667",
+      "master_branch": "ai-news-collector-932428568589827516",
+      "description": null,
+      "pusher_type": "user"
     },
     "public": true,
-    "created_at": "2026-05-01T14:15:07Z"
+    "created_at": "2026-05-03T04:01:19Z"
   },
   {
-    "id": "11292969896",
-    "type": "PushEvent",
+    "id": "9027697760",
+    "type": "PullRequestEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -37,14 +38,13 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1226436799,
-      "name": "KG-NINJA/SiranKeed",
-      "url": "https://api.github.com/repos/KG-NINJA/SiranKeed"
+      "id": 1141242692,
+      "name": "KG-NINJA/AI-news",
+      "url": "https://api.github.com/repos/KG-NINJA/AI-news"
     },
     "payload": {
-      "repository_id": 1226436799,
-      "push_id": 33584364652,
-      "ref": "refs/heads/main",
-      "head": "28db42059176b80799722668061e585df26cf1c5",
-      "before": "e133c206b0c96841505f5640ad99ab86e624169a"
-    },
+      "action": "opened",
+      "number": 9,
+      "pull_request": {
+        "url": "https://api.github.com/repos/KG-NINJA/AI-news/pulls/9",
+        "id": 3619295524,
