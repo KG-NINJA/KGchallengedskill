@@ -1,7 +1,7 @@
 [
   {
-    "id": "11342980460",
-    "type": "CreateEvent",
+    "id": "11396021780",
+    "type": "PushEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -11,24 +11,23 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1141242692,
-      "name": "KG-NINJA/AI-news",
-      "url": "https://api.github.com/repos/KG-NINJA/AI-news"
+      "id": 1221508162,
+      "name": "KG-NINJA/OneTimeTouch",
+      "url": "https://api.github.com/repos/KG-NINJA/OneTimeTouch"
     },
     "payload": {
-      "ref": "optimize-rss-fetch-10257261948393464667",
-      "ref_type": "branch",
-      "full_ref": "refs/heads/optimize-rss-fetch-10257261948393464667",
-      "master_branch": "ai-news-collector-932428568589827516",
-      "description": null,
-      "pusher_type": "user"
+      "repository_id": 1221508162,
+      "push_id": 33687454987,
+      "ref": "refs/heads/change-hour-hand-color-to-yellow-8724390131107991032",
+      "head": "05a9892935e7762a7c1accec31c8019c696d7fec",
+      "before": "702b4250cb13678beb42e7b16ba556284e2b2cca"
     },
     "public": true,
-    "created_at": "2026-05-03T04:01:19Z"
+    "created_at": "2026-05-04T15:29:59Z"
   },
   {
-    "id": "9027697760",
-    "type": "PullRequestEvent",
+    "id": "11395319079",
+    "type": "PushEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -38,13 +37,14 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1141242692,
-      "name": "KG-NINJA/AI-news",
-      "url": "https://api.github.com/repos/KG-NINJA/AI-news"
+      "id": 1221508162,
+      "name": "KG-NINJA/OneTimeTouch",
+      "url": "https://api.github.com/repos/KG-NINJA/OneTimeTouch"
     },
     "payload": {
-      "action": "opened",
-      "number": 9,
-      "pull_request": {
-        "url": "https://api.github.com/repos/KG-NINJA/AI-news/pulls/9",
-        "id": 3619295524,
+      "repository_id": 1221508162,
+      "push_id": 33686753489,
+      "ref": "refs/heads/change-hour-hand-color-to-yellow-8724390131107991032",
+      "head": "702b4250cb13678beb42e7b16ba556284e2b2cca",
+      "before": "49d3ef813e25e651e4e54491c699e93494906c02"
+    },
