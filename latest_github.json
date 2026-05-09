@@ -1,6 +1,6 @@
 [
   {
-    "id": "11581124348",
+    "id": "11621871763",
     "type": "PushEvent",
     "actor": {
       "id": 203419627,
@@ -11,23 +11,23 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1173090730,
-      "name": "KG-NINJA/OpenclawTajikarao",
-      "url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao"
+      "id": 1164529268,
+      "name": "KG-NINJA/AgentOS-KGNINJA",
+      "url": "https://api.github.com/repos/KG-NINJA/AgentOS-KGNINJA"
     },
     "payload": {
-      "repository_id": 1173090730,
-      "push_id": 33872199376,
-      "ref": "refs/heads/gh-pages",
-      "head": "661cf385fd2353088f56f5f016fd30b28b34dba2",
-      "before": "4d57ed2b15ac7897244b78bc6f1662e1ea8c90f2"
+      "repository_id": 1164529268,
+      "push_id": 33912937578,
+      "ref": "refs/heads/main",
+      "head": "e8744534c174d7562d818908cf0bdf99566077cf",
+      "before": "0e375f70a0a19dbb3ab36ac05b4788591dd3fd15"
     },
     "public": true,
-    "created_at": "2026-05-08T09:18:36Z"
+    "created_at": "2026-05-09T08:16:29Z"
   },
   {
-    "id": "11581064779",
-    "type": "PushEvent",
+    "id": "9264565518",
+    "type": "PullRequestEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -37,14 +37,14 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1173090730,
-      "name": "KG-NINJA/OpenclawTajikarao",
-      "url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao"
+      "id": 1164529268,
+      "name": "KG-NINJA/AgentOS-KGNINJA",
+      "url": "https://api.github.com/repos/KG-NINJA/AgentOS-KGNINJA"
     },
     "payload": {
-      "repository_id": 1173090730,
-      "push_id": 33872139719,
-      "ref": "refs/heads/main",
-      "head": "28530690986536222ed2b00f62f940110dd20959",
-      "before": "1391d2de32c8fb2050b2a5e272555cc054af6035"
-    },
+      "action": "merged",
+      "number": 1,
+      "pull_request": {
+        "url": "https://api.github.com/repos/KG-NINJA/AgentOS-KGNINJA/pulls/1",
+        "id": 3654276727,
+        "number": 1,
