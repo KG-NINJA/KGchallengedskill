@@ -5168,5 +5168,16 @@
       "KGNINJA n8n": 0,
       "KGNINJA OpenAI": 0
     }
+  },
+  {
+    "timestamp": "2026-06-01T10:42:00Z",
+    "scores": {
+      "KGNINJA AI": 0.0,
+      "KGNINJA Psycho-Frame": 0.0,
+      "KGNINJA FuwaCoco": 0.0,
+      "KGNINJA Kaggle": 0.0,
+      "KGNINJA n8n": 0.0,
+      "KGNINJA OpenAI": 0.0
+    }
   }
 ]
