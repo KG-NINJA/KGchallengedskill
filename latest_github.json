@@ -1,7 +1,7 @@
 [
   {
-    "id": "13685516492",
-    "type": "PushEvent",
+    "id": "10897486210",
+    "type": "PullRequestEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -11,40 +11,40 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1276686982,
-      "name": "KG-NINJA/DogGPT",
-      "url": "https://api.github.com/repos/KG-NINJA/DogGPT"
+      "id": 1173090730,
+      "name": "KG-NINJA/OpenclawTajikarao",
+      "url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao"
     },
     "payload": {
-      "repository_id": 1276686982,
-      "push_id": 35973729473,
-      "ref": "refs/heads/main",
-      "head": "eb4bda14ed695d1298065792da7e0de70c86955b",
-      "before": "fca26821605c0da8b1057fbe7aeedf69e4e18db8"
+      "action": "merged",
+      "number": 7,
+      "pull_request": {
+        "url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao/pulls/7",
+        "id": 3905474329,
+        "number": 7,
+        "head": {
+          "ref": "codex/go-build-delivery-window",
+          "sha": "0abc9180b333b910d38f5eaecf0d7a4e0473573f",
+          "repo": {
+            "id": 1173090730,
+            "url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao",
+            "name": "OpenclawTajikarao"
+          }
+        },
+        "base": {
+          "ref": "main",
+          "sha": "c3c7f31742b434d5a44f6990804f5fca08a1f7e4",
+          "repo": {
+            "id": 1173090730,
+            "url": "https://api.github.com/repos/KG-NINJA/OpenclawTajikarao",
+            "name": "OpenclawTajikarao"
+          }
+        }
+      }
     },
     "public": true,
-    "created_at": "2026-06-22T07:52:57Z"
+    "created_at": "2026-06-21T00:59:13Z"
   },
   {
-    "id": "13685495540",
-    "type": "PushEvent",
-    "actor": {
-      "id": 203419627,
-      "login": "KG-NINJA",
-      "display_login": "KG-NINJA",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/KG-NINJA",
-      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
-    },
-    "repo": {
-      "id": 1276686982,
-      "name": "KG-NINJA/DogGPT",
-      "url": "https://api.github.com/repos/KG-NINJA/DogGPT"
-    },
-    "payload": {
-      "repository_id": 1276686982,
-      "push_id": 35973708618,
-      "ref": "refs/heads/main",
-      "head": "fca26821605c0da8b1057fbe7aeedf69e4e18db8",
-      "before": "e9726f687db3cbfcb336ebff210f112eed03359a"
-    },
+    "id": "10892481229",
+    "type": "PullRequestEvent",
