@@ -1,7 +1,7 @@
 [
   {
-    "id": "13850570417",
-    "type": "PushEvent",
+    "id": "10979375316",
+    "type": "PullRequestEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -11,40 +11,40 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
     },
     "repo": {
-      "id": 1268831953,
-      "name": "KG-NINJA/BokoBokoWars",
-      "url": "https://api.github.com/repos/KG-NINJA/BokoBokoWars"
+      "id": 992942549,
+      "name": "KG-NINJA/BUNSHINtest",
+      "url": "https://api.github.com/repos/KG-NINJA/BUNSHINtest"
     },
     "payload": {
-      "repository_id": 1268831953,
-      "push_id": 36138615302,
-      "ref": "refs/heads/main",
-      "head": "6a5cb3541b0fe6b218b82e713ffff0ba83995b7d",
-      "before": "e43d7b0ec9cff51e9e05fb52c26eb903e40bb154"
+      "action": "opened",
+      "number": 1,
+      "pull_request": {
+        "url": "https://api.github.com/repos/KG-NINJA/BUNSHINtest/pulls/1",
+        "id": 3905413293,
+        "number": 1,
+        "head": {
+          "ref": "codex/x402-revenue-discovery",
+          "sha": "1247659558100f555ef53e930eb687026f4ef7d8",
+          "repo": {
+            "id": 992942549,
+            "url": "https://api.github.com/repos/KG-NINJA/BUNSHINtest",
+            "name": "BUNSHINtest"
+          }
+        },
+        "base": {
+          "ref": "main",
+          "sha": "520f26c63d2a4c4ee192b91ff754f825feaa2f38",
+          "repo": {
+            "id": 992942549,
+            "url": "https://api.github.com/repos/KG-NINJA/BUNSHINtest",
+            "name": "BUNSHINtest"
+          }
+        }
+      }
     },
     "public": true,
-    "created_at": "2026-06-25T02:23:06Z"
+    "created_at": "2026-06-21T00:22:55Z"
   },
   {
-    "id": "13849850826",
+    "id": "13850570417",
     "type": "PushEvent",
-    "actor": {
-      "id": 203419627,
-      "login": "KG-NINJA",
-      "display_login": "KG-NINJA",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/KG-NINJA",
-      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
-    },
-    "repo": {
-      "id": 1268831953,
-      "name": "KG-NINJA/BokoBokoWars",
-      "url": "https://api.github.com/repos/KG-NINJA/BokoBokoWars"
-    },
-    "payload": {
-      "repository_id": 1268831953,
-      "push_id": 36137895264,
-      "ref": "refs/heads/main",
-      "head": "e43d7b0ec9cff51e9e05fb52c26eb903e40bb154",
-      "before": "37cd8ffbbf6b9fccc0c912b96801bc5b8052d64a"
-    },
