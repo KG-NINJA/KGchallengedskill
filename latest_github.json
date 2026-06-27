@@ -1,5 +1,32 @@
 [
   {
+    "id": "13968181546",
+    "type": "CreateEvent",
+    "actor": {
+      "id": 203419627,
+      "login": "KG-NINJA",
+      "display_login": "KG-NINJA",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/KG-NINJA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
+    },
+    "repo": {
+      "id": 1282048454,
+      "name": "KG-NINJA/VoicEffect",
+      "url": "https://api.github.com/repos/KG-NINJA/VoicEffect"
+    },
+    "payload": {
+      "ref": "main",
+      "ref_type": "branch",
+      "full_ref": "refs/heads/main",
+      "master_branch": "main",
+      "description": null,
+      "pusher_type": "user"
+    },
+    "public": true,
+    "created_at": "2026-06-27T08:53:16Z"
+  },
+  {
     "id": "10979375316",
     "type": "PullRequestEvent",
     "actor": {
@@ -21,30 +48,3 @@
       "pull_request": {
         "url": "https://api.github.com/repos/KG-NINJA/BUNSHINtest/pulls/1",
         "id": 3905413293,
-        "number": 1,
-        "head": {
-          "ref": "codex/x402-revenue-discovery",
-          "sha": "1247659558100f555ef53e930eb687026f4ef7d8",
-          "repo": {
-            "id": 992942549,
-            "url": "https://api.github.com/repos/KG-NINJA/BUNSHINtest",
-            "name": "BUNSHINtest"
-          }
-        },
-        "base": {
-          "ref": "main",
-          "sha": "520f26c63d2a4c4ee192b91ff754f825feaa2f38",
-          "repo": {
-            "id": 992942549,
-            "url": "https://api.github.com/repos/KG-NINJA/BUNSHINtest",
-            "name": "BUNSHINtest"
-          }
-        }
-      }
-    },
-    "public": true,
-    "created_at": "2026-06-21T00:22:55Z"
-  },
-  {
-    "id": "13850570417",
-    "type": "PushEvent",
