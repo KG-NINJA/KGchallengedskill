@@ -1,7 +1,7 @@
 [
   {
-    "id": "14746910634",
-    "type": "DeleteEvent",
+    "id": "11676657419",
+    "type": "PullRequestEvent",
     "actor": {
       "id": 203419627,
       "login": "KG-NINJA",
@@ -16,35 +16,35 @@
       "url": "https://api.github.com/repos/KG-NINJA/HyperXosist-Agent"
     },
     "payload": {
-      "ref": "codex/fix-noise-preset-version",
-      "ref_type": "branch",
-      "full_ref": "refs/heads/codex/fix-noise-preset-version",
-      "pusher_type": "user"
+      "action": "opened",
+      "number": 17,
+      "pull_request": {
+        "url": "https://api.github.com/repos/KG-NINJA/HyperXosist-Agent/pulls/17",
+        "id": 4039274874,
+        "number": 17,
+        "head": {
+          "ref": "codex/add-mcp-usage-observability",
+          "sha": "fd551cff70856fc58886b7d140588de18b8315c2",
+          "repo": {
+            "id": 1285791983,
+            "url": "https://api.github.com/repos/KG-NINJA/HyperXosist-Agent",
+            "name": "HyperXosist-Agent"
+          }
+        },
+        "base": {
+          "ref": "main",
+          "sha": "7fc834d6e6af211bc5ad2683dc2664f751deb5c0",
+          "repo": {
+            "id": 1285791983,
+            "url": "https://api.github.com/repos/KG-NINJA/HyperXosist-Agent",
+            "name": "HyperXosist-Agent"
+          }
+        }
+      }
     },
     "public": true,
-    "created_at": "2026-07-11T06:41:14Z"
+    "created_at": "2026-07-12T14:46:19Z"
   },
   {
-    "id": "14746909878",
+    "id": "14826753776",
     "type": "PushEvent",
-    "actor": {
-      "id": 203419627,
-      "login": "KG-NINJA",
-      "display_login": "KG-NINJA",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/KG-NINJA",
-      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
-    },
-    "repo": {
-      "id": 1285791983,
-      "name": "KG-NINJA/HyperXosist-Agent",
-      "url": "https://api.github.com/repos/KG-NINJA/HyperXosist-Agent"
-    },
-    "payload": {
-      "repository_id": 1285791983,
-      "push_id": 37036698602,
-      "ref": "refs/heads/main",
-      "head": "251a81f2303706947deab65bcd88e4c9b4c6417b",
-      "before": "88c50fce388d7138560e98158a832e934e1bb660"
-    },
-    "public": true,
