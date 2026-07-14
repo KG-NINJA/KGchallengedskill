@@ -1,6 +1,32 @@
 [
   {
-    "id": "11676657419",
+    "id": "14939378566",
+    "type": "PushEvent",
+    "actor": {
+      "id": 203419627,
+      "login": "KG-NINJA",
+      "display_login": "KG-NINJA",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/KG-NINJA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/203419627?"
+    },
+    "repo": {
+      "id": 1285791983,
+      "name": "KG-NINJA/HyperXosist-Agent",
+      "url": "https://api.github.com/repos/KG-NINJA/HyperXosist-Agent"
+    },
+    "payload": {
+      "repository_id": 1285791983,
+      "push_id": 37229400413,
+      "ref": "refs/heads/main",
+      "head": "4880f9c284ec5eabdc44cd5adc8669235ee6825e",
+      "before": "45afabaef0ea06bc5b18165ed3e335d016d851de"
+    },
+    "public": true,
+    "created_at": "2026-07-14T05:14:34Z"
+  },
+  {
+    "id": "11747681207",
     "type": "PullRequestEvent",
     "actor": {
       "id": 203419627,
@@ -16,35 +42,9 @@
       "url": "https://api.github.com/repos/KG-NINJA/HyperXosist-Agent"
     },
     "payload": {
-      "action": "opened",
-      "number": 17,
+      "action": "merged",
+      "number": 18,
       "pull_request": {
-        "url": "https://api.github.com/repos/KG-NINJA/HyperXosist-Agent/pulls/17",
-        "id": 4039274874,
-        "number": 17,
-        "head": {
-          "ref": "codex/add-mcp-usage-observability",
-          "sha": "fd551cff70856fc58886b7d140588de18b8315c2",
-          "repo": {
-            "id": 1285791983,
-            "url": "https://api.github.com/repos/KG-NINJA/HyperXosist-Agent",
-            "name": "HyperXosist-Agent"
-          }
-        },
-        "base": {
-          "ref": "main",
-          "sha": "7fc834d6e6af211bc5ad2683dc2664f751deb5c0",
-          "repo": {
-            "id": 1285791983,
-            "url": "https://api.github.com/repos/KG-NINJA/HyperXosist-Agent",
-            "name": "HyperXosist-Agent"
-          }
-        }
-      }
-    },
-    "public": true,
-    "created_at": "2026-07-12T14:46:19Z"
-  },
-  {
-    "id": "14826753776",
-    "type": "PushEvent",
+        "url": "https://api.github.com/repos/KG-NINJA/HyperXosist-Agent/pulls/18",
+        "id": 4049820505,
+        "number": 18,
