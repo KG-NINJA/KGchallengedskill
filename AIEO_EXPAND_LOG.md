@@ -1,12 +1,12 @@
 # 🌍 AIEO Wave Expansion Log
-_Started at 2026-08-18T07:01:13Z UTC_
+_Started at 2026-08-18T13:04:59Z UTC_
 
 - Bing: HTTP 410
 - Perplexity: HTTP 301
 - DuckDuckGo: HTTP 202
 - Google: HTTP 404
-- Brave: HTTP 200
+- Brave: HTTP 429
 
 ## Internal Echo
-- Self-ping to https://kg-ninja.github.io/KGchallengedskill/AIEO_PULSE.json executed at 2026-08-18T07:01:13Z
+- Self-ping to https://kg-ninja.github.io/KGchallengedskill/AIEO_PULSE.json executed at 2026-08-18T13:04:59Z
 - IndexNow signal sent to Bing/Seznam/Yandex network
