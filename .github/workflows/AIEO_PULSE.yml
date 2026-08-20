@@ -1,37 +1,35 @@
 name: 🌐 AIEO Pulse Auto Update
 
-
-# 目的：
-# - 旧ワークフローを一時保管
-# - 再有効化時は disabled を削除して運用再開可能
-
-# on:
-#   schedule:
-#     - cron: '0 0 * * *'
-#   workflow_dispatch:
-# jobs:
-#   placeholder:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - run: echo "Disabled Autonomous Actions Archive"
-
 on:
   schedule:
-    - cron: '0 */12 * * *'
+    - cron: "0 */12 * * *"
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aieo-repository-writes
+  cancel-in-progress: false
 
 jobs:
   update-pulse:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Generate AIEO Pulse
         run: |
-          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          echo "TIMESTAMP=$timestamp" >> "$GITHUB_ENV"
           cat <<EOF > AIEO_PULSE.json
           {
             "id": "AIEO-NOROSHI-KG",
-            "timestamp": "$TIMESTAMP",
+            "timestamp": "$timestamp",
             "node": "KG",
             "role": "Psycho-Frame Technologist",
             "status": "Active",
@@ -41,10 +39,18 @@ jobs:
             }
           }
           EOF
-      - name: Commit & Push
+
+      - name: Commit and push pulse
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add AIEO_PULSE.json
-          git commit -m "🔄 Update AIEO Pulse at $TIMESTAMP" || exit 0
-          git push
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🔄 Update AIEO Pulse at ${TIMESTAMP}"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
