@@ -1,0 +1,66 @@
+name: AIEO Effect Analyzer Checks
+
+on:
+  pull_request:
+    paths:
+      - "scripts/aieo_effect_compose.py"
+      - "tests/test_aieo_effect_compose.py"
+      - "visibility_log.csv"
+      - ".github/workflows/aieo_effect_checks.yml"
+      - ".github/workflows/aieo_master_pipeline.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/aieo_effect_compose.py"
+      - "tests/test_aieo_effect_compose.py"
+      - ".github/workflows/aieo_effect_checks.yml"
+      - ".github/workflows/aieo_master_pipeline.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aieo-effect-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  effect-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pandas matplotlib pytest
+
+      - name: Run regression tests
+        run: python -m pytest tests/test_aieo_effect_compose.py
+
+      - name: Smoke-test current visibility history
+        run: |
+          python scripts/aieo_effect_compose.py
+          test -s aieo_effect_log.csv
+          test -s aieo_effect_chart.png
+
+      - name: Write check summary
+        if: always()
+        run: |
+          {
+            echo "## AIEO Effect Analyzer"
+            echo ""
+            echo "- Event: `${{ github.event_name }}`"
+            echo "- Commit: `${{ github.sha }}`"
+            echo "- Result: `${{ job.status }}`"
+          } >> "$GITHUB_STEP_SUMMARY"
