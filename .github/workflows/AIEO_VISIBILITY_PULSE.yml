@@ -9,32 +9,32 @@ on:
     - cron: "0 */6 * * *"
 
 concurrency:
-  group: aieo_visibility_pipeline
-  cancel-in-progress: true
+  group: aieo-repository-writes
+  cancel-in-progress: false
 
 jobs:
   pulse:
     name: 📡 Visibility Tracking & Analysis
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
-      
+
       - name: 🐍 Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'pip'
-      
+          python-version: "3.11"
+          cache: pip
+
       - name: 📦 Install dependencies
         run: |
-          pip install --upgrade pip
-          pip install pandas matplotlib requests feedparser
-      
+          python -m pip install --upgrade pip
+          python -m pip install pandas matplotlib requests feedparser
+
       - name: 🔍 Run AIEO Visibility Tracker
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
@@ -42,27 +42,27 @@ jobs:
         run: |
           echo "📊 Starting visibility tracking..."
           python scripts/aieo_visibility_tracker.py
-      
+
       - name: 📈 Run Enhanced Visibility Analysis
         run: |
           echo "🔍 Running enhanced analysis..."
           python scripts/enhanced_visibility_analyzer.py
-      
-      - name: 📊 Commit & Push results
+
+      - name: 📊 Commit and push results
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # すべての生成ファイルを追加
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add visibility_log.csv || true
           git add visibility_chart.png || true
           git add visibility_growth_rate.png || true
           git add visibility_detailed_analysis.png || true
-          
-          # 変更があればコミット
-          if git diff --staged --quiet; then
+
+          if git diff --cached --quiet; then
             echo "No changes to commit"
           else
             git commit -m "📡 Updated AIEO Visibility Pulse - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-            git push
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
           fi
