@@ -10,9 +10,9 @@ CHART_FILE = "aieo_resonance_chart.png"
 
 
 def build_resonance_frame(df: pd.DataFrame) -> pd.DataFrame:
-    """Build a bounded stability score from one or more effect series."""
+    """1本以上のEffect系列から0〜100の安定度スコアを生成する。"""
     if "timestamp" not in df.columns:
-        raise ValueError("effect log is missing column: timestamp")
+        raise ValueError("Effectログにtimestamp列がありません")
 
     timestamps = pd.to_datetime(
         df["timestamp"], format="mixed", errors="coerce", utc=True
@@ -25,11 +25,11 @@ def build_resonance_frame(df: pd.DataFrame) -> pd.DataFrame:
     numeric = numeric.loc[valid_rows]
 
     if numeric.empty or numeric.shape[1] == 0:
-        raise ValueError("effect log contains no valid numeric effect series")
+        raise ValueError("Effectログに有効な数値系列がありません")
     if dropped_rows:
-        print(f"⚠️ Dropped {dropped_rows} invalid effect rows")
+        print(f"⚠️ 無効なEffect行を{dropped_rows}件除外しました")
 
-    # ddof=0 keeps a single effect series meaningful: its dispersion is zero.
+    # ddof=0により、系列が1本でも分散0として有限値を維持する。
     dispersion = numeric.std(axis=1, ddof=0).replace([np.inf, -np.inf], np.nan)
     resonance_score = (100.0 - dispersion).clip(lower=0.0, upper=100.0).fillna(0.0)
     return pd.DataFrame(
@@ -41,6 +41,7 @@ def build_resonance_frame(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def main() -> None:
+    """Resonanceログとグラフを生成する。"""
     if not os.path.exists(INPUT_FILE):
         raise FileNotFoundError(
             f"{INPUT_FILE} が存在しません。Effectジョブを先に実行してください。"
@@ -64,7 +65,7 @@ def main() -> None:
     plt.tight_layout()
     plt.savefig(CHART_FILE)
     plt.close()
-    print(f"✅ Chart saved as {CHART_FILE}")
+    print(f"✅ {CHART_FILE}を生成しました")
 
 
 if __name__ == "__main__":
