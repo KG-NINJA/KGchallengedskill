@@ -9,7 +9,7 @@ on:
     - cron: "0 13 * * *" # JST 22:00
 
 concurrency:
-  group: aieo-repository-writes
+  group: aieo-master-pipeline
   cancel-in-progress: false
 
 jobs:
