@@ -25,7 +25,7 @@ def test_build_effect_frame_accepts_mixed_legacy_timestamps_and_duplicates():
     assert len(effect.index) == 3
     assert effect.index.is_monotonic_increasing
     assert effect.iloc[1]["KGNINJA"] == pytest.approx(20.0)
-    assert np.isfinite(effect.to_numpy()).all()
+    assert np.isfinite(effect["KGNINJA"].dropna()).all()
 
 
 def test_build_effect_frame_accepts_isolated_modern_metrics():
@@ -45,9 +45,29 @@ def test_build_effect_frame_accepts_isolated_modern_metrics():
 
     assert effect.iloc[1]["KGNINJA"] == pytest.approx(20.0)
     assert effect.iloc[2]["KGNINJA"] == pytest.approx(-25.0)
-    assert np.isfinite(effect.to_numpy()).all()
+    assert np.isfinite(effect["KGNINJA"].dropna()).all()
+
+
+def test_effect_changes_use_each_entity_previous_observation():
+    source = pd.DataFrame(
+        {
+            "timestamp": [
+                "2026-08-20T00:00:00Z",
+                "2026-08-20T00:00:01Z",
+                "2026-08-20T06:00:00Z",
+                "2026-08-20T06:00:01Z",
+            ],
+            "name": ["A", "B", "A", "B"],
+            "visibility_score": [10.0, 20.0, 15.0, 10.0],
+        }
+    )
+
+    effect = build_effect_frame(source)
+
+    assert effect["A"].dropna().iloc[-1] == pytest.approx(50.0)
+    assert effect["B"].dropna().iloc[-1] == pytest.approx(-50.0)
 
 
 def test_build_effect_frame_rejects_unknown_schema():
-    with pytest.raises(ValueError, match="both supported schemas"):
+    with pytest.raises(ValueError, match="対応する可視性スキーマ"):
         build_effect_frame(pd.DataFrame({"timestamp": ["2025-10-17"]}))
