@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Calculate AIEO resonance from the isolated person-level metrics log."""
+"""分離された人物別可視性メトリクスからAIEO共鳴度を算出する。"""
 
 import csv
 import json
@@ -26,10 +26,12 @@ REQUIRED_COLUMNS = {
 
 
 def utc_now_iso() -> str:
+    """現在のUTC時刻をISO 8601形式で返す。"""
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
 
 def load_visibility_data() -> list[dict]:
+    """専用CSVを検証して全行を読み込む。"""
     if not VISIBILITY_LOG.exists():
         raise FileNotFoundError(f"{VISIBILITY_LOG} が見つかりません")
 
@@ -37,23 +39,36 @@ def load_visibility_data() -> list[dict]:
         reader = csv.DictReader(file)
         missing = sorted(REQUIRED_COLUMNS - set(reader.fieldnames or []))
         if missing:
-            raise ValueError(f"visibility metrics are missing columns: {missing}")
+            raise ValueError(f"可視性メトリクスに必須列がありません: {missing}")
         data = list(reader)
 
     if not data:
-        raise ValueError("visibility metrics contain no rows")
-    print(f"✓ {len(data)} 件の可視性メトリクスを読み込み")
+        raise ValueError("可視性メトリクスにデータ行がありません")
+    print(f"✓ {len(data)}件の可視性メトリクスを読み込み")
     return data
 
 
 def calculate_resonance_scores(visibility_data: list[dict]) -> dict:
-    """Keep the latest valid score for each tracked entity."""
-    resonance_scores: dict[str, dict] = {}
+    """対象ごとに時刻が最も新しい有効行から共鳴度を計算する。"""
+    latest_rows: dict[str, tuple[datetime, dict]] = {}
 
     for row in visibility_data:
         name = str(row.get("name", "")).strip()
-        if not name:
+        timestamp_text = str(row.get("timestamp", "")).strip()
+        if not name or not timestamp_text:
             continue
+        try:
+            timestamp = datetime.fromisoformat(timestamp_text.replace("Z", "+00:00"))
+            if timestamp.tzinfo is None:
+                timestamp = timestamp.replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+        previous = latest_rows.get(name)
+        if previous is None or timestamp > previous[0]:
+            latest_rows[name] = (timestamp, row)
+
+    resonance_scores: dict[str, dict] = {}
+    for name, (timestamp, row) in latest_rows.items():
         try:
             github_followers = float(row["github_followers"])
             web_mentions = float(row["web_mentions"])
@@ -71,15 +86,16 @@ def calculate_resonance_scores(visibility_data: list[dict]) -> dict:
             "domain_diversity": round(domain_diversity, 2),
             "mention_frequency": round(mention_frequency, 2),
             "impact": round(impact, 2),
-            "source_timestamp": row.get("timestamp"),
+            "source_timestamp": timestamp.isoformat().replace("+00:00", "Z"),
         }
 
     if not resonance_scores:
-        raise ValueError("no valid entity rows were found in visibility metrics")
+        raise ValueError("可視性メトリクスに有効な対象行がありません")
     return resonance_scores
 
 
 def generate_resonance_visualization(resonance_scores: dict) -> None:
+    """対象別の共鳴度を横棒グラフとして保存する。"""
     names = list(resonance_scores)
     scores = [resonance_scores[name]["resonance"] for name in names]
 
@@ -96,6 +112,7 @@ def generate_resonance_visualization(resonance_scores: dict) -> None:
 
 
 def save_resonance_report(resonance_scores: dict) -> None:
+    """共鳴度のJSONレポートを保存する。"""
     average = sum(item["resonance"] for item in resonance_scores.values()) / len(
         resonance_scores
     )
@@ -112,6 +129,7 @@ def save_resonance_report(resonance_scores: dict) -> None:
 
 
 def main() -> None:
+    """共鳴度の計算、可視化、レポート保存を実行する。"""
     print("=" * 60)
     print("AIEO Resonance Indexer")
     print(f"Started at: {utc_now_iso()}")
