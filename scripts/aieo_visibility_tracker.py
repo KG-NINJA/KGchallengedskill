@@ -4,6 +4,9 @@
 リポジトリには別スキーマの旧版 ``visibility_log.csv`` も存在する。
 人物別メトリクスは ``aieo_visibility_metrics.csv`` に分離し、
 異なる形式のデータが同じCSVへ混入しないようにする。
+
+外部プロバイダーの認証不足、quota超過、HTTP障害は検索結果0として
+保存しない。失敗時は処理全体を停止し、直前の正常データを保持する。
 """
 
 import csv
@@ -18,6 +21,7 @@ import requests
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
 GOOGLE_CX = os.getenv("GOOGLE_CX", "")
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", "")
 
 VISIBILITY_LOG = Path(
     os.getenv("AIEO_VISIBILITY_METRICS_LOG", "aieo_visibility_metrics.csv")
@@ -34,9 +38,40 @@ METRIC_FIELDS = [
 ]
 
 
+class ProviderError(RuntimeError):
+    """外部データ提供元から信頼できる値を取得できなかったことを示す。"""
+
+
 def utc_now_iso() -> str:
     """現在のUTC時刻をISO 8601形式で返す。"""
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def _safe_provider_message(response: requests.Response) -> str:
+    """SecretやリクエストURLを含めず、APIエラー理由だけを返す。"""
+    try:
+        payload = response.json()
+    except ValueError:
+        return "応答本文がJSONではありません"
+
+    error = payload.get("error") if isinstance(payload, dict) else None
+    if not isinstance(error, dict):
+        return "エラー理由を取得できません"
+
+    parts = []
+    status = error.get("status")
+    message = error.get("message")
+    details = error.get("errors")
+    reason = None
+    if isinstance(details, list) and details and isinstance(details[0], dict):
+        reason = details[0].get("reason")
+
+    for value in (status, reason, message):
+        if value:
+            text = str(value).replace("\n", " ").strip()
+            if text and text not in parts:
+                parts.append(text[:300])
+    return " / ".join(parts) or "エラー理由を取得できません"
 
 
 class VisibilityTracker:
@@ -45,14 +80,16 @@ class VisibilityTracker:
     def __init__(self) -> None:
         self.google_api_key = GOOGLE_API_KEY
         self.google_cx = GOOGLE_CX
+        self.github_token = GITHUB_TOKEN
         self.session = requests.Session()
-        self.session.headers.update({"User-Agent": "AIEO-Visibility-Tracker/1.0"})
+        self.session.headers.update({"User-Agent": "AIEO-Visibility-Tracker/1.1"})
 
     def search_google(self, query: str, num_results: int = 10) -> Dict:
         """Google Custom Searchから検索結果数を取得する。"""
         if not self.google_api_key or not self.google_cx:
-            print("⚠ Google APIキーが設定されていません")
-            return {"results": 0}
+            raise ProviderError(
+                "Google Custom SearchのGOOGLE_API_KEYまたはGOOGLE_CXが設定されていません"
+            )
 
         try:
             response = self.session.get(
@@ -61,39 +98,82 @@ class VisibilityTracker:
                     "q": query,
                     "key": self.google_api_key,
                     "cx": self.google_cx,
-                    "num": min(num_results, 10),
+                    "num": min(max(int(num_results), 1), 10),
                 },
-                timeout=10,
+                timeout=15,
             )
-            response.raise_for_status()
+        except requests.RequestException as exc:
+            raise ProviderError(
+                "Google Custom Searchへの接続に失敗しました "
+                f"({type(exc).__name__})"
+            ) from None
+
+        if response.status_code != 200:
+            reason = _safe_provider_message(response)
+            raise ProviderError(
+                f"Google Custom SearchがHTTP {response.status_code}を返しました: {reason}"
+            )
+
+        try:
             data = response.json()
-            total_results = int(
-                data.get("queries", {})
-                .get("request", [{}])[0]
-                .get("totalResults", 0)
+        except ValueError:
+            raise ProviderError("Google Custom Searchの成功応答がJSONではありません") from None
+
+        search_information = data.get("searchInformation") if isinstance(data, dict) else None
+        if not isinstance(search_information, dict) or "totalResults" not in search_information:
+            raise ProviderError(
+                "Google Custom Search応答にsearchInformation.totalResultsがありません"
             )
-            return {"results": total_results}
-        except Exception as exc:
-            print(f"⚠ Google Searchエラー: {exc}")
-            return {"results": 0}
+
+        try:
+            total_results = int(search_information["totalResults"])
+        except (TypeError, ValueError):
+            raise ProviderError(
+                "Google Custom SearchのtotalResultsが整数へ変換できません"
+            ) from None
+
+        if total_results < 0:
+            raise ProviderError("Google Custom Searchが負の検索結果数を返しました")
+        return {"results": total_results}
 
     def fetch_github_user(self, username: str) -> Dict:
         """GitHubユーザーの公開統計を取得する。"""
+        headers = {
+            "Accept": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28",
+        }
+        if self.github_token:
+            headers["Authorization"] = f"Bearer {self.github_token}"
+
         try:
             response = self.session.get(
-                f"https://api.github.com/users/{username}", timeout=10
+                f"https://api.github.com/users/{username}",
+                headers=headers,
+                timeout=15,
             )
-            if response.status_code == 200:
-                data = response.json()
-                return {
-                    "public_repos": data.get("public_repos", 0),
-                    "followers": data.get("followers", 0),
-                    "public_gists": data.get("public_gists", 0),
-                }
-            print(f"⚠ GitHub APIがHTTP {response.status_code}を返しました")
-        except Exception as exc:
-            print(f"⚠ GitHub APIエラー: {exc}")
-        return {}
+        except requests.RequestException as exc:
+            raise ProviderError(
+                f"GitHub APIへの接続に失敗しました ({type(exc).__name__})"
+            ) from None
+
+        if response.status_code != 200:
+            raise ProviderError(f"GitHub APIがHTTP {response.status_code}を返しました")
+
+        try:
+            data = response.json()
+            public_repos = int(data["public_repos"])
+            followers = int(data["followers"])
+            public_gists = int(data.get("public_gists", 0))
+        except (KeyError, TypeError, ValueError):
+            raise ProviderError("GitHub API応答に必要な公開統計がありません") from None
+
+        if min(public_repos, followers, public_gists) < 0:
+            raise ProviderError("GitHub APIが負の公開統計を返しました")
+        return {
+            "public_repos": public_repos,
+            "followers": followers,
+            "public_gists": public_gists,
+        }
 
     @staticmethod
     def calculate_visibility_score(
@@ -129,11 +209,11 @@ class VisibilityTracker:
         if github_username:
             print(f"  • GitHub: @{github_username}")
             github_data = self.fetch_github_user(github_username)
-            metrics["github_followers"] = github_data.get("followers", 0)
-            metrics["github_repos"] = github_data.get("public_repos", 0)
+            metrics["github_followers"] = github_data["followers"]
+            metrics["github_repos"] = github_data["public_repos"]
 
         print(f"  • Web検索: '{name}'")
-        metrics["web_mentions"] = self.search_google(f'"{name}"').get("results", 0)
+        metrics["web_mentions"] = self.search_google(f'"{name}"')["results"]
 
         print("  • ドメイン言及を集計")
         metrics["domain_mentions"] = self._count_domain_mentions(name)
@@ -151,7 +231,7 @@ class VisibilityTracker:
         total = 0
         for domain in ("github.com", "medium.com", "dev.to", "stackoverflow.com"):
             result = self.search_google(f'"{name}" site:{domain}', num_results=1)
-            total += result.get("results", 0)
+            total += result["results"]
         return total
 
 
@@ -214,12 +294,26 @@ def main() -> None:
         raise RuntimeError(f"追跡対象がありません: {CONFIG_FILE}")
 
     tracker = VisibilityTracker()
-    all_metrics = [
-        tracker.track_person(
-            user.get("name", "Unknown"), user, observed_at=collection_timestamp
+    try:
+        all_metrics = [
+            tracker.track_person(
+                user.get("name", "Unknown"), user, observed_at=collection_timestamp
+            )
+            for user in users
+        ]
+    except ProviderError as exc:
+        print(f"::error title=AIEO visibility provider error::{exc}")
+        raise
+
+    if all(
+        metric["web_mentions"] == 0 and metric["domain_mentions"] == 0
+        for metric in all_metrics
+    ):
+        print(
+            "::warning title=Google visibility returned zero::"
+            "API応答は成功しましたが、全対象のWeb・ドメイン言及が0でした。"
         )
-        for user in users
-    ]
+
     save_visibility_log(all_metrics)
 
     print("\n" + "=" * 60)

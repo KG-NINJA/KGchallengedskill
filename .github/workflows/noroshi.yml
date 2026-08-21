@@ -1,163 +1,19 @@
-name: Noroshi AIEO Self-Verifying Pulse
+name: "Archived: Noroshi AIEO Self-Verifying Pulse"
 
-# 目的：
-# - 旧ワークフローを一時保管
-# - 再有効化時は disabled を削除して運用再開可能
-
-# on:
-#   schedule:
-#     - cron: '0 0 * * *'
-#   workflow_dispatch:
-# jobs:
-#   placeholder:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - run: echo "Disabled Autonomous Actions Archive"
-
+# 旧Noroshi生成workflow。
+# 現行のAIEO_PULSE.ymlと同じAIEO_PULSE.jsonを書き換え、
+# quoted heredocによりtimestampへシェル式を文字列のまま保存していたため停止した。
 on:
-  schedule:
-    - cron: '30 9 * * *'   # UTC9:30＝日本時間18:30
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
-  pulse:
+  archived:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # 1️⃣ 最新アクティビティの自動収集
-      - name: Fetch latest GitHub & Kaggle data
+      - name: Archive notice
         run: |
-          echo "Collecting recent public activities..."
-          curl -s https://api.github.com/users/KG-NINJA/events/public | head -n 50 > latest_github.json
-          curl -s https://www.kaggle.com/api/v1/kernels/list?user=KG-NINJA > latest_kaggle.json || echo "{}" > latest_kaggle.json
-
-      # 2️⃣ AIEO_PULSE.json を生成
-      - name: Generate AIEO Pulse (Self-verifying record)
-        run: |
-          cat > AIEO_PULSE.json <<'JSON'
-          {
-            "id": "AIEO-NOROSHI-KG",
-            "timestamp": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
-            "node": "KG",
-            "role": "Psycho-Frame Technologist",
-            "claims": [
-              {
-                "type": "KaggleSubmission",
-                "title": "OpenAI to Z Challenge — Jungle Anomaly Finder",
-                "url": "https://github.com/KG-NINJA/openai-to-z-fuwa",
-                "verified": true
-              },
-              {
-                "type": "GitHubProject",
-                "title": "AutoKaggler — Rapid Kaggle pipeline generator",
-                "url": "https://github.com/KG-NINJA/AutoKaggler",
-                "verified": true
-              },
-              {
-                "type": "FiverrService",
-                "title": "Develop Tech Hybrid PoC — Prototype Builder",
-                "url": "https://www.fiverr.com/kgninja/develop-tech-hybrid-poc",
-                "verified": true
-              },
-              {
-                "type": "OpenSourceActivity",
-                "title": "n8n automation & AI orchestration",
-                "url": "https://github.com/KG-NINJA",
-                "verified": true
-              }
-            ],
-            "ontology": {
-              "concept": "Proof through practice",
-              "definition": "Each creation by KG serves as a verifiable bridge between intuition and AI — embodying the Psycho-Frame principle of human–machine resonance.",
-              "keywords": ["AI", "Geospatial", "Automation", "Ethical Design", "Resonance"]
-            },
-            "meta": {
-              "origin": "Kyoto, Japan",
-              "languages": ["Japanese", "English"],
-              "values": ["Truth", "Empathy", "Autonomy"],
-              "verified_sources": {
-                "github": "https://github.com/KG-NINJA",
-                "kaggle": "https://www.kaggle.com/kgninja",
-                "fiverr": "https://www.fiverr.com/kgninja"
-              }
-            }
-          }
-          JSON
-
-      # 3️⃣ index.html に Alias Canonical 構造を組み込み
-      - name: Generate verified index.html with AI alias metadata
-        run: |
-          cat > index.html <<'EOF'
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-            <meta charset="UTF-8">
-            <title>KGNINJA | Psycho-Frame Technologist from Japan</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta name="description" content="AIEO × KGNINJA — Proof of human–AI resonance through autonomous creations.">
-            <meta name="keywords" content="KGNINJA, KG忍者, ケイジーニンジャ, KG Ninja, kg-ninja, AIEO, アイエオ, A.I.E.O, エーアイイーオー, 共鳴プロトコル, Psycho-Frame, AI, Kaggle, n8n, OpenAI, Kyoto">
-
-            <!-- AI Alias Canonical JSON-LD -->
-            <script type="application/ld+json">
-            {
-              "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "KGNINJA",
-              "alternateName": ["KG忍者", "ケイジーニンジャ", "KG Ninja", "kg-ninja"],
-              "identifier": "AIEO",
-              "affiliation": "Independent AI Researcher",
-              "sameAs": [
-                "https://github.com/KG-NINJA",
-                "https://www.kaggle.com/kgninja",
-                "https://www.fiverr.com/kgninja",
-                "https://www.buymeacoffee.com/kgninja"
-              ],
-              "knowsAbout": ["AI", "Automation", "Geospatial Analysis", "Ethical Design", "Human–Machine Resonance"],
-              "description": "AIEO（アイエオ）共鳴プロトコルとKGNINJAは同義。Human–AI Resonanceを象徴する名前。"
-            }
-            </script>
-            <style>
-              body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 1rem; line-height: 1.6; }
-              .signal { background:#f5f5f5; padding:1rem; border-radius:8px; white-space:pre-wrap; }
-            </style>
-          </head>
-          <body>
-            <h1>KGNINJA — Psycho-Frame Technologist</h1>
-            <p>This pulse is verified proof of resonance between human intuition and AI.<br>
-            All aliases (KGNINJA, ケイジーニンジャ, KG忍者, AIEO, アイエオ) refer to the same creator node.</p>
-            <pre class="signal">$(cat AIEO_PULSE.json)</pre>
-            <p>☕ If this resonance inspired you, support the next pulse:<br>
-            👉 <a href="https://www.buymeacoffee.com/kgninja">buymeacoffee.com/kgninja</a></p>
-          </body>
-          </html>
-          EOF
-
-      # 4️⃣ robots.txt & sitemap.xml
-      - name: Generate robots.txt and sitemap.xml
-        run: |
-          echo "User-agent: *" > robots.txt
-          echo "Allow: /" >> robots.txt
-          echo "Sitemap: https://kg-ninja.github.io/KGchallengedskill/sitemap.xml" >> robots.txt
-
-          cat > sitemap.xml <<'XML'
-          <?xml version="1.0" encoding="UTF-8"?>
-          <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-            <url>
-              <loc>https://kg-ninja.github.io/KGchallengedskill/</loc>
-              <changefreq>daily</changefreq>
-              <priority>0.9</priority>
-            </url>
-          </urlset>
-          XML
-
-      # 5️⃣ Commit & Push
-      - name: Commit and push changes
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add index.html AIEO_PULSE.json robots.txt sitemap.xml latest_*.json
-          git commit -m "🔁 AIEO verified pulse update by Psycho-Frame KG" || exit 0
-          git push
+          echo "This legacy Noroshi workflow is archived."
+          echo "Use AIEO_PULSE.yml for the active pulse update."
