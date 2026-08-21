@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: aieo-repository-writes
+  group: aieo-memory-update
   cancel-in-progress: false
 
 jobs:
