@@ -14,22 +14,22 @@ LEGACY_COLUMNS = {"timestamp", "keyword", "totalResults"}
 
 
 def _normalize_source(df: pd.DataFrame) -> pd.DataFrame:
-    """Convert either supported visibility schema to timestamp/keyword/value."""
+    """新旧どちらかの可視性スキーマを共通形式へ正規化する。"""
     columns = set(df.columns)
     if MODERN_COLUMNS.issubset(columns):
         normalized = df[["timestamp", "name", "visibility_score"]].rename(
             columns={"name": "keyword", "visibility_score": "value"}
         )
-        source_name = "modern metrics"
+        source_name = "人物別可視性メトリクス"
     elif LEGACY_COLUMNS.issubset(columns):
         normalized = df[["timestamp", "keyword", "totalResults"]].rename(
             columns={"totalResults": "value"}
         )
-        source_name = "legacy visibility history"
+        source_name = "旧版可視性履歴"
     else:
         expected = sorted(MODERN_COLUMNS), sorted(LEGACY_COLUMNS)
         raise ValueError(
-            "visibility log is missing columns for both supported schemas: "
+            "対応する可視性スキーマの必須列がありません: "
             f"modern={expected[0]}, legacy={expected[1]}"
         )
 
@@ -53,55 +53,64 @@ def _normalize_source(df: pd.DataFrame) -> pd.DataFrame:
     normalized = normalized.loc[valid_rows]
 
     if normalized.empty:
-        raise ValueError(f"{source_name} contains no valid rows")
+        raise ValueError(f"{source_name}に有効な行がありません")
     if dropped_rows:
-        print(f"⚠️ Dropped {dropped_rows} invalid rows from {source_name}")
-    print(f"✓ Using {source_name}: {len(normalized)} valid rows")
+        print(f"⚠️ {source_name}から無効な{dropped_rows}行を除外しました")
+    print(f"✓ {source_name}を使用: {len(normalized)}有効行")
     return normalized
 
 
 def build_effect_frame(df: pd.DataFrame) -> pd.DataFrame:
-    """Calculate percentage changes from modern or legacy visibility data."""
+    """対象ごとに直前観測との変化率を計算する。"""
     normalized = _normalize_source(df)
 
-    pivot_df = (
-        normalized.pivot_table(
-            index="timestamp",
-            columns="keyword",
-            values="value",
-            aggfunc="last",
-        )
-        .sort_index()
+    # 対象ごとに時系列を独立させ、観測時刻がずれても直前値を失わない。
+    normalized = (
+        normalized.sort_values(["keyword", "timestamp"])
+        .drop_duplicates(["keyword", "timestamp"], keep="last")
+        .reset_index(drop=True)
     )
-
-    previous = pivot_df.shift(1).replace(0, np.nan)
-    return (
-        pivot_df.diff()
-        .div(previous)
+    normalized["effect"] = (
+        normalized.groupby("keyword", sort=False)["value"]
+        .pct_change(fill_method=None)
         .mul(100)
         .replace([np.inf, -np.inf], np.nan)
         .fillna(0.0)
     )
 
+    # 同一収集回の対象は同じ行へ揃える。過去のずれた観測は空欄を保持する。
+    return (
+        normalized.pivot_table(
+            index="timestamp",
+            columns="keyword",
+            values="effect",
+            aggfunc="last",
+        )
+        .sort_index()
+    )
+
 
 def select_input_file() -> Path:
-    """Prefer isolated modern metrics and fall back to historical legacy data."""
+    """人物別メトリクスを優先し、未作成なら旧版履歴へ戻す。"""
     for path in (MODERN_INPUT_FILE, LEGACY_INPUT_FILE):
         if path.exists() and path.stat().st_size > 0:
             return path
     raise FileNotFoundError(
-        "No visibility data found. Run the visibility tracker before Effect Analyzer."
+        "可視性データがありません。先にVisibility Trackerを実行してください。"
     )
 
 
 def main() -> None:
+    """Effectログとグラフを生成する。"""
     input_file = select_input_file()
     effect_df = build_effect_frame(pd.read_csv(input_file))
     effect_df.to_csv(OUTPUT_LOG, encoding="utf-8")
 
     plt.figure(figsize=(10, 6))
     for keyword in effect_df.columns:
-        plt.plot(effect_df.index, effect_df[keyword], marker="o", label=keyword)
+        series = effect_df[keyword].dropna()
+        if not series.empty:
+            plt.plot(series.index, series, marker="o", label=keyword)
 
     plt.title("AIEO Effect Analyzer (Visibility Change Rate)", fontsize=14)
     plt.xlabel("Timestamp")
@@ -112,7 +121,7 @@ def main() -> None:
     plt.tight_layout()
     plt.savefig(CHART_FILE)
     plt.close()
-    print(f"✅ Chart saved as {CHART_FILE} from {input_file}")
+    print(f"✅ {input_file}から{CHART_FILE}を生成しました")
 
 
 if __name__ == "__main__":

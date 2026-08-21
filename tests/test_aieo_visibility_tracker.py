@@ -46,7 +46,20 @@ def test_visibility_metrics_reject_an_incompatible_existing_header(
     metrics_path.write_text("timestamp,keyword,totalResults\n", encoding="utf-8")
     monkeypatch.setattr(tracker_module, "VISIBILITY_LOG", metrics_path)
 
-    with pytest.raises(ValueError, match="incompatible header"):
+    with pytest.raises(ValueError, match="ヘッダーが不正"):
         tracker_module.save_visibility_log(
             [sample_metrics("2026-08-20T00:00:00Z", 33.5)]
         )
+
+
+def test_track_person_uses_the_shared_collection_timestamp(monkeypatch):
+    tracker = tracker_module.VisibilityTracker()
+    monkeypatch.setattr(tracker, "fetch_github_user", lambda _: {})
+    monkeypatch.setattr(tracker, "search_google", lambda *args, **kwargs: {"results": 0})
+
+    observed_at = "2026-08-20T00:00:00Z"
+    first = tracker.track_person("A", {}, observed_at=observed_at)
+    second = tracker.track_person("B", {}, observed_at=observed_at)
+
+    assert first["timestamp"] == observed_at
+    assert second["timestamp"] == observed_at

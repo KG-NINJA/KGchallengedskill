@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: aieo-repository-writes
+  group: aieo-wave-resonance
   cancel-in-progress: false
 
 jobs:

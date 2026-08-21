@@ -7,10 +7,14 @@ on:
       - "scripts/aieo_effect_compose.py"
       - "scripts/aieo_composite_tracker.py"
       - "scripts/resonance_indexer.py"
+      - "scripts/aieo_memory_engine.py"
       - "config/users_to_track.json"
       - "tests/test_aieo_visibility_tracker.py"
       - "tests/test_aieo_effect_compose.py"
       - "tests/test_aieo_composite_tracker.py"
+      - "tests/test_aieo_memory_engine.py"
+      - "tests/test_aieo_workflow_concurrency.py"
+      - ".github/workflows/AIEO_PULSE.yml"
       - ".github/workflows/AIEO_VISIBILITY_PULSE.yml"
       - ".github/workflows/AIEO_EFFECT_ANALYZER.yml"
       - ".github/workflows/AIEO_WAVE_RESONANCE.yml"
@@ -25,10 +29,14 @@ on:
       - "scripts/aieo_effect_compose.py"
       - "scripts/aieo_composite_tracker.py"
       - "scripts/resonance_indexer.py"
+      - "scripts/aieo_memory_engine.py"
       - "config/users_to_track.json"
       - "tests/test_aieo_visibility_tracker.py"
       - "tests/test_aieo_effect_compose.py"
       - "tests/test_aieo_composite_tracker.py"
+      - "tests/test_aieo_memory_engine.py"
+      - "tests/test_aieo_workflow_concurrency.py"
+      - ".github/workflows/AIEO_PULSE.yml"
       - ".github/workflows/AIEO_VISIBILITY_PULSE.yml"
       - ".github/workflows/AIEO_EFFECT_ANALYZER.yml"
       - ".github/workflows/AIEO_WAVE_RESONANCE.yml"
@@ -69,16 +77,38 @@ jobs:
           python -m pytest \
             tests/test_aieo_visibility_tracker.py \
             tests/test_aieo_effect_compose.py \
-            tests/test_aieo_composite_tracker.py
+            tests/test_aieo_composite_tracker.py \
+            tests/test_aieo_memory_engine.py \
+            tests/test_aieo_workflow_concurrency.py
 
       - name: Smoke-test current historical data
         run: |
+          rm -f aieo_visibility_metrics.csv
           python scripts/aieo_effect_compose.py
           python scripts/aieo_composite_tracker.py
           test -s aieo_effect_log.csv
           test -s aieo_effect_chart.png
           test -s aieo_resonance_log.csv
           test -s aieo_resonance_chart.png
+
+      - name: Smoke-test isolated metrics through memory
+        run: |
+          cat > aieo_visibility_metrics.csv <<'CSV'
+          timestamp,name,github_followers,github_repos,web_mentions,domain_mentions,visibility_score
+          2026-08-20T00:00:00Z,KGNINJA,4,59,100,8,30.0
+          2026-08-20T00:00:00Z,SECOND,2,10,20,1,10.0
+          2026-08-20T06:00:00Z,KGNINJA,5,60,150,10,35.0
+          2026-08-20T06:00:00Z,SECOND,3,11,30,2,12.0
+          CSV
+          python scripts/aieo_effect_compose.py
+          python scripts/aieo_composite_tracker.py
+          python scripts/resonance_indexer.py
+          python scripts/aieo_memory_engine.py
+          test -s resonance_report.json
+          test -s resonance_snapshot.png
+          test -s aieo_memory.json
+          test -s AIEO_MEMORY_STATE.md
+          test -s aieo_prompt_context.txt
 
       - name: Write check summary
         if: always()

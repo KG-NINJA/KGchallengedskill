@@ -1,16 +1,16 @@
-# 定期的にAIEOの可視性と共鳴を更新するワークフロー
+# 定期的にAIEOの可視性、共鳴、メモリを更新するワークフロー
 name: AIEO Memory Update
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "30 */6 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: aieo-repository-writes
+  group: aieo-memory-update
   cancel-in-progress: false
 
 jobs:
@@ -44,16 +44,25 @@ jobs:
       - name: レゾナンスインデクサーを実行
         run: python scripts/resonance_indexer.py
 
+      - name: メモリエンジンを実行
+        run: python scripts/aieo_memory_engine.py
+
       - name: 変更をcommitしてpush
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add aieo_visibility_metrics.csv resonance_snapshot.png resonance_report.json
+          git add \
+            aieo_visibility_metrics.csv \
+            resonance_snapshot.png \
+            resonance_report.json \
+            aieo_memory.json \
+            AIEO_MEMORY_STATE.md \
+            aieo_prompt_context.txt
 
           if git diff --cached --quiet; then
             echo "変更なし"
           else
-            git commit -m "chore: update AIEO memory snapshots - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+            git commit -m "chore: update AIEO memory assets - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
             git fetch origin main
             git rebase origin/main
             git push origin HEAD:main

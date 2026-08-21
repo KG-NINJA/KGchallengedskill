@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""AIEO visibility metrics collector.
+"""AIEOの人物別可視性メトリクスを収集する。
 
-The repository also contains a legacy ``visibility_log.csv`` with a different
-schema. Modern person-level metrics are deliberately stored in
-``aieo_visibility_metrics.csv`` so the two formats cannot corrupt each other.
+リポジトリには別スキーマの旧版 ``visibility_log.csv`` も存在する。
+人物別メトリクスは ``aieo_visibility_metrics.csv`` に分離し、
+異なる形式のデータが同じCSVへ混入しないようにする。
 """
 
 import csv
@@ -35,11 +35,12 @@ METRIC_FIELDS = [
 
 
 def utc_now_iso() -> str:
+    """現在のUTC時刻をISO 8601形式で返す。"""
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
 
 class VisibilityTracker:
-    """Collect public GitHub and search visibility metrics."""
+    """GitHub公開情報と検索結果から可視性メトリクスを収集する。"""
 
     def __init__(self) -> None:
         self.google_api_key = GOOGLE_API_KEY
@@ -48,8 +49,9 @@ class VisibilityTracker:
         self.session.headers.update({"User-Agent": "AIEO-Visibility-Tracker/1.0"})
 
     def search_google(self, query: str, num_results: int = 10) -> Dict:
+        """Google Custom Searchから検索結果数を取得する。"""
         if not self.google_api_key or not self.google_cx:
-            print("⚠ Google API キーが設定されていません")
+            print("⚠ Google APIキーが設定されていません")
             return {"results": 0}
 
         try:
@@ -72,10 +74,11 @@ class VisibilityTracker:
             )
             return {"results": total_results}
         except Exception as exc:
-            print(f"⚠ Google Search エラー: {exc}")
+            print(f"⚠ Google Searchエラー: {exc}")
             return {"results": 0}
 
     def fetch_github_user(self, username: str) -> Dict:
+        """GitHubユーザーの公開統計を取得する。"""
         try:
             response = self.session.get(
                 f"https://api.github.com/users/{username}", timeout=10
@@ -87,9 +90,9 @@ class VisibilityTracker:
                     "followers": data.get("followers", 0),
                     "public_gists": data.get("public_gists", 0),
                 }
-            print(f"⚠ GitHub API returned HTTP {response.status_code}")
+            print(f"⚠ GitHub APIがHTTP {response.status_code}を返しました")
         except Exception as exc:
-            print(f"⚠ GitHub API エラー: {exc}")
+            print(f"⚠ GitHub APIエラー: {exc}")
         return {}
 
     @staticmethod
@@ -99,6 +102,7 @@ class VisibilityTracker:
         web_mentions: int,
         domain_mentions: int,
     ) -> float:
+        """各公開指標を0〜100の可視性スコアへ集約する。"""
         score = min((github_repos * 0.5) + github_followers, 50)
         if web_mentions > 0:
             score += min(math.log(web_mentions + 1) / math.log(10000), 1.0) * 30
@@ -106,11 +110,14 @@ class VisibilityTracker:
             score += min(math.log(domain_mentions + 1) / math.log(1000), 1.0) * 20
         return min(score, 100.0)
 
-    def track_person(self, name: str, features: Dict) -> Dict:
+    def track_person(
+        self, name: str, features: Dict, observed_at: str | None = None
+    ) -> Dict:
+        """1人分のメトリクスを共通観測時刻で収集する。"""
         print(f"\n📊 {name} を計測中...")
         metrics = {
             "name": name,
-            "timestamp": utc_now_iso(),
+            "timestamp": observed_at or utc_now_iso(),
             "github_followers": 0,
             "github_repos": 0,
             "web_mentions": 0,
@@ -140,6 +147,7 @@ class VisibilityTracker:
         return metrics
 
     def _count_domain_mentions(self, name: str) -> int:
+        """主要ドメインでの検索結果数を合計する。"""
         total = 0
         for domain in ("github.com", "medium.com", "dev.to", "stackoverflow.com"):
             result = self.search_google(f'"{name}" site:{domain}', num_results=1)
@@ -148,6 +156,7 @@ class VisibilityTracker:
 
 
 def load_users_config() -> List[Dict]:
+    """追跡対象の設定を読み込む。"""
     if not CONFIG_FILE.exists():
         print(f"⚠ {CONFIG_FILE} が見つかりません")
         return []
@@ -161,18 +170,19 @@ def load_users_config() -> List[Dict]:
 
 
 def _validate_existing_header(path: Path) -> None:
+    """既存CSVが専用スキーマと一致することを確認する。"""
     if not path.exists() or path.stat().st_size == 0:
         return
     with path.open("r", encoding="utf-8", newline="") as file:
         header = next(csv.reader(file), [])
     if header != METRIC_FIELDS:
         raise ValueError(
-            f"{path} has an incompatible header: {header}; expected {METRIC_FIELDS}"
+            f"{path} のヘッダーが不正です: {header}; 期待値: {METRIC_FIELDS}"
         )
 
 
 def save_visibility_log(metrics_list: List[Dict]) -> None:
-    """Append modern metrics without touching the legacy visibility CSV."""
+    """旧版CSVへ触れず、人物別メトリクスだけを追記する。"""
     if not metrics_list:
         print("⚠ 保存する可視性データがありません")
         return
@@ -192,9 +202,11 @@ def save_visibility_log(metrics_list: List[Dict]) -> None:
 
 
 def main() -> None:
+    """設定された全対象を同一観測時刻で計測する。"""
     print("=" * 60)
     print("AIEO Visibility Tracker")
-    print(f"Started at: {utc_now_iso()}")
+    collection_timestamp = utc_now_iso()
+    print(f"Started at: {collection_timestamp}")
     print("=" * 60)
 
     users = load_users_config()
@@ -203,7 +215,10 @@ def main() -> None:
 
     tracker = VisibilityTracker()
     all_metrics = [
-        tracker.track_person(user.get("name", "Unknown"), user) for user in users
+        tracker.track_person(
+            user.get("name", "Unknown"), user, observed_at=collection_timestamp
+        )
+        for user in users
     ]
     save_visibility_log(all_metrics)
 
