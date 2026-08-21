@@ -1,10 +1,2 @@
-file,rows,columns,timestamp
-resonance_log.csv,4,3,2026-08-21T01:11:56.993873
-resonance_data.csv,1253,2,2026-08-21T01:11:56.993873
-aieo_effect_log.csv,9,4,2026-08-21T01:11:56.993873
-aieo_resonance_log.csv,1563,2,2026-08-21T01:11:56.993873
-aieo_composite_log.csv,2,4,2026-08-21T01:11:56.993873
-aieo_effect_log.csv,9,4,2026-08-21T01:11:56.993873
-resonance_log.csv,4,3,2026-08-21T01:11:56.993873
-aieo_resonance_log.csv,1563,2,2026-08-21T01:11:56.993873
-resonance_data.csv,1253,2,2026-08-21T01:11:56.993873
+timestamp,KGNINJA
+2026-08-21 06:22:23.709945,0.0
