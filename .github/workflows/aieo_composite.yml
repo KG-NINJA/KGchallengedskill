@@ -1,62 +1,16 @@
-name: AIEO Effect Analyzer
-# 🚫 Disabled workflows placeholder
+name: Archived - Legacy AIEO Composite
 
-
-# 目的：
-# - 旧ワークフローを一時保管
-# - 再有効化時は disabled を削除して運用再開可能
-
-# on:
-#   schedule:
-#     - cron: '0 0 * * *'
-#   workflow_dispatch:
-# jobs:
-#   placeholder:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - run: echo "Disabled Autonomous Actions Archive"
 on:
-  workflow_dispatch:   # 手動実行対応
-  schedule:
-    - cron: '0 0 * * *'  # 毎日UTC 0時に自動実行（日本時間9時）
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  analyze:
+  archived:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0   # rebaseに必要な全履歴を取得
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install dependencies
+      - name: Explain archive status
         run: |
-          pip install pandas matplotlib
-
-      - name: Run AIEO Effect Composite
-        run: |
-          python scripts/aieo_effect_composite.py
-
-      - name: Commit & Push AIEO Effect Chart (safe rebase)
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # 最新mainを取得してrebase（安全方式）
-          git fetch origin main
-          git pull origin main --rebase || true
-          
-          # 更新対象ファイルを追加
-          git add aieo_effect_chart.png aieo_effect_log.csv
-          
-          # 変更がある場合のみコミット（ない場合はスルー）
-          git diff --cached --quiet || git commit -m "🔁 Updated AIEO Effect (Visibility × Resonance)" || true
-          
-          # mainへ安全にpush（衝突や変更なしでも継続）
-          git push origin main || true
+          echo "This legacy workflow is archived."
+          echo "Use the AIEO Master Pipeline for Effect and Resonance generation."

@@ -1,50 +1,16 @@
-name: AIEO Effect Analyzer
-# 🚫 Disabled workflows placeholder
-
-
-# 目的：
-# - 旧ワークフローを一時保管
-# - 再有効化時は disabled を削除して運用再開可能
-
-# on:
-#   schedule:
-#     - cron: '0 0 * * *'
-#   workflow_dispatch:
-# jobs:
-#   placeholder:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - run: echo "Disabled Autonomous Actions Archive"
+name: Archived - Legacy AIEO Effect Analyzer
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *'  # 毎日UTC 0時に実行
+
+permissions:
+  contents: read
 
 jobs:
-  analyze:
+  archived:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install dependencies
+      - name: Explain archive status
         run: |
-          pip install pandas matplotlib
-
-      - name: Run AIEO Effect Composite
-        run: |
-          python scripts/aieo_effect_composite.py
-
-      - name: Commit & Push AIEO Effect Chart
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add aieo_effect_chart.png aieo_effect_log.csv
-          git commit -m "🔁 Updated AIEO Effect (Visibility × Resonance)"
-          git push
+          echo "This legacy workflow is archived."
+          echo "Use AIEO Effect Analyzer 📈 or the AIEO Master Pipeline instead."

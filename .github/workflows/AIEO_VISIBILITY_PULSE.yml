@@ -19,13 +19,13 @@ jobs:
 
     steps:
       - name: 📥 Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: 🐍 Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.11"
           cache: pip
@@ -35,33 +35,36 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install pandas matplotlib requests feedparser
 
-      - name: 🔍 Run AIEO Visibility Tracker
+      - name: 🔍 Collect isolated visibility metrics
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
-        run: |
-          echo "📊 Starting visibility tracking..."
-          python scripts/aieo_visibility_tracker.py
+        run: python scripts/aieo_visibility_tracker.py
 
-      - name: 📈 Run Enhanced Visibility Analysis
+      - name: 📈 Analyze historical legacy search data
         run: |
-          echo "🔍 Running enhanced analysis..."
-          python scripts/enhanced_visibility_analyzer.py
+          if [ -s visibility_log.csv ]; then
+            python scripts/enhanced_visibility_analyzer.py
+          else
+            echo "Legacy visibility history is absent; skipping legacy chart."
+          fi
 
       - name: 📊 Commit and push results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add visibility_log.csv || true
-          git add visibility_chart.png || true
-          git add visibility_growth_rate.png || true
-          git add visibility_detailed_analysis.png || true
+          git add aieo_visibility_metrics.csv
+          for path in visibility_chart.png visibility_growth_rate.png visibility_detailed_analysis.png; do
+            if [ -e "$path" ]; then
+              git add "$path"
+            fi
+          done
 
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "📡 Updated AIEO Visibility Pulse - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+            git commit -m "📡 Updated isolated AIEO visibility metrics - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
             git fetch origin main
             git rebase origin/main
             git push origin HEAD:main

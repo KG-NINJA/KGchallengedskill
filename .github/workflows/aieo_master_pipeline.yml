@@ -6,11 +6,11 @@ permissions:
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 13 * * *"  # JST22時
+    - cron: "0 13 * * *" # JST 22:00
 
 concurrency:
-  group: aieo_master_pipeline
-  cancel-in-progress: true
+  group: aieo-repository-writes
+  cancel-in-progress: false
 
 jobs:
   visibility:
@@ -18,27 +18,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
-      
+
       - name: Install dependencies
-        run: pip install pandas matplotlib requests
-      
+        run: python -m pip install pandas matplotlib requests
+
       - name: Run Visibility Tracker
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
         run: python scripts/aieo_visibility_tracker.py
-      
-      - name: Commit & Push visibility results
+
+      - name: Commit and push visibility metrics
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add visibility_log.csv visibility_chart.png visibility_growth_rate.png || true
-          git diff --staged --quiet || git commit -m "🌐 Updated AIEO Visibility Pulse [skip ci]"
-          git push
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add aieo_visibility_metrics.csv
+
+          if git diff --cached --quiet; then
+            echo "No visibility changes to commit"
+          else
+            git commit -m "🌐 Updated AIEO visibility metrics [skip ci]"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
 
   effect:
     name: 🎯 Effect Analyzer
@@ -46,28 +53,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: main
-      
-      - name: Pull latest changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull origin main
-      
+          fetch-depth: 0
+
+      - name: Pull latest visibility metrics
+        run: git pull --ff-only origin main
+
       - name: Install dependencies
-        run: pip install pandas matplotlib
-      
+        run: python -m pip install pandas matplotlib numpy
+
       - name: Run Effect Analyzer
         run: python scripts/aieo_effect_compose.py
-      
-      - name: Commit & Push effect results
+
+      - name: Commit and push effect results
         run: |
-          git add aieo_effect_chart.png aieo_effect_log.csv || true
-          git diff --staged --quiet || git commit -m "🎯 Updated AIEO Effect Analyzer [skip ci]"
-          git push
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add aieo_effect_chart.png aieo_effect_log.csv
+
+          if git diff --cached --quiet; then
+            echo "No effect changes to commit"
+          else
+            git commit -m "🎯 Updated AIEO Effect Analyzer [skip ci]"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
 
   resonance:
     name: 🎵 Resonance Composite
@@ -75,28 +89,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: main
-      
-      - name: Pull latest changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull origin main
-      
+          fetch-depth: 0
+
+      - name: Pull latest effect results
+        run: git pull --ff-only origin main
+
       - name: Install dependencies
-        run: pip install pandas matplotlib
-      
+        run: python -m pip install pandas matplotlib numpy
+
       - name: Run Resonance Composite
         run: python scripts/aieo_composite_tracker.py
-      
-      - name: Commit & Push resonance results
+
+      - name: Commit and push resonance results
         run: |
-          git add aieo_resonance_chart.png aieo_resonance_log.csv || true
-          git diff --staged --quiet || git commit -m "🎵 Updated AIEO Resonance Composite [skip ci]"
-          git push
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add aieo_resonance_chart.png aieo_resonance_log.csv
+
+          if git diff --cached --quiet; then
+            echo "No resonance changes to commit"
+          else
+            git commit -m "🎵 Updated AIEO Resonance Composite [skip ci]"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
 
   x_harvest:
     name: 🐦 X Keyword Harvest
@@ -104,30 +125,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: main
           fetch-depth: 0
-      
-      - name: Pull latest changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull origin main
-      
+
+      - name: Pull latest resonance results
+        run: git pull --ff-only origin main
+
       - name: Install dependencies
-        run: pip install feedparser
-      
+        run: python -m pip install feedparser
+
       - name: Run X Keyword Harvester
         run: python scripts/aieo_x_keyword_harvester.py
         continue-on-error: true
-      
-      - name: Commit & Push harvest results
+
+      - name: Commit and push harvest results
         run: |
-          git add x_harvested_keywords.json x_posts_cache.json x_harvest_errors.log || true
-          git diff --staged --quiet || git commit -m "🐦 Harvested keywords from X [skip ci]"
-          git push || echo "No changes to push"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for path in x_harvested_keywords.json x_posts_cache.json x_harvest_errors.log; do
+            if [ -e "$path" ]; then
+              git add "$path"
+            fi
+          done
+
+          if git diff --cached --quiet; then
+            echo "No harvest changes to commit"
+          else
+            git commit -m "🐦 Harvested keywords from X [skip ci]"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
 
   memory:
     name: 🧠 Memory Update
@@ -135,29 +166,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: main
-      
-      - name: Pull latest changes (including all previous results)
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull origin main
-      
+          fetch-depth: 0
+
+      - name: Pull latest pipeline results
+        run: git pull --ff-only origin main
+
       - name: Install dependencies
-        run: pip install pandas
-      
+        run: python -m pip install pandas
+
       - name: Run AIEO Memory Engine
         run: python scripts/aieo_memory_engine.py
-      
-      - name: Commit & Push memory update
+
+      - name: Commit and push memory update
         run: |
-          git add aieo_memory.json AIEO_MEMORY_STATE.md aieo_prompt_context.txt || true
-          git diff --staged --quiet || git commit -m "🧠 Updated AIEO Memory [skip ci]"
-          git push
-      
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add aieo_memory.json AIEO_MEMORY_STATE.md aieo_prompt_context.txt
+
+          if git diff --cached --quiet; then
+            echo "No memory changes to commit"
+          else
+            git commit -m "🧠 Updated AIEO Memory [skip ci]"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
+
       - name: Display Memory Summary
         run: |
           echo "======================================"

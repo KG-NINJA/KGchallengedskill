@@ -1,41 +1,60 @@
-name: AIEO Effect Analyzer Checks
+name: AIEO Pipeline Checks
 
 on:
   pull_request:
     paths:
+      - "scripts/aieo_visibility_tracker.py"
       - "scripts/aieo_effect_compose.py"
+      - "scripts/aieo_composite_tracker.py"
+      - "scripts/resonance_indexer.py"
+      - "config/users_to_track.json"
+      - "tests/test_aieo_visibility_tracker.py"
       - "tests/test_aieo_effect_compose.py"
-      - "visibility_log.csv"
-      - ".github/workflows/aieo_effect_checks.yml"
+      - "tests/test_aieo_composite_tracker.py"
+      - ".github/workflows/AIEO_VISIBILITY_PULSE.yml"
+      - ".github/workflows/AIEO_EFFECT_ANALYZER.yml"
+      - ".github/workflows/AIEO_WAVE_RESONANCE.yml"
+      - ".github/workflows/aieo-memory-update.yml"
       - ".github/workflows/aieo_master_pipeline.yml"
+      - ".github/workflows/aieo_effect_checks.yml"
   push:
     branches:
       - main
     paths:
+      - "scripts/aieo_visibility_tracker.py"
       - "scripts/aieo_effect_compose.py"
+      - "scripts/aieo_composite_tracker.py"
+      - "scripts/resonance_indexer.py"
+      - "config/users_to_track.json"
+      - "tests/test_aieo_visibility_tracker.py"
       - "tests/test_aieo_effect_compose.py"
-      - ".github/workflows/aieo_effect_checks.yml"
+      - "tests/test_aieo_composite_tracker.py"
+      - ".github/workflows/AIEO_VISIBILITY_PULSE.yml"
+      - ".github/workflows/AIEO_EFFECT_ANALYZER.yml"
+      - ".github/workflows/AIEO_WAVE_RESONANCE.yml"
+      - ".github/workflows/aieo-memory-update.yml"
       - ".github/workflows/aieo_master_pipeline.yml"
+      - ".github/workflows/aieo_effect_checks.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: aieo-effect-checks-${{ github.ref }}
+  group: aieo-pipeline-checks-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  effect-checks:
+  pipeline-checks:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: pip
@@ -43,24 +62,31 @@ jobs:
       - name: Install test dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install pandas matplotlib pytest
+          python -m pip install pandas matplotlib numpy requests pytest
 
       - name: Run regression tests
-        run: python -m pytest tests/test_aieo_effect_compose.py
+        run: |
+          python -m pytest \
+            tests/test_aieo_visibility_tracker.py \
+            tests/test_aieo_effect_compose.py \
+            tests/test_aieo_composite_tracker.py
 
-      - name: Smoke-test current visibility history
+      - name: Smoke-test current historical data
         run: |
           python scripts/aieo_effect_compose.py
+          python scripts/aieo_composite_tracker.py
           test -s aieo_effect_log.csv
           test -s aieo_effect_chart.png
+          test -s aieo_resonance_log.csv
+          test -s aieo_resonance_chart.png
 
       - name: Write check summary
         if: always()
         run: |
           {
-            echo "## AIEO Effect Analyzer"
+            echo "## AIEO Pipeline Checks"
             echo ""
-            echo "- Event: `${{ github.event_name }}`"
-            echo "- Commit: `${{ github.sha }}`"
-            echo "- Result: `${{ job.status }}`"
+            echo "- Event: ${{ github.event_name }}"
+            echo "- Commit: ${{ github.sha }}"
+            echo "- Result: ${{ job.status }}"
           } >> "$GITHUB_STEP_SUMMARY"

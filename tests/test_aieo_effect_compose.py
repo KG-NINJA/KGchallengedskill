@@ -5,7 +5,7 @@ import pytest
 from scripts.aieo_effect_compose import build_effect_frame
 
 
-def test_build_effect_frame_accepts_mixed_timestamps_and_duplicates():
+def test_build_effect_frame_accepts_mixed_legacy_timestamps_and_duplicates():
     source = pd.DataFrame(
         {
             "timestamp": [
@@ -28,6 +28,26 @@ def test_build_effect_frame_accepts_mixed_timestamps_and_duplicates():
     assert np.isfinite(effect.to_numpy()).all()
 
 
-def test_build_effect_frame_rejects_missing_required_columns():
-    with pytest.raises(ValueError, match="missing columns"):
+def test_build_effect_frame_accepts_isolated_modern_metrics():
+    source = pd.DataFrame(
+        {
+            "timestamp": [
+                "2026-08-20T00:00:00Z",
+                "2026-08-20T06:00:00+00:00",
+                "2026-08-20 12:00:00",
+            ],
+            "name": ["KGNINJA", "KGNINJA", "KGNINJA"],
+            "visibility_score": [10.0, 12.0, 9.0],
+        }
+    )
+
+    effect = build_effect_frame(source)
+
+    assert effect.iloc[1]["KGNINJA"] == pytest.approx(20.0)
+    assert effect.iloc[2]["KGNINJA"] == pytest.approx(-25.0)
+    assert np.isfinite(effect.to_numpy()).all()
+
+
+def test_build_effect_frame_rejects_unknown_schema():
+    with pytest.raises(ValueError, match="both supported schemas"):
         build_effect_frame(pd.DataFrame({"timestamp": ["2025-10-17"]}))
