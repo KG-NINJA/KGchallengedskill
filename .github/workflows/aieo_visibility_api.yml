@@ -1,109 +1,19 @@
-name: 🌐 AIEO Visibility Tracker (Google Custom Search API)
-# 🚫 Disabled workflows placeholder
+name: "Archived: AIEO Visibility Tracker (legacy Google API)"
 
-# 目的：
-# - 旧ワークフローを一時保管
-# - 再有効化時は disabled を削除して運用再開可能
-
-# on:
-#   schedule:
-#     - cron: '0 0 * * *'
-#   workflow_dispatch:
-# jobs:
-#   placeholder:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - run: echo "Disabled Autonomous Actions Archive"
-
+# 旧Google Custom Search API版。
+# APIエラーを検索結果0として履歴へ保存していたため、
+# 自動実行とデータ書き込みを停止している。
 on:
-  schedule:
-    - cron: '30 9 * * *'  # UTC9:30 = 日本時間18:30に自動実行
-  workflow_dispatch:      # 手動実行も可
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  visibility:
+  archived:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install dependencies
+      - name: Archive notice
         run: |
-          pip install google-api-python-client matplotlib
-
-      - name: Run Visibility Tracker (Google API)
-        env:
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-          GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
-        run: |
-          cat > visibility_tracker.py <<'PYCODE'
-          from googleapiclient.discovery import build
-          from datetime import datetime
-          import json, os, matplotlib.pyplot as plt
-
-          # --- AIEO キーワード群（ここを自由に追加） ---
-          keywords = [
-              "KGNINJA AI", "KGNINJA Psycho-Frame", "KGNINJA FuwaCoco",
-              "KGNINJA Kaggle", "KGNINJA n8n", "KGNINJA OpenAI"
-          ]
-
-          # --- Google Custom Search API セットアップ ---
-          service = build("customsearch", "v1", developerKey=os.environ["GOOGLE_API_KEY"])
-          cx = os.environ["GOOGLE_CX"]
-
-          # --- データ取得 ---
-          data = {}
-          for kw in keywords:
-              try:
-                  res = service.cse().list(q=kw, cx=cx).execute()
-                  total = int(res["searchInformation"]["totalResults"])
-                  # 正規化スコア（最大10万件→100スコア）
-                  score = min(100, total / 1000)
-                  data[kw] = round(score, 2)
-              except Exception as e:
-                  data[kw] = 0
-                  print(f"⚠️ {kw} failed: {e}")
-
-          # --- ログ保存 ---
-          timestamp = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-          record = {"timestamp": timestamp, "scores": data}
-
-          hist_path = "visibility_log.json"
-          history = []
-          if os.path.exists(hist_path):
-              with open(hist_path) as f:
-                  history = json.load(f)
-          history.append(record)
-          with open(hist_path, "w") as f:
-              json.dump(history, f, indent=2, ensure_ascii=False)
-
-          # --- 可視化グラフ作成 ---
-          plt.figure(figsize=(10, 5))
-          for kw in keywords:
-              plt.plot([h["timestamp"] for h in history],
-                      [h["scores"].get(kw, 0) for h in history],
-                      marker='o', label=kw)
-          plt.xticks(rotation=45)
-          plt.title("AIEO Visibility Index (Google Custom Search API)")
-          plt.xlabel("Timestamp (UTC)")
-          plt.ylabel("Visibility Index (0–100)")
-          plt.legend()
-          plt.tight_layout()
-          plt.savefig("visibility_chart.png")
-          PYCODE
-
-          python3 visibility_tracker.py
-
-      - name: Commit and push results
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add visibility_chart.png visibility_log.json
-          git commit -m "📊 Updated AIEO Visibility Index via Google API" || echo "No changes to commit"
-          git push
+          echo "This legacy Google API workflow is archived."
+          echo "Use AIEO_VISIBILITY_PULSE.yml and scripts/aieo_visibility_tracker.py instead."
