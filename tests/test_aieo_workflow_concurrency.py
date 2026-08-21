@@ -23,3 +23,16 @@ def test_scheduled_repository_writers_do_not_share_one_concurrency_queue():
 
     assert len(set(found_groups.values())) == len(found_groups)
     assert "aieo-repository-writes" not in found_groups.values()
+
+
+def test_visibility_and_memory_writers_are_staggered_and_complete():
+    visibility = Path(".github/workflows/AIEO_VISIBILITY_PULSE.yml").read_text(
+        encoding="utf-8"
+    )
+    memory = Path(".github/workflows/aieo-memory-update.yml").read_text(
+        encoding="utf-8"
+    )
+
+    assert 'cron: "0 */6 * * *"' in visibility
+    assert 'cron: "30 */6 * * *"' in memory
+    assert "python scripts/aieo_memory_engine.py" in memory
