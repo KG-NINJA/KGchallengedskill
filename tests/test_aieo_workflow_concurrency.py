@@ -10,6 +10,11 @@ WORKFLOW_GROUPS = {
     ".github/workflows/aieo_master_pipeline.yml": "aieo-master-pipeline",
 }
 
+ARCHIVED_VISIBILITY_WORKFLOWS = (
+    ".github/workflows/aieo_visibility.yml",
+    ".github/workflows/aieo_visibility_api.yml",
+)
+
 
 def test_scheduled_repository_writers_do_not_share_one_concurrency_queue():
     found_groups = {}
@@ -36,3 +41,15 @@ def test_visibility_and_memory_writers_are_staggered_and_complete():
     assert 'cron: "0 */6 * * *"' in visibility
     assert 'cron: "30 */6 * * *"' in memory
     assert "python scripts/aieo_memory_engine.py" in memory
+
+
+def test_false_zero_legacy_visibility_workflows_are_archived():
+    for workflow_path in ARCHIVED_VISIBILITY_WORKFLOWS:
+        content = Path(workflow_path).read_text(encoding="utf-8")
+
+        assert "workflow_dispatch:" in content
+        assert "schedule:" not in content
+        assert "workflow_run:" not in content
+        assert "visibility_log.json" not in content
+        assert "git push" not in content
+        assert "permissions:\n  contents: read" in content
