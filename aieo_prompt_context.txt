@@ -12,10 +12,13 @@
 **Category:** visibility_status  
 **Confidence:** 95.0%  
 **Attributes:**
-  - kgninja_ai_results: 0
-  - growth_stage: Initial visibility establishment phase
-  - tracked_keywords: KGNNJA
-  - visibility_score: 0.0
+  - source: aieo_visibility_metrics.csv
+  - metric_type: visibility_score
+  - primary_entity: KGNINJA
+  - primary_value: 50.0
+  - growth_stage: Established presence - sustained visibility
+  - tracked_entities: KGNINJA
+  - visibility_score: 50.0
 
 ### Kg Project Taxonomy
 **Category:** creation_pattern  
@@ -36,6 +39,6 @@
   - philosophy: PsychoFrame, resonance_over_noise, execution_over_discussion
 
 ## Memory Metadata
-- Total interactions: 13
-- Memory confidence: 63.0%
-- Last update: 2026-08-20T14:39:53.142968
+- Total interactions: 14
+- Memory confidence: 64.0%
+- Last update: 2026-08-21T07:15:56.600763

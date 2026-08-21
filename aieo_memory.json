@@ -11,15 +11,18 @@
       "concept_id": "kg_digital_presence",
       "category": "visibility_status",
       "attributes": {
-        "kgninja_ai_results": 0,
-        "growth_stage": "Initial visibility establishment phase",
-        "tracked_keywords": [
-          "KGNNJA"
+        "source": "aieo_visibility_metrics.csv",
+        "metric_type": "visibility_score",
+        "primary_entity": "KGNINJA",
+        "primary_value": 50.0,
+        "growth_stage": "Established presence - sustained visibility",
+        "tracked_entities": [
+          "KGNINJA"
         ],
-        "visibility_score": 0.0
+        "visibility_score": 50.0
       },
       "confidence": 0.95,
-      "last_updated": "2026-08-20T14:39:53.142978"
+      "last_updated": "2026-08-21T07:15:56.600771"
     },
     {
       "concept_id": "kg_project_taxonomy",
@@ -161,11 +164,17 @@
       "event_type": "visibility_pulse",
       "context": "Daily visibility tracking completed",
       "insight": "Initial visibility establishment phase"
+    },
+    {
+      "timestamp": "2026-08-21T07:15:56.600754",
+      "event_type": "visibility_pulse",
+      "context": "Visibility tracking completed from aieo_visibility_metrics.csv",
+      "insight": "Established presence - sustained visibility"
     }
   ],
   "meta": {
-    "total_interactions": 13,
-    "memory_confidence": 0.63,
-    "last_memory_update": "2026-08-20T14:39:53.142968"
+    "total_interactions": 14,
+    "memory_confidence": 0.64,
+    "last_memory_update": "2026-08-21T07:15:56.600763"
   }
 }
