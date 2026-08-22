@@ -35,44 +35,34 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install pandas matplotlib
 
-      - name: 最新の正常な可視性データを検証
+      - name: 可視性観測の新規性を検証
+        id: freshness
+        # 同じ観測を6時間ごとに新しいinteractionとして再記録しない。
+        run: python scripts/aieo_memory_freshness.py
+
+      - name: 処理済み観測をスキップしたことを記録
+        if: steps.freshness.outputs.fresh == 'false'
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          import pandas as pd
-
-          path = Path("aieo_visibility_metrics.csv")
-          required = {
-              "timestamp",
-              "name",
-              "github_followers",
-              "github_repos",
-              "web_mentions",
-              "domain_mentions",
-              "visibility_score",
-          }
-
-          if not path.exists() or path.stat().st_size == 0:
-              raise SystemExit("aieo_visibility_metrics.csv が存在しないか空です")
-
-          frame = pd.read_csv(path)
-          missing = sorted(required - set(frame.columns))
-          if missing:
-              raise SystemExit(f"可視性データの必須列がありません: {missing}")
-          if frame.empty:
-              raise SystemExit("可視性データに有効な行がありません")
-
-          print(f"✓ 最新の正常データを使用: {len(frame)}行")
-          print(f"✓ 最終観測時刻: {frame['timestamp'].iloc[-1]}")
-          PY
+          {
+            echo "## AIEO Memory Update"
+            echo ""
+            echo "- Result: skipped"
+            echo "- Reason: visibility observation already processed"
+            echo "- Source timestamp: ${{ steps.freshness.outputs.source_timestamp }}"
+            echo "- Last processed: ${{ steps.freshness.outputs.processed_timestamp }}"
+            echo "- Memory / confidence changes: none"
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: レゾナンスインデクサーを実行
+        if: steps.freshness.outputs.fresh == 'true'
         run: python scripts/resonance_indexer.py
 
       - name: メモリエンジンを実行
+        if: steps.freshness.outputs.fresh == 'true'
         run: python scripts/aieo_memory_engine.py
 
       - name: 変更をcommitしてpush
+        if: steps.freshness.outputs.fresh == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
