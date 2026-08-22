@@ -35,16 +35,29 @@ def newest_visibility_timestamp(path: Path = VISIBILITY_PATH) -> datetime:
     if not path.exists() or path.stat().st_size == 0:
         raise ValueError(f"{path} が存在しないか空です")
 
+    timestamps = []
+    invalid_count = 0
     with path.open("r", encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
         fields = set(reader.fieldnames or [])
         missing = sorted(REQUIRED_FIELDS - fields)
         if missing:
             raise ValueError(f"可視性データの必須列がありません: {missing}")
-        timestamps = [parse_timestamp(row["timestamp"]) for row in reader]
+
+        # append-only履歴では壊れた過去行だけを無視し、有効な最新観測を採用する。
+        for row in reader:
+            try:
+                timestamps.append(parse_timestamp(row.get("timestamp", "")))
+            except (TypeError, ValueError):
+                invalid_count += 1
 
     if not timestamps:
-        raise ValueError("可視性データに有効な行がありません")
+        raise ValueError("可視性データに有効なtimestampがありません")
+    if invalid_count:
+        print(
+            "::warning title=AIEO visibility history contains invalid timestamps::"
+            f"不正な過去timestamp {invalid_count}行を無視しました。"
+        )
     return max(timestamps)
 
 
