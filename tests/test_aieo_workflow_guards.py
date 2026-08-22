@@ -108,6 +108,31 @@ def test_memory_freshness_rejects_replayed_observation(tmp_path):
     assert source == processed
 
 
+def test_memory_freshness_skips_malformed_historical_timestamp(tmp_path):
+    visibility = tmp_path / "metrics.csv"
+    report = tmp_path / "resonance.json"
+    write_visibility(
+        visibility,
+        ["not-a-timestamp", "2026-08-22T07:15:54Z", ""],
+    )
+    write_report(report, "2026-08-21T07:15:54Z")
+
+    fresh, source, processed = freshness.is_fresh(visibility, report)
+    assert fresh is True
+    assert freshness.iso_z(source) == "2026-08-22T07:15:54Z"
+    assert source > processed
+
+
+def test_memory_freshness_rejects_history_with_no_valid_timestamp(tmp_path):
+    visibility = tmp_path / "metrics.csv"
+    report = tmp_path / "resonance.json"
+    write_visibility(visibility, ["not-a-timestamp", ""])
+    write_report(report, "2026-08-21T07:15:54Z")
+
+    with pytest.raises(ValueError, match="有効なtimestamp"):
+        freshness.is_fresh(visibility, report)
+
+
 def test_memory_freshness_fails_on_invalid_processed_report(tmp_path):
     visibility = tmp_path / "metrics.csv"
     report = tmp_path / "resonance.json"
