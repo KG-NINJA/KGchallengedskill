@@ -37,15 +37,15 @@ jobs:
 
       - name: 🔍 Collect isolated visibility metrics
         id: collect
-        continue-on-error: true
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/aieo_visibility_tracker.py
+        # 既知のGoogleリファラー制限だけを縮退扱いし、それ以外の失敗は隠さない。
+        run: python scripts/aieo_visibility_workflow.py
 
       - name: ⚠️ Report provider degradation
-        if: steps.collect.outcome == 'failure'
+        if: steps.collect.outputs.provider_degraded == 'true'
         run: |
           echo "::warning::Google Custom Searchを利用できないため、新しい可視性データは保存しませんでした。既存の正常データは保持されています。"
           {
@@ -58,7 +58,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: 📈 Analyze historical legacy search data
-        if: steps.collect.outcome == 'success'
+        if: steps.collect.outputs.provider_degraded != 'true'
         run: |
           if [ -s visibility_log.csv ]; then
             python scripts/enhanced_visibility_analyzer.py
@@ -67,7 +67,7 @@ jobs:
           fi
 
       - name: 📊 Commit and push results
-        if: steps.collect.outcome == 'success'
+        if: steps.collect.outputs.provider_degraded != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
