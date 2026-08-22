@@ -1,4 +1,4 @@
-# 定期的にAIEOの可視性、共鳴、メモリを更新するワークフロー
+# 最新の正常な可視性データから共鳴とメモリを更新するワークフロー
 name: AIEO Memory Update
 
 on:
@@ -17,9 +17,6 @@ jobs:
   refresh-aieo-memory:
     name: Refresh AIEO memory assets
     runs-on: ubuntu-latest
-    env:
-      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-      GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
 
     steps:
       - name: チェックアウト
@@ -33,13 +30,41 @@ jobs:
           python-version: "3.11"
           cache: pip
 
-      - name: 依存関係をインストール
+      - name: 必要な依存関係をインストール
         run: |
           python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
+          python -m pip install pandas matplotlib
 
-      - name: 可視性メトリクスを収集
-        run: python scripts/aieo_visibility_tracker.py
+      - name: 最新の正常な可視性データを検証
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd
+
+          path = Path("aieo_visibility_metrics.csv")
+          required = {
+              "timestamp",
+              "name",
+              "github_followers",
+              "github_repos",
+              "web_mentions",
+              "domain_mentions",
+              "visibility_score",
+          }
+
+          if not path.exists() or path.stat().st_size == 0:
+              raise SystemExit("aieo_visibility_metrics.csv が存在しないか空です")
+
+          frame = pd.read_csv(path)
+          missing = sorted(required - set(frame.columns))
+          if missing:
+              raise SystemExit(f"可視性データの必須列がありません: {missing}")
+          if frame.empty:
+              raise SystemExit("可視性データに有効な行がありません")
+
+          print(f"✓ 最新の正常データを使用: {len(frame)}行")
+          print(f"✓ 最終観測時刻: {frame['timestamp'].iloc[-1]}")
+          PY
 
       - name: レゾナンスインデクサーを実行
         run: python scripts/resonance_indexer.py
@@ -52,7 +77,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add \
-            aieo_visibility_metrics.csv \
             resonance_snapshot.png \
             resonance_report.json \
             aieo_memory.json \
