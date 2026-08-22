@@ -36,12 +36,29 @@ jobs:
           python -m pip install pandas matplotlib requests feedparser
 
       - name: 🔍 Collect isolated visibility metrics
+        id: collect
+        continue-on-error: true
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/aieo_visibility_tracker.py
 
+      - name: ⚠️ Report provider degradation
+        if: steps.collect.outcome == 'failure'
+        run: |
+          echo "::warning::Google Custom Searchを利用できないため、新しい可視性データは保存しませんでした。既存の正常データは保持されています。"
+          {
+            echo "## AIEO Visibility Provider"
+            echo ""
+            echo "- Collection: degraded"
+            echo "- New metrics written: no"
+            echo "- Existing validated metrics: preserved"
+            echo "- Required operator action: review GOOGLE_API_KEY application restrictions"
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: 📈 Analyze historical legacy search data
+        if: steps.collect.outcome == 'success'
         run: |
           if [ -s visibility_log.csv ]; then
             python scripts/enhanced_visibility_analyzer.py
@@ -50,6 +67,7 @@ jobs:
           fi
 
       - name: 📊 Commit and push results
+        if: steps.collect.outcome == 'success'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
