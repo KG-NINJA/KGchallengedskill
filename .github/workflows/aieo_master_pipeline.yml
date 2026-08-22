@@ -17,7 +17,7 @@ jobs:
     name: 🌐 Visibility Pulse
     runs-on: ubuntu-latest
     outputs:
-      collection_outcome: ${{ steps.collect.outcome }}
+      provider_degraded: ${{ steps.collect.outputs.provider_degraded }}
 
     steps:
       - name: Checkout repository
@@ -31,15 +31,15 @@ jobs:
 
       - name: Run Visibility Tracker
         id: collect
-        continue-on-error: true
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/aieo_visibility_tracker.py
+        # 既知のGoogleリファラー制限だけを縮退扱いし、その他の回帰は失敗として伝播する。
+        run: python scripts/aieo_visibility_workflow.py
 
       - name: Report provider degradation
-        if: steps.collect.outcome == 'failure'
+        if: steps.collect.outputs.provider_degraded == 'true'
         run: |
           echo "::warning::Google Custom Searchを利用できないため、Master Pipelineの下流処理を安全にスキップします。既存データは変更しません。"
           {
@@ -52,7 +52,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Commit and push visibility metrics
-        if: steps.collect.outcome == 'success'
+        if: steps.collect.outputs.provider_degraded != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -70,7 +70,7 @@ jobs:
   effect:
     name: 🎯 Effect Analyzer
     needs: visibility
-    if: needs.visibility.outputs.collection_outcome == 'success'
+    if: needs.visibility.outputs.provider_degraded != 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

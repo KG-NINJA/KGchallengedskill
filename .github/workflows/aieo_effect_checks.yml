@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - "scripts/aieo_visibility_tracker.py"
+      - "scripts/aieo_visibility_workflow.py"
+      - "scripts/aieo_memory_freshness.py"
       - "scripts/aieo_effect_compose.py"
       - "scripts/aieo_composite_tracker.py"
       - "scripts/resonance_indexer.py"
@@ -14,6 +16,7 @@ on:
       - "tests/test_aieo_composite_tracker.py"
       - "tests/test_aieo_memory_engine.py"
       - "tests/test_aieo_workflow_concurrency.py"
+      - "tests/test_aieo_workflow_guards.py"
       - ".github/workflows/AIEO_PULSE.yml"
       - ".github/workflows/AIEO_VISIBILITY_PULSE.yml"
       - ".github/workflows/AIEO_EFFECT_ANALYZER.yml"
@@ -26,6 +29,8 @@ on:
       - main
     paths:
       - "scripts/aieo_visibility_tracker.py"
+      - "scripts/aieo_visibility_workflow.py"
+      - "scripts/aieo_memory_freshness.py"
       - "scripts/aieo_effect_compose.py"
       - "scripts/aieo_composite_tracker.py"
       - "scripts/resonance_indexer.py"
@@ -36,6 +41,7 @@ on:
       - "tests/test_aieo_composite_tracker.py"
       - "tests/test_aieo_memory_engine.py"
       - "tests/test_aieo_workflow_concurrency.py"
+      - "tests/test_aieo_workflow_guards.py"
       - ".github/workflows/AIEO_PULSE.yml"
       - ".github/workflows/AIEO_VISIBILITY_PULSE.yml"
       - ".github/workflows/AIEO_EFFECT_ANALYZER.yml"
@@ -79,7 +85,8 @@ jobs:
             tests/test_aieo_effect_compose.py \
             tests/test_aieo_composite_tracker.py \
             tests/test_aieo_memory_engine.py \
-            tests/test_aieo_workflow_concurrency.py
+            tests/test_aieo_workflow_concurrency.py \
+            tests/test_aieo_workflow_guards.py
 
       - name: Smoke-test current historical data
         run: |
