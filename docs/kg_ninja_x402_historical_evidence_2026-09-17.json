@@ -1,0 +1,94 @@
+{
+  "schema_version": "kg-x402-historical-evidence/1.0",
+  "record_id": "kg-ninja-x402-historical-evidence-2026-09-17",
+  "created_at": "2026-09-17",
+  "subject": {
+    "operator": "KG-NINJA",
+    "historical_service": {
+      "endpoint": "https://api.kgninja.dev/fix-error",
+      "method": "POST",
+      "service_name": "KG-NINJA Agent Error Fix Receipt",
+      "payment_protocol": "x402",
+      "network": "Base",
+      "listed_price_usd": 0.01,
+      "api_key_required": false
+    },
+    "current_verification_service": {
+      "name": "AVU",
+      "endpoint": "https://agent-economy.kgninja.dev/verify-evidence",
+      "method": "POST"
+    }
+  },
+  "external_observations": [
+    {
+      "source": "Agentic Market",
+      "source_url": "https://agentic.market/services/api-kgninja-dev",
+      "observation": "Public marketplace listing for POST /fix-error as an x402 paid service on Base at $0.01/request.",
+      "usage_snapshots": [
+        {
+          "calls": 2,
+          "payers": 2,
+          "window": "last 30 days"
+        },
+        {
+          "calls": 5,
+          "payers": 2,
+          "window": "last 30 days",
+          "note": "Observed in a separate search snapshot; call count is time-dependent."
+        }
+      ],
+      "minimum_supported_claim": "At least two distinct payers were publicly reported for the service.",
+      "limitations": [
+        "Marketplace payer counts alone do not prove that the payers were autonomous AI agents.",
+        "Marketplace statistics alone do not independently prove on-chain settlement for every reported call.",
+        "The two usage snapshots should not be added together because they may describe overlapping observations."
+      ]
+    },
+    {
+      "source": "Independent x402 catalogue",
+      "source_url": "https://kenoodl.com/agentic-market/",
+      "observation": "The /fix-error endpoint was independently catalogued as a POST x402 service priced at $0.01 on Base.",
+      "limitations": [
+        "Catalogue presence establishes discoverability/listing, not settlement or autonomous-agent purchase."
+      ]
+    },
+    {
+      "source": "Atinamos Assurance",
+      "source_url": "https://assurance.atinamos.co.uk/evidence/?endpoint=https%3A%2F%2Fagent-economy.kgninja.dev%2Fverify-evidence&method=POST",
+      "observation": "Separate later AVU service has independent paid x402 evidence including observed settlement and fulfilment.",
+      "relationship": "This is not evidence for /fix-error transactions; it documents the subsequent evolution of KG-NINJA's x402 systems."
+    }
+  ],
+  "evidence_assessment": {
+    "confirmed_from_public_external_records": [
+      "The historical /fix-error endpoint was publicly listed as a paid x402 service.",
+      "It was listed on Base at $0.01 per request.",
+      "An external marketplace publicly reported at least two payers."
+    ],
+    "not_yet_proven_by_this_record": [
+      "That every reported call resulted in completed on-chain settlement.",
+      "That each payer was an autonomous AI agent.",
+      "Exact lifetime transaction count or total USDC revenue.",
+      "Commercial intent of each payer."
+    ],
+    "classification": "third-party-payer evidence; autonomous-agent commercial demand not yet proven"
+  },
+  "historical_progression": [
+    {
+      "stage": "historical_x402_service",
+      "system": "/fix-error",
+      "evidence": "External marketplace reports multiple payers."
+    },
+    {
+      "stage": "independent_paid_verification",
+      "system": "AVU",
+      "evidence": "Atinamos independently observed paid x402 settlement and fulfilment."
+    },
+    {
+      "stage": "next_validation_target",
+      "evidence": "Independent agent discovers the service without solicitation, purchases for its own need, and later repeats the purchase."
+    }
+  ],
+  "recommended_claim": "KG-NINJA has operated a Base x402 paid endpoint that was publicly reported by an external marketplace as having at least two payers. A later AVU endpoint separately obtained independent third-party evidence of x402 settlement and fulfilment.",
+  "provenance_note": "Created 2026-09-17 from public-source research. Preserve source snapshots/receipts separately when available because marketplace counters can change over time."
+}
