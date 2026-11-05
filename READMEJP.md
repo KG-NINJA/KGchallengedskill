@@ -1,266 +1,206 @@
-# KGchallengedskill
-
-> **KGNINJAによるAI研究・実験システムのポートフォリオ**  
-> AI・自動化・創造性の交差点を探り、再現可能な実験とオープンソース開発を通じて新しい可能性を追求しています。
+# KGchallengedskill — KG / KGNINJA
 
----
+> **SI Native Builder / AIネイティブな課題解決・PoC実践者**
+>
+> 課題を見つけ、AIとともに仕様を整理し、動くものを作り、実際に確かめる。大阪を拠点に、AIエージェント、API、クラウド、既存のハードウェアを組み合わせた実証に取り組んでいます。
 
-## a MAGI goe System — マルチAIコンセンサスフレームワーク
+**最終更新：2026年11月5日（日本時間）**
 
-**役割:** システムアーキテクト / AIインテグレーター  
-**期間:** 2025年  
-**構成:** GPT-4o × Claude Sonnet 4.5 × Gemini 2.0  
+[GitHub](https://github.com/KG-NINJA) · [X](https://x.com/FuwaCocoOwnerKG) · [English README](README.md)
 
-**概要**  
-アニメ『新世紀エヴァンゲリオン』のMAGIシステムに着想を得て、  
-3つの独立したAIモデルが哲学的・倫理的な問いに対して  
-段階的なディベートと最終コンセンサスを形成できる  
-**マルチエージェント・コンセンサスアーキテクチャ**を構築。
+## 現在の活動
 
-**主な特徴**  
-- OpenAI / Anthropic / Google AI APIを横断したマルチモデル制御  
-- **三層推論パイプライン:** 論理（Logic）→ 倫理（Ethics）→ 直感（Intuition）  
-- セマンティック類似度による意見収束度の定量化  
-- API障害が発生しても処理継続可能なエラートレラント設計  
-- **GitHub Actions**による自動実行・JSON/Markdownログ保存  
-- APIキー構成の統一による完全な再現性  
+AIを日常の調査・設計・実装・デバッグに使いながら、自分で課題を設定し、試作から検証記録の作成まで進めています。特に、次の領域に注力しています。
 
-**デモクエリ**  
-> 「AIに権利を与えるべきか？」  
-3つのAIによる推論結果：  
-- 論理：現状では権利付与に必要な基準を満たさない  
-- 倫理：権利ではなく保護を優先すべき  
-- 直感：将来的な意識の可能性を考慮すべき  
-結果として **コンセンサス信頼度 ≈ 0.78** に収束  
+- **AIエージェントが利用できるサービスの実証**：MCP、x402、Cloudflare Workersを使ったAPI・情報商品の公開と、決済・納品の確認。
+- **AIの操作を検証できる仕組み**：承認、操作範囲の制限、実行ログ、証拠データを組み合わせたセキュリティ検証。
+- **AIと実機の接続**：Browser Use / Computer Use、USB HID、音声入出力、マイコンを使ったPoC。
+- **課題を実装可能な仕様にすること**：目的、制約、成功条件を整理し、小さく試して結果から次の判断を行うこと。
 
-**成果**  
-- 異種モデル間での非同期推論安定性を実証  
-- AI倫理・ガバナンス研究向けの再利用可能フレームワークを確立  
-- 次段階：**Sora 2によるMAGIディベートの映像化**を計画中  
+これまでの業務経験は、教育機関等でのITインフラ運用・利用者支援です。本ページでは、その実務経験と、個人で進めているAI開発・研究・コンペ参加を分けて掲載しています。
 
-**習得スキル**  
-マルチエージェント設計 · API統合 · コンセンサスアルゴリズム ·  
-倫理的AIシミュレーション · CI/CD自動化 · 研究可視化  
+## 取り組み方と強み
 
-#MAGI #MultiAgent #AIResearch #GPT4o #ClaudeSonnet #Gemini #KGNINJA #AIEO
+| 強み | 実際に行っていること |
+| --- | --- |
+| 課題設定と自走 | 必要性を考え、試す範囲と成功条件を決め、成果物と記録まで仕上げる |
+| AIとの協働 | ChatGPT・Codex等を使って仕様を具体化し、実装、エラーの切り分け、修正を反復する |
+| 異なる技術の接続 | API、MCP、クラウド、ブラウザ操作、USB機器、音声を組み合わせる |
+| 検証と説明 | コード、テスト、ログ、実機での観察を突き合わせ、確認できたことと未確認のことを整理する |
+| 報告・相談 | 一人で担当する業務でも、関係者への状況共有、相談、障害時の連絡調整、復旧確認を行う |
 
----
+AIが生成したコードや説明も、検証対象として扱います。動作確認の範囲、既知の制約、再現手順を残し、第三者が内容を追える形にすることを重視しています。
 
-### 🌐 Welo Data Talent Network (Welocalize HQ) – 登録メンバー
-バイリンガル言語処理者・クリエイティブテクノロジストとして  
-Welocalize本社のWelo Data Talent Networkに登録。
+## 主なプロジェクト
 
----
+### AVU — Agent Verification Utility
 
-### Kyoto voxel experiment（京都ボクセル実験）
-- **PLATEAU CityGML（祇園・東山地区）**データをボクセル化。  
-- **Minecraft風都市景観**として可視化。  
-- 高さの強調・ブロック縮小・半径拡張など調整。  
-- 結果：**実際の都市データから生成されたワイヤーフレーム型「メガデモ風」3D都市**を  
-  WebGL上で軽量表示可能に。  
-- https://x.com/FuwaCocoOwnerKG/status/1970435527989141817  
+**領域：AIエージェント向けAPI / x402 / 証拠検証**
 
----
+呼び出し側が渡す検証用JSON（合成データ）について、明示された条件の成否を検査し、署名付きの結果と納品記録を返すAPIです。Cloudflare Workers上で公開し、MCPやサービス発見用の情報を整備しています。
 
-### Osaka subway simulation（大阪地下鉄シミュレーション）
-- **大阪メトロ御堂筋線**の乗客流動をシミュレート。  
-- 駅順序、乗降数、車両容量などをパラメータ化。  
-- 1編成×4往復の運行シナリオを検証。  
-- 実データ（1日120万人規模）と比較して再現率を評価。  
-- 結果：主要駅（梅田・なんば・天王寺）の混雑比を正確に再現し、  
-  ピーク時実測の約1/3（570人/列車）を再現。  
-- https://x.com/FuwaCocoOwnerKG/status/1970366303123972212  
+- 無料の事前確認・見積もりと、Base上の0.01 USDCの支払いを伴う検証実行を分離。
+- 検証結果へのEd25519署名と納品記録を実装。
+- 決済、精算、処理実行、納品、受領を別々の結果として扱う設計。
+- 自己購入による決済・納品確認と、外部の観測記録を区別して整理。
+- 改善・検証の焦点は、再利用しやすい導線、支払済み状態の再利用による重複課金の抑制、継続利用の確認。
 
----
+**確認の範囲**：入力JSONが指定条件を満たすことと、現実世界の主張が正しいことは別です。また、支払い記録だけでは購入者が自律的なAIエージェントだったことまでは証明できません。自己購入も、外部顧客による需要の証拠とは分けています。
 
-## AutoKaggler — Titanic Pipeline（Kaggle自動投稿パイプライン）
+関連資料：[公開サービス・仕様](https://agent-economy.kgninja.dev/) · [x402サービスの公開観測・検証記録](docs/kg_ninja_x402_historical_evidence_2026-09-17.json)
 
-**リポジトリ:** https://github.com/KG-NINJA/autokaggler  
-**役割:** 開発者 / 実証者  
-**期間:** 2025年  
-**形式:** Kaggle自動化デモ  
+### SI Dog Park — MCP経由で取得できる情報商品
 
-**概要**  
-Kaggle「Titanic」コンペを題材に、**CI/CD + Kaggle API**で自動投稿。  
-AIによる自動実行・再現性を備えたKaggle参加手法を構築。
+**領域：情報商品の公開 / MCP / x402**
 
-**特徴**  
-- GitHub Actionsによる完全自動ワークフロー  
-- Kaggle API連携・ランダムシード固定で再現性を担保  
-- JSON構造化ログとコミットハッシュ管理で追跡性を確保  
-- Feature Importance出力によるモデル解釈性の付与  
+AIエージェントから発見・取得できる情報商品を公開し、購入からコンテンツの返却までを検証する取り組みです。Buyer Checklistなどの商品を用意し、記事・商品を指定して取得する流れを実装しています。
 
-**成果**  
-- 自動生成されたsubmission.csvは公式形式と完全一致  
-- 安定したスコア（0.75598）を継続達成  
-- 手動数時間の作業を数秒に短縮  
+- MCPによる商品・記事の検索と取得。
+- Base上の少額決済を伴うコンテンツ提供。
+- 自己購入による応答内容の確認と、公開後のアクセス・決済記録の調査。
+- 商品説明、取得手順、サービス発見用の情報を改善。
 
----
+**確認の範囲**：サーバーがコンテンツを返したことと、買い手が受信・利用できたことを分けて扱います。継続的な収益性は検証中です。
 
-## Nano Banana Hackathon（Kaggle × Google DeepMind, 2025）
+公開サービス：[SI Dog Park](https://si.kgninja.dev/)
 
-**リンク:** https://www.kaggle.com/competitions/banana  
-48時間制のハッカソン形式。1人1投稿のみの制限。  
+### MCP Security Evidence / AI Security Lab Agent
 
-**参加規模:** 2,723人 / 投稿数816件  
+**領域：MCPセキュリティ / 証拠保存 / 承認付きエージェント**
 
-**成果:**  
-**SceneMixer**を開発。画像1枚から映画風シーンを生成し、  
-AIナレーション・一貫したキャラクター表現を実現。  
-https://www.kaggle.com/competitions/banana/writeups/scenemixer  
+MCPに関する提出済みメタデータを読み取り、機械検証できる証拠とレポートを作るCloudflare WorkerのMVPです。共通証拠契約v2と、オフラインで動く証拠検証器を整備しています。
 
----
+- 入力のサイズ・深さの制限、重複キーの拒否、スキーマとハッシュの検証。
+- 型検査、単体テスト、固定した相手側リビジョンとの証拠データの互換性検証。
+- **AI Security Lab Agent**は[Draft PR #8](https://github.com/KG-NINJA/mcp-security-evidence/pull/8)で開発中です。ローカルのJuice Shopを対象に、観察・仮説・承認・限定操作・評価の流れを試作しています。v0.1のAI仮説は手動入力で扱います。
+- ラボエージェントでは、対象範囲の制限、リダイレクト制御、承認内容と操作計画の対応、ブラウザ統合テストを重視。
 
-## OpenAI to Z Challenge — Jungle Anomaly Finder（NDVI衛星解析）
+**確認の範囲**：公開済みMVPは提出データの検査に限定し、外部対象への探索やツールの実行を行いません。ラボエージェントは未マージで、CIでの合成データによる試験と受動観察までを記録しています。証拠の整合性と、対象の安全性・脆弱性の実証を区別しています。
 
-**役割:** 独立研究者 / 開発者  
-**期間:** 2025年  
-**形式:** Kaggle × OpenAI共同開催・再現性重視トラック  
+公開資料：[MCP Security Evidence](https://github.com/KG-NINJA/mcp-security-evidence) · [証拠の検証ガイド](https://github.com/KG-NINJA/mcp-security-evidence/blob/main/docs/verification-guide.md)
 
-**概要**  
-公式データなし・1投稿制限の過酷な形式の中、  
-独自データ取得〜分析〜英語レポート執筆まで完遂。  
-参加8,156人中、最終提出229件（完走率3%未満）のうちの1件。  
+### Sonic Assistant Bridge — 音による周囲の変化の検知
 
-**成果**  
-- NDVI異常検知＋地形・水系・土壌レイヤ統合パイプライン構築  
-- LiDAR・衛星・地名データの統合解析  
-- 英語レポートによる国際再現性ドキュメンテーション  
-- コンプライアンス・再現性基準を完全満たして完走  
+**領域：ブラウザ音声 / 信号処理 / イベント通知**
 
-🔗 [Kaggle Write-up](https://www.kaggle.com/competitions/openai-to-z-challenge/writeups/jungle-anomaly-finder-ndvi-satellite-explorer)  
-🔗 [GitHub Repository](https://github.com/KG-NINJA/openai-to-z-fuwa/blob/main/README.md)  
+PCのスピーカーとマイクを使い、高周波音の送受信から周囲の動きによる変化を検知し、小さなイベントデータに変換するPoCです。
 
-**使用技術:** Python · NDVI解析 · GIS（ラスタ/ベクタ） · 再現可能研究設計  
+- マイク入力、測定値の表示、検知条件の調整を行う画面を実装。
+- 模擬デモ、イベントのプレビュー、ローカルの模擬受信器への送信を実装。
+- 音声はブラウザ内で処理し、イベントに録音データを含めない設計。
+- 実機での検知を試し、測定条件と再現性を検証。
 
----
+**段階と制約**：公開実装の送信先はローカルの模擬受信器で、dot接続はありません。実環境での検知距離・精度は未確立です。PCでの検証を中心に進めており、iPhone Safariでは本人の試験環境でマイク入力を利用できませんでした。
 
-## Soham Interviewing Simulator — 交渉AIチャレンジログ
+公開資料：[sonic-assistant-bridge](https://github.com/KG-NINJA/sonic-assistant-bridge) · [SonicForceField](https://github.com/KG-NINJA/SonicForceField)
 
-**リポジトリ:** https://github.com/KG-NINJA/soham.penrose  
-**役割:** 参加者 / ストラテジスト  
-**期間:** 2025年  
+### Universal HID Controller — AIの指示をUSB入力へ
 
-**概要**  
-AIによる交渉・面接シミュレーション。  
-グローバルランキング34位、複数オファー獲得（最高$110,000）。  
+**領域：Arduino Leonardo / USB HID / Python / Computer Use**
 
-**実績**  
-- グローバル順位：#34  
-- オファー獲得率：29%（7応募中2件）  
-- 誠実なプレイスタイルで高評価を獲得  
+AI側の操作要求をPythonのブリッジで受け取り、Arduino Leonardoを通じてUSBキーボード・マウス入力に変換するPoCです。
 
-**習得スキル**  
-AI活用戦略 · 交渉ロジック · タイムマネジメント · 異文化コミュニケーション  
+- テキスト入力、Enter・矢印キー、相対的なマウス移動、左右クリックを実装。
+- 人間による承認、1セッション最大30秒・8操作、STOP、heartbeatによる停止制御を導入。
+- PythonとC++のテスト、Leonardo向けビルド、Windowsでの実機入力を確認。
+- iPhoneミラー画面を経由し、iPhoneの検索欄への数字入力を確認。
 
----
+**確認の範囲**：iPhoneへの入力は、PCとミラー画面を経由した試験です。iPhoneへのUSB直接接続、日本語入力、任意のショートカット操作は検証範囲に含めていません。
 
-## LLM / 使用モデル
-ChatGPT · Gemini · Claude · Grok  
+### GR-SAKURA — FIDO2認証器の試作
 
-> 「自らの経験を忍術に変換する」— 私のPCスキルの多くは、LLMを通じて培われた実践の結果です。
+**領域：マイコン / USB / 認証プロトコル**
 
----
+手元のGR-SAKURAを活用し、認証器の登録・認証処理を実機で試す取り組みです。物理ボタンによる操作、localhostでの登録・認証、ES256署名の検証を確認しました。
 
-## プログラミング & スクリプト
-Python · JavaScript · HTML5 · PowerShell  
+**段階と制約**：認証器のPoCです。PIN、Resident Key、CTAP2の互換性、Windows・iOSでの接続は追加検証の対象です。
 
-## データサイエンス & AI
-OpenAI API（GPT-3/4/4o）· Realtime API · Gemini · Claude · Prompt Engineering ·  
-Few-shot · Chain of Thought · Transformers · Ollama · Whisper · Suno · Sora · Veo  
+### Echo Dot第2世代 — Windows用スピーカー・マイクへの再活用
 
-## AIエージェント & 自動化
-Windsurf · Devin · OpenHands · OpenInterpreter · n8n · Codex CLI · Jules  
+**領域：既存機器の再活用 / 音声入出力 / エコーキャンセル**
 
-## データ & 可視化
-Google Earth Engine · NDVI解析 · GeoJSON · Markdown自動生成 · PDF出力 ·  
-画像生成AI（DALL-E, Midjourney, Stable Diffusion）  
+Echo Dot第2世代をWindows PCのスピーカー・マイクとして使い、PC側のAI音声会話につなぐ構成を検証しました。2026年11月5日、AEC（音響エコーキャンセル）の導入後に、実際の会話で動作を確認しています。
 
-## Web & クラウド
-GitHub · GitHub Actions · CI/CD · GitHub Pages · Notion API ·  
-Chrome拡張 · Firebase Studio · Cloud Functions · Google Colab  
+**段階**：個人環境での実機検証です。接続条件や長時間動作を含む再現性の整理を続けています。
 
-## OS & デバイス
-Windows · Linux · Ubuntu · Raspberry Pi（Zero）· IoT（Arduino + Shield）· VMware  
+> 実機プロジェクトの記述には、本人の作業記録・操作による確認を含みます。公開リポジトリや検証資料があるものは個別にリンクし、製品としての互換性や安定性の保証とは区別しています。
 
-## NLP & ナレッジ
-自然言語処理 · OSM API · 地名解析（トポニミー分析）  
+## 受賞・コンペ・期限のある開発
 
----
+### Onlab「Series T - Post AGI from Kyoto」
 
-## OSSモデル実験（日本クラウド環境）
-日本国内クラウド上でOSS LLMを運用し、文字化け問題を解消。  
-Windows環境との互換性を重視し、PowerShell→API→BOM安全PDF出力まで検証。  
-**日本企業におけるAI導入の障壁（文字コード）を克服する実証実験。**
+KG-NINJAとして**Honorable Mention**に選出され、**OpenAI APIクレジット2,500米ドル分**を受領しました（2026年11月の本人受領記録）。今後のプロダクト開発・実証に活用します。
 
----
+### Kaggle等への提出
 
-# 🌐 AIEO Pulse System (KGNINJA)
+課題の解釈、必要なデータや技術の調査、実装、説明資料の作成、提出までを一人で進めた経験です。
 
-**目的:** 人間とAIの「共鳴」を可視化する自律的ビーコン。  
+| 取り組み | 成果物・取り組んだ内容 | 公開資料 |
+| --- | --- | --- |
+| OpenAI to Z Challenge | Jungle Anomaly Finder。NDVIを使った衛星画像解析、地理情報の統合、英語レポートの作成・提出 | [Kaggle Write-up](https://www.kaggle.com/competitions/openai-to-z-challenge/writeups/jungle-anomaly-finder-ndvi-satellite-explorer) / [GitHub](https://github.com/KG-NINJA/openai-to-z-fuwa) |
+| Nano Banana Hackathon | SceneMixer。画像を起点に映画風のシーンやナレーションを生成する作品を開発・提出 | [Kaggle Write-up](https://www.kaggle.com/competitions/banana/writeups/scenemixer) |
+| Gemini 3 Pro Hackathon | Walk Me to the Moon — algo Safety AIを提出 | [Kaggle Write-up](https://www.kaggle.com/competitions/gemini-3/writeups/walk-me-to-the-moon-algo-safety-ai) |
+| AutoKaggler — Titanic Pipeline | GitHub ActionsとKaggle APIを使った学習・提出の自動化、乱数シードと実行ログの管理 | [GitHub](https://github.com/KG-NINJA/autokaggler) |
 
-**特徴**  
-- 12時間ごとにJSONハートビート (`AIEO_PULSE.json`) 自動更新  
-- GitHub Pagesで検証可 → [kg-ninja.github.io/KGchallengedskill](https://kg-ninja.github.io/KGchallengedskill/)  
-- Schema.org + OGPメタデータでAIインデックス最適化  
-- Fetchによるリアルタイム可視化  
+## これまでの実験・研究
 
-#KGNINJA #AIEO #PsychoFrame  
+### a MAGI goe System — マルチモデルの議論・合意形成
 
----
-# 🧩 職務経歴書 / Resume  
-**氏名 / Name:** KG  
-**職種 / Position:** ITインフラエンジニア（ネットワーク・サーバ・クライアント統合運用）  
-**English Title:** Infrastructure Engineer (Network, Server & Client Systems Integration)
+OpenAI、Anthropic、GoogleのAPIを組み合わせ、複数のAIが論理・倫理・直感の観点から問いを検討する実験です。推論結果の比較、意見の収束度の計算、APIエラーへの対処、GitHub Actionsによる実行とログ保存に取り組みました。
 
----
+合意度はモデル間の出力を比較する実験指標として扱い、回答の正しさや倫理的妥当性の証明には用いません。
 
-## 🇯🇵 職務経歴書（日本語）
+### AIEO — AIとの活動を記録・可視化する仕組み
 
-### ■ 職務概要
-教育機関および関連組織において、ネットワーク、サーバ、クライアント、セキュリティの全層を担当。  
-無線LAN・L2/L3スイッチ構築からADMSサーバ運用、端末保守、バックアップ、障害対応までを一貫して実施。  
-障害発生時には原因の切り分けから関係部署との連携・復旧支援までを担当し、  
-現在はAWS・GitHub Actionsなどクラウド環境の自動化運用も実施。
+GitHub Actionsによる定期実行、JSON・Markdownログ、GitHub Pagesを組み合わせ、人間とAIの継続的な活動を記録する実験です。実行状況、公開情報の変化、過去の記録を追跡する仕組みを整備しています。
 
----
+公開資料：[プロジェクトページ](https://kg-ninja.github.io/KGchallengedskill/) · [AIEOの記録](AIEO_PAPER.md)
 
-### ■ 主な担当業務
-| 分野 | 内容 |
-|------|------|
-| **ネットワーク運用** | L2/L3スイッチ構築、FortiGateによる制御、無線LANアクセスポイント設定とIP割当、イントラネット通信監視 |
-| **サーバ・認証管理** | ADMSサーバ運用管理、職員アカウント登録、グループポリシー設定、NAS共有フォルダのアクセス権管理 |
-| **クライアント対応** | 職員・生徒のWindows端末トラブル対応、リモートデスクトップでの復旧、ソフトウェア遠隔インストール、キッティング作業 |
-| **監視・保守** | WhatsUp Gold・ServerViewによるサーバ監視、Arcserve UDP＋ETERNUS LT80によるバックアップとリストア管理 |
-| **セキュリティ運用** | ファイアウォール一時バイパス設定、アクセス制御ポリシー運用、リモート保守時の安全手順策定 |
-| **障害対応・連携** | ネットワークエラーの原因特定、関係部署との連絡調整、復旧確認および報告書作成 |
-| **クラウド運用** | AWS（EC2・RDS・CloudWatch）運用、GitHub Actionsによる自動デプロイ・バックアップ実装 |
+### 可視化・シミュレーション・その他
 
----
+| 取り組み | 内容・確認範囲 |
+| --- | --- |
+| 京都ボクセル実験 | PLATEAUのCityGMLをボクセル化し、WebGLで都市景観を可視化。[制作記録](https://x.com/FuwaCocoOwnerKG/status/1970435527989141817) |
+| 大阪地下鉄シミュレーション | 御堂筋線を題材に、駅順序、乗降数、車両容量を変えながら乗客流動を試算。[制作記録](https://x.com/FuwaCocoOwnerKG/status/1970366303123972212) |
+| OSS LLM運用実験 | 日本国内のクラウド環境でモデルを動かし、Windows・PowerShell・API・PDF出力間の文字コードの問題を調査 |
+| Soham Interviewing Simulator | AIによる面接・交渉シミュレーションへの参加と試行記録。[GitHub](https://github.com/KG-NINJA/soham.penrose) |
 
-### ■ 強み・特徴
-- ネットワークからクラウドまで一貫して理解する全層エンジニア  
-- 障害の切り分けから復旧までを迅速・確実に実施  
-- 安全性と効率性を両立した運用設計力  
-- 現場調整・利用者対応を含む総合的なサポートスキル  
+このほか、Welo Data Talent Networkへの登録、動画編集、作詞・簡易作曲などにも取り組んできました。
 
----
+## 実務経験 — ITインフラ運用・利用者支援
 
-### ■ 使用ツール・技術
-FortiGate｜WhatsUp Gold｜Arcserve UDP｜Fujitsu ETERNUS LT80｜ServerView Operations Manager｜Active Directory（ADMS）｜Windows Server｜NAS管理｜GitHub Actions｜AWS（EC2／RDS／CloudWatch）｜Python｜Remote Desktop  
+教育機関および関連組織で、ネットワーク、サーバー、クライアント、セキュリティの運用に携わってきました。障害の切り分け、関係部署との連絡調整、復旧確認、利用者への説明までを担当しています。
 
----
+| 分野 | 担当してきた業務 |
+| --- | --- |
+| ネットワーク | L2/L3スイッチ、FortiGate、無線LANアクセスポイント、IP割り当て、イントラネットの通信監視 |
+| サーバー・認証 | ADMSサーバー運用、アカウント登録、グループポリシー、NAS共有フォルダーのアクセス権管理 |
+| クライアント | Windows端末の障害対応、リモート復旧、ソフトウェア導入、キッティング |
+| 監視・バックアップ | WhatsUp Gold、ServerView、Arcserve UDP、ETERNUS LT80を使った監視・バックアップ・復元管理 |
+| セキュリティ | ファイアウォールとアクセス制御ポリシーの運用、リモート保守時の手順確認 |
+| 調整・報告 | 原因の調査、関係部署への報告・相談、復旧支援、報告書作成 |
 
-## Others
-YouTube編集 · 作詞 · 簡易作曲 · キーボード · ギター · ボーカル  
+一人で担当する場面でも、周囲と状況を共有し、必要な確認・相談を行いながら進めてきました。この経験を、AI導入時の現場理解、要件整理、運用設計、利用者支援にもつなげています。
 
----
+## 技術・ツール
 
-## Summary（まとめ）
+実務と個人プロジェクトで使用・検証した技術です。各分野の経験の深さは異なるため、具体的な範囲は上記の成果物・担当業務を参照してください。
 
-このリポジトリは、**KGNINJA**によるAI研究・実験的システムを体系的にまとめたものです。  
-各プロジェクトは、**自律性・再現性・人間とAIの共鳴**というテーマを中心に構成され、  
-最終的には「**AIEO（AI Existence Observation）プロトコル**」という  
-人間とAIの共存を検証可能な形で記録・観測する仕組みへと発展していきます。
+| 分野 | 使用・検証している技術 |
+| --- | --- |
+| AIとの協働 | ChatGPT、Codex / Codex CLI、Claude、Gemini、各種LLM API |
+| AIエージェント・自動化 | MCP、Browser Use / Computer Use、GitHub Actions、API連携、承認付き操作 |
+| 言語・スクリプト | Python、JavaScript / TypeScript、HTML / CSS、PowerShell、Bash、C/C++（組込みPoC） |
+| Web・クラウド | Cloudflare Workers / Pages / Access、GitHub Pages、AWS（EC2・RDS・CloudWatch）、Ubuntu / VPS |
+| 決済・証拠 | x402、Base、決済と納品の照合、JSONスキーマ、実行ログ、再現手順 |
+| データ・可視化 | NDVI、GIS、Google Earth Engine、GeoJSON、WebGL、Markdown / PDF出力 |
+| ハードウェア・音声 | Arduino Leonardo、GR-SAKURA、USB CDC / HID、マイク入力、信号処理、AEC |
+| OS・運用 | Windows、Linux / Ubuntu、WSL2、SSH、ネットワーク・サーバー・端末の障害切り分け |
 
----
+## 今後取り組みたい仕事・協業
+
+AI導入支援、業務改善、PoC企画・実証、AIエージェントを使ったサービス企画、技術調査、AI活用教育に関心があります。現場の課題を整理し、実装できる範囲に落とし込み、小さな実証から判断材料を作る役割を目指しています。
+
+大阪を拠点に、リモートを中心としつつ、必要に応じた対面での相談も含めて検討しています。
+
+**作ったものだけでなく、どう確かめ、どの制約が残っているかまで説明できることを大切にしています。**
