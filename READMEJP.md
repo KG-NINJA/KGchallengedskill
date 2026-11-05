@@ -6,7 +6,7 @@
 
 **最終更新：2026年11月5日（日本時間）**
 
-[GitHub](https://github.com/KG-NINJA) · [X](https://x.com/FuwaCocoOwnerKG) · [English README](README.md)
+[GitHub](https://github.com/KG-NINJA) · [English README](README.md)
 
 ## 現在の活動
 
