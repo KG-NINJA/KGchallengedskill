@@ -3,9 +3,9 @@
 **Entity:** KGNINJA  
 **Type:** individual_creator  
 **Origin:** Kyoto, Japan  
-**Memory Confidence:** 71.0%  
-**Total Interactions:** 21  
-**Last Update:** 2026-11-14T18:38:47.724498
+**Memory Confidence:** 72.0%  
+**Total Interactions:** 22  
+**Last Update:** 2026-11-14T22:37:54.175279
 
 ---
 
@@ -21,6 +21,9 @@
 
 ## 📝 Recent Interactions (Last 5)
 
+**2026-11-14T22:37:54** - `visibility_pulse`  
+_Strong presence - broad recognition_
+
 **2026-11-14T18:38:47** - `visibility_pulse`  
 _Strong presence - broad recognition_
 
@@ -31,8 +34,5 @@ _Strong presence - broad recognition_
 _Strong presence - broad recognition_
 
 **2026-08-22T18:55:25** - `visibility_pulse`  
-_Established presence - sustained visibility_
-
-**2026-08-22T13:07:32** - `visibility_pulse`  
 _Established presence - sustained visibility_
 
