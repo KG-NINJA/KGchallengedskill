@@ -22,7 +22,7 @@
         "visibility_score": 78.22627149100697
       },
       "confidence": 0.95,
-      "last_updated": "2026-11-16T22:43:24.141420"
+      "last_updated": "2026-11-17T08:12:35.346378"
     },
     {
       "concept_id": "kg_project_taxonomy",
@@ -254,11 +254,17 @@
       "event_type": "visibility_pulse",
       "context": "Visibility tracking completed from aieo_visibility_metrics.csv",
       "insight": "Strong presence - broad recognition"
+    },
+    {
+      "timestamp": "2026-11-17T08:12:35.346363",
+      "event_type": "visibility_pulse",
+      "context": "Visibility tracking completed from aieo_visibility_metrics.csv",
+      "insight": "Strong presence - broad recognition"
     }
   ],
   "meta": {
-    "total_interactions": 28,
-    "memory_confidence": 0.78,
-    "last_memory_update": "2026-11-16T22:43:24.141411"
+    "total_interactions": 29,
+    "memory_confidence": 0.79,
+    "last_memory_update": "2026-11-17T08:12:35.346371"
   }
 }
