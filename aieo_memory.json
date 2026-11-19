@@ -14,15 +14,15 @@
         "source": "aieo_visibility_metrics.csv",
         "metric_type": "visibility_score",
         "primary_entity": "KGNINJA",
-        "primary_value": 77.67048247115962,
+        "primary_value": 77.28941812469537,
         "growth_stage": "Strong presence - broad recognition",
         "tracked_entities": [
           "KGNINJA"
         ],
-        "visibility_score": 77.67048247115962
+        "visibility_score": 77.28941812469537
       },
       "confidence": 0.95,
-      "last_updated": "2026-11-19T07:43:01.628779"
+      "last_updated": "2026-11-19T20:51:30.943986"
     },
     {
       "concept_id": "kg_project_taxonomy",
@@ -296,11 +296,17 @@
       "event_type": "visibility_pulse",
       "context": "Visibility tracking completed from aieo_visibility_metrics.csv",
       "insight": "Strong presence - broad recognition"
+    },
+    {
+      "timestamp": "2026-11-19T20:51:30.943973",
+      "event_type": "visibility_pulse",
+      "context": "Visibility tracking completed from aieo_visibility_metrics.csv",
+      "insight": "Strong presence - broad recognition"
     }
   ],
   "meta": {
-    "total_interactions": 35,
-    "memory_confidence": 0.8500000000000001,
-    "last_memory_update": "2026-11-19T07:43:01.628770"
+    "total_interactions": 36,
+    "memory_confidence": 0.86,
+    "last_memory_update": "2026-11-19T20:51:30.943980"
   }
 }
