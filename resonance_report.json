@@ -1,14 +1,14 @@
 {
-  "timestamp": "2026-11-24T10:10:30.633093Z",
+  "timestamp": "2026-11-24T22:39:00.254582Z",
   "total_entities": 1,
-  "average_resonance": 3.87,
+  "average_resonance": 4.3,
   "entities": {
     "KGNINJA": {
-      "resonance": 3.87,
+      "resonance": 4.3,
       "domain_diversity": 0.0,
-      "mention_frequency": 3.07,
+      "mention_frequency": 3.5,
       "impact": 0.8,
-      "source_timestamp": "2026-11-24T03:31:20.819345Z"
+      "source_timestamp": "2026-11-24T16:35:38.896691Z"
     }
   }
 }
