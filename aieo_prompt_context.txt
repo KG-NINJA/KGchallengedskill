@@ -15,10 +15,10 @@
   - source: aieo_visibility_metrics.csv
   - metric_type: visibility_score
   - primary_entity: KGNINJA
-  - primary_value: 76.43880820876453
+  - primary_value: 75.87802314616525
   - growth_stage: Strong presence - broad recognition
   - tracked_entities: KGNINJA
-  - visibility_score: 76.43880820876453
+  - visibility_score: 75.87802314616525
 
 ### Kg Project Taxonomy
 **Category:** creation_pattern  
@@ -39,6 +39,6 @@
   - philosophy: PsychoFrame, resonance_over_noise, execution_over_discussion
 
 ## Memory Metadata
-- Total interactions: 57
+- Total interactions: 58
 - Memory confidence: 95.0%
-- Last update: 2026-11-26T21:47:06.132149
+- Last update: 2026-11-26T22:05:10.250699
